@@ -24,27 +24,27 @@ cache:
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ubuntu-toolchain-r-test ; fi
     packages:
-      - g++-4.8
-      - icnsutils
-      - graphicsmagick
-      - xz-utils
-      - xorriso
+      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then g++-4.8 ; fi
+      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then icnsutils ; fi
+      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then graphicsmagick ; fi
+      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then xz-utils ; fi
+      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then xorriso ; fi
 
 before_install:
-  - sudo add-apt-repository ppa:wine/wine-builds -y
-  - sudo apt-get update -q
-  - sudo apt-get install winehq-devel -y
-  - export WINEARCH=win32
-  - winecfg
-  - sudo apt-get install winetricks
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:wine/wine-builds -y ; fi
+  -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q ; fi
+  -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install winehq-devel -y ; fi
+  -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export WINEARCH=win32 ; fi
+  -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then winecfg ; fi
+  -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install winetricks ; fi
 
 install:
-  - export CXX="g++-4.8"
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8" ; fi
   - npm install -g npm@latest
   - npm install
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16" ; fi
 
 # Enable when https://github.com/yarnpkg/yarn/issues/1233 and
 # https://github.com/yarnpkg/yarn/issues/1059 are resolved and disable npm cache
@@ -56,13 +56,14 @@ install:
 #   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
 
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start &
-  - sleep 3
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0 ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start & ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3 ; fi
 
 script:
   - npm run lint
   #- npm run test
   - npm run build
   - npm run test-e2e
-  - npm run package-all
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-all ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-macos ; fi
