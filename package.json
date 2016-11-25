@@ -17,14 +17,14 @@
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
     "postinstall": "concurrently \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
     "dev": "npm run hot-server -- --start-hot",
-    "package": "npm run build && build --publish onTagOrDraft",
+    "package": "npm run build && build -mwl --publish onTagOrDraft",
     "package-win": "npm run build && build --win --x64",
     "package-linux": "npm run build && build --linux",
     "package-all": "npm run build && build -mwl",
     "cleanup": "mop -v"
   },
   "build": {
-    "appId": "org.develar.ElectronReact",
+    "appId": "org.quarkz-editor",
     "category": "public.app-category.tools",
     "dmg": {
       "contents": [
@@ -50,7 +50,8 @@
       "package.json"
     ],
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "./build/icon.ico"
     },
     "linux": {
       "target": [
