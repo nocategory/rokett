@@ -24,9 +24,7 @@ cache:
 addons:
   apt:
     sources:
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-          - ubuntu-toolchain-r-test
-      fi
+      if [[ $TRAVIS_OS_NAME == "linux" ]]; then ubuntu-toolchain-r-test; fi
     packages:
       if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         - g++-4.8
@@ -48,10 +46,12 @@ before_install:
 install:
   if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     - export CXX="g++-4.8"
-  fi
+  ; fi
   - npm install -g npm@latest
   - npm install
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  ; fi
 
 # Enable when https://github.com/yarnpkg/yarn/issues/1233 and
 # https://github.com/yarnpkg/yarn/issues/1059 are resolved and disable npm cache
@@ -75,7 +75,7 @@ script:
   - npm run test-e2e
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       npm run package-all
-    fi
+    ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       npm run package-osx
-    fi
+    ; fi
