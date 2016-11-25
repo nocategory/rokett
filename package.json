@@ -20,7 +20,7 @@
     "package": "npm run build && build --publish onTagOrDraft",
     "package-win": "npm run build && build --win --x64",
     "package-linux": "npm run build && build --linux",
-    "package-osx": "npm run build && build --macos --publish onTagOrDraft",
+    "package-osx": "npm run build && build --osx --publish onTagOrDraft",
     "package-all": "npm run build && build -mwl --publish onTagOrDraft",
     "cleanup": "mop -v"
   },
