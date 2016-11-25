@@ -2,7 +2,7 @@
   "name": "quarkz",
   "productName": "quarkz",
   "version": "0.0.1",
-  "description": "testt",
+  "description": "quarkz is an open-source code editor built with web technologies and ❤",
   "main": "main.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha --retries 2 --compilers js:babel-register --recursive --require ./test/setup.js test/**/*.spec.js",
@@ -21,7 +21,7 @@
     "package-win": "npm run build && build --win --x64",
     "package-linux": "npm run build && build --linux",
     "package-osx": "npm run build && build --osx --publish onTagOrDraft",
-    "package-all": "npm run build && build -mwl --publish onTagOrDraft",
+    "package-all": "npm run build && build -l -w --x64 -o --publish onTagOrDraft",
     "cleanup": "mop -v"
   },
   "build": {
