@@ -4,7 +4,7 @@ language: node_js
 
 os:
   - linux
-  - osx
+  #- osx
 
 node_js:
   ##- 7
@@ -26,13 +26,7 @@ addons:
     sources:
       if [[ $TRAVIS_OS_NAME == "linux" ]]; then ubuntu-toolchain-r-test; fi
     packages:
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        - g++-4.8
-        - icnsutils
-        - graphicsmagick
-        - xz-utils
-        - xorriso
-      ; fi
+      if [[ $TRAVIS_OS_NAME == "linux" ]]; then g++-4.8; icnsutils; graphicsmagick; xz-utils; xorriso; fi
 before_install:
   if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
      - sudo add-apt-repository ppa:wine/wine-builds -y
