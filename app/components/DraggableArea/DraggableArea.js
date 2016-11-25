@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 // import styles from './Home.css';
 
 const windowButtonStyle = {
@@ -10,29 +9,16 @@ const windowButtonStyle = {
 };
 
 const closeButtonStyle = {
-	fontSize: '1.35em',
+  fontSize: '1.35em',
 };
 
 export default class DraggableArea extends Component {
-
-	minClick() {
-		console.log('ee');
-	}
-
-	maxClick() {
-
-	}
-
-	closeClick() {
-
-	}
-
   render() {
     return (
       <div className="app--draggable--area">
-        <span className="fa fa-window-minimize" onDoubleClick={this.minClick} style={windowButtonStyle}></span>
-        <span className="fa fa-window-maximize" onClick={this.maxClick} style={windowButtonStyle}></span>
-        <span className="fa fa-2x fa-times" onClick={this.closeClick} style={[windowButtonStyle, closeButtonStyle]}></span>
+        <span className="fa fa-window-minimize" onClick={this.minClick} style={windowButtonStyle} />
+        <span className="fa fa-window-maximize" onClick={this.maxClick} style={windowButtonStyle} />
+        <span className="fa fa-2x fa-times" onClick={this.closeClick} style={[windowButtonStyle, closeButtonStyle]} />
       </div>
     );
   }
