@@ -24,24 +24,31 @@ cache:
 addons:
   apt:
     sources:
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ubuntu-toolchain-r-test ; fi
+      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+          - ubuntu-toolchain-r-test
+      fi
     packages:
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then g++-4.8 ; fi
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then icnsutils ; fi
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then graphicsmagick ; fi
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then xz-utils ; fi
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then xorriso ; fi
-
+      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        - g++-4.8
+        - icnsutils
+        - graphicsmagick
+        - xz-utils
+        - xorriso
+      ; fi
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:wine/wine-builds -y ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install winehq-devel -y ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export WINEARCH=win32 ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then winecfg ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install winetricks ; fi
+  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+     - sudo add-apt-repository ppa:wine/wine-builds -y
+     - sudo apt-get update -q
+     - sudo apt-get install winehq-devel -y
+     - export WINEARCH=win32
+     - winecfg
+     - sudo apt-get install winetricks
+  ; fi
 
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8" ; fi
+  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    - export CXX="g++-4.8"
+  fi
   - npm install -g npm@latest
   - npm install
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
@@ -66,5 +73,9 @@ script:
   #- npm run test
   - npm run build
   - npm run test-e2e
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-all ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-osx ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      npm run package-all
+    fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      npm run package-osx
+    fi
