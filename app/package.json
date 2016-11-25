@@ -1,0 +1,15 @@
+{
+  "name": "quarkz",
+  "productName": "quarkz",
+  "version": "0.0.1",
+  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "main": "./main.js",
+  "author": {
+    "name": "test",
+    "email": "joaozinn98@gmail.com",
+    "url": "https://github.com/uppe-r/quarkz"
+  },
+  "license": "MIT",
+  "dependencies": {
+  }
+}

@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Raleway', sans-serif;
+}
+
+.app--content {
+	height: calc(100vh - 40px); /* to be removed l8r */
+	background-color: rgb(27, 37, 43);
+}
+
+.app--draggable--area {
+	-webkit-app-region: drag;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 40px;
+	width: 100%;
+	background-color: rgb(27, 37, 43);
+}
