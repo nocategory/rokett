@@ -2,7 +2,7 @@ sudo: true
 
 language:
   - node_js
-  - objective-c
+  - objective-c ## to fix hdiutil
 
 os:
   - linux
