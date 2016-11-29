@@ -1,3 +1,12 @@
+.app--draggable--area {
+	-webkit-app-region: drag;
+	display: flex;
+	align-items: center;
+	height: 52px;
+	width: 100%;
+	background-color: rgb(41, 54, 62);
+}
+
 .app--frame--minimize {
 	background-image: url('./assets/min.png');
 }
@@ -17,4 +26,34 @@
 	background-size: contain;
 	background-position: bottom;
 	margin: 7px;
+	justify-content: flex-end;
+}
+
+.app--frame--buttons {
+	display: flex;
+	justify-content: flex-end;
+  margin-right: 5px;
+}
+
+.app--command--box--wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.app--command--box {
+	height: 32px;
+	width: 420px;
+  padding: 0 26px 0 26px;
+	font-size: 17px;
+	border: none;
+	background-color: #F5F5F5;
+	border-radius: 2.6px;
+}
+
+.app--sidebar {
+	height: 100%;
+	width: 200px;
+	background: blue;
 }
