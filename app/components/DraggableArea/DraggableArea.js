@@ -1,24 +1,42 @@
 // @flow
 import React, { Component } from 'react';
-// import styles from './Home.css';
+import s from './DraggableArea.css';
 
-const windowButtonStyle = {
-  color: '#FFF',
-  marginLeft: '12.5px',
-  marginRight: '12.5px',
-};
+// electron doesn't like import when importing remote
+const remote = require('electron').remote;
 
-const closeButtonStyle = {
-  fontSize: '1.35em',
-};
+// get window
+const appWindow = remote.getCurrentWindow();
 
 export default class DraggableArea extends Component {
+  /**
+   * window frame click actions
+   */
+  minClick() {
+    appWindow.minimize();
+  }
+
+  maxClick() {
+    if (!appWindow.isMaximized()) {
+      appWindow.maximize();
+    }
+    else {
+      appWindow.unmaximize();
+    }
+  }
+
+  closeClick() {
+    appWindow.close();
+  }
+
   render() {
     return (
       <div className="app--draggable--area">
-        <span className="fa fa-window-minimize" onClick={this.minClick} style={windowButtonStyle} />
-        <span className="fa fa-window-maximize" onClick={this.maxClick} style={windowButtonStyle} />
-        <span className="fa fa-2x fa-times" onClick={this.closeClick} style={[windowButtonStyle, closeButtonStyle]} />
+        <div className="non--draggable--area">
+          <div className={`${s['app--frame--minimize']}`} onClick={this.minClick} />
+          <div className={`${s['app--frame--maximize']}`} onClick={this.maxClick} />
+          <div className={`${s['app--frame--close']}`} onClick={this.closeClick} />
+        </div>
       </div>
     );
   }

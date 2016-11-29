@@ -1,0 +1,20 @@
+.app--frame--minimize {
+	background-image: url('./assets/min.png');
+}
+
+.app--frame--maximize {
+	background-image: url('./assets/max.png');
+}
+
+.app--frame--close {
+	background-image: url('./assets/close.png');
+}
+
+.app--frame--close, .app--frame--maximize, .app--frame--minimize {
+	background-repeat: no-repeat;
+	width: 19px;
+	height: 19px;
+	background-size: contain;
+	background-position: bottom;
+	margin: 7px;
+}

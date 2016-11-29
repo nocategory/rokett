@@ -160,7 +160,8 @@
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "source-map-support": "^0.4.6"
+    "source-map-support": "^0.4.6",
+    "url-loader": "^0.5.7"
   },
   "devEngines": {
     "node": ">=6.x",

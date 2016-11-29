@@ -8,7 +8,7 @@ body {
 
 .app--content {
 	height: calc(100vh - 40px); /* to be removed l8r */
-	background-color: rgb(27, 37, 43);
+	background-color: rgb(65, 88, 103);
 }
 
 .app--draggable--area {
@@ -18,9 +18,10 @@ body {
 	justify-content: flex-end;
 	height: 40px;
 	width: 100%;
-	background-color: rgb(27, 37, 43);
+	background-color: rgb(65, 88, 103);
 }
 
-.app--draggable--area span {
+.non--draggable--area {
 	-webkit-app-region: no-drag;
+	display: inherit;
 }
