@@ -36,6 +36,13 @@ i:hover {
   flex-grow: 1;
 }
 
+.app--sidebar {
+	background: rgb(32, 45, 53);
+	height: 100vh;
+}
+
+/* RESIZER */
+
 .Resizer {
   background: #000;
   opacity: .2;
@@ -87,6 +94,8 @@ Resizer.disabled {
 Resizer.disabled:hover {
   border-color: transparent;
 }
+
+/* ANIMATIONS */
 
 .example-enter {
   opacity: 0.01;
