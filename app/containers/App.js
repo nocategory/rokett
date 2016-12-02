@@ -15,15 +15,8 @@ export default class App extends Component {
 
   componentDidMount() {
     let tree = dirTree('C:/Users/joaosalg/Desktop/quarkz/app/components');
+    console.log(tree.children[0]);
     console.log(tree);
-    let items = [];
-    fs.walk('C:/Users/joaosalg/Desktop/quarkz/app/components')
-      .on('data', (item) => {
-        items.push(item.path);
-      })
-      .on('end', () => {
-        console.dir(items);
-      });
   }
 
   render() {
