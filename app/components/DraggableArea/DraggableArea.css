@@ -57,3 +57,12 @@
 	width: 200px;
 	background: blue;
 }
+
+.settingsButton {
+	font-size: 22px;
+	display: flex;
+	align-items: center;
+	padding: 12px;
+	margin: 0 5px 0 0;
+	cursor: pointer;
+}

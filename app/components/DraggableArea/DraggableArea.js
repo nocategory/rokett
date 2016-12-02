@@ -34,9 +34,9 @@ export default class DraggableArea extends Component {
       <div className={`${s['app--draggable--area']}`}>
         {/* command box */}
         <div className={`${s['app--command--box--wrapper']}`}>
+          <i className={`${s.settingsButton} fa fa-bars non--draggable`} aria-hidden="true" />
           <input className={`${s['app--command--box']} non--draggable`} />
         </div>
-
         {/* frame buttons */}
         <div className={`${s['app--frame--buttons']} non--draggable`}>
           <div className={`${s['app--frame--minimize']}`} onClick={this.minClick} />
