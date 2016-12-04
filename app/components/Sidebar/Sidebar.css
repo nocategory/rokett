@@ -1,0 +1,11 @@
+.sidebarWrapper {
+	display: flex;
+}
+
+.sidebar {
+	flex: 0 0 auto;
+	position: relative;
+	outline: none;
+	width: 90px;
+	height: 100%;
+}
