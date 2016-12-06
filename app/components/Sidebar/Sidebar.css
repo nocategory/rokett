@@ -1,11 +1,20 @@
 .sidebarWrapper {
 	display: flex;
+	height: 100%;
+	background-color: #1a252b;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar {
 	flex: 0 0 auto;
+	display: flex;
+  align-items: flex-end;
 	position: relative;
 	outline: none;
-	width: 90px;
 	height: 100%;
+}
+
+.sidebarButtons {
+	padding: 15px;
 }

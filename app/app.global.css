@@ -4,12 +4,13 @@ body {
 }
 
 i {
-  color: #F5F5F5;
+  color: rgba(255, 255, 255, 0.67);
   transition: 0.3s ease-in;
 }
 
 i:hover {
-  background-color: rgb(47, 63, 72);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
   transition: 0.3s ease-in;
 }
 
