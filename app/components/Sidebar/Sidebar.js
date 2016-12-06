@@ -12,6 +12,7 @@ export default class Sidebar extends Component {
       <div className={s.sidebarWrapper}>
         <div className={s.sidebar}>
           <div className={s.sidebarButtons}>
+            <hr />
             <i className="fa fa-cog" aria-hidden="true" style={settingsButton} />
           </div>
         </div>

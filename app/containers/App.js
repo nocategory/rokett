@@ -2,26 +2,53 @@
 import React, { Component, PropTypes } from 'react';
 import SplitPane from 'react-split-pane';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import dirTree from 'directory-tree';
 import Sidebar from '../components/Sidebar/Sidebar';
 import DraggableArea from '../components/DraggableArea/DraggableArea';
 
 // // // // // // // //
-import fs from 'fs-extra';
-import dirTree from 'directory-tree';
+// import fs from 'fs-extra';
 
 const noCursorResize = {
   display: 'none',
 };
+
+let z = 0;
+const files = [];
+const folders = [];
 
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired
   };
 
-  componentDidMount() {
-    /*let tree = dirTree('C:/Users/joaosalg/Desktop/quarkz/app/components');
-    console.log(tree.children[0]);
-    console.log(tree);*/
+  componentWillMount() {
+    console.log('--');
+
+    this.tree = dirTree('C:/Users/joaosalg/Desktop/quarkz/app/components/Home/');
+    console.log(this.tree);
+  }
+
+  xx(y) {
+    if (z === 0) { // @root folder
+      console.log(`root folder: ${y.name}`);
+      folders.push(<h1>{y.name}</h1>);
+    }
+    for (let i = 0, len = y.children.length; i < len; i += 1) {
+      if (y.children[i].extension == null) { // @folder
+        // using null here instead of !extension since
+        // extension might be "" which indicated no extension but still, a file
+        console.log(`folder: ${y.children[i].name}`);
+        folders.push(<h1>{y.children[i].name}</h1>);
+        // this.xx(y.children[i]);
+      }
+      else { // @file
+        console.log(`file: ${y.children[i].name}`);
+        files.push(<h3>{y.children[i].name}</h3>);
+      }
+      z = 1;
+    }
+    return [folders, files];
   }
 
   render() {
@@ -40,7 +67,7 @@ export default class App extends Component {
               <SplitPane split="vertical" minSize={200} defaultSize={240} className={'non--draggable'}>
                 {/* pane 1 */}
                 <div className="app--sidebar">
-
+                  <div>{this.xx(this.tree)}</div>
                 </div>
 
                 {/* pane 2 */}
