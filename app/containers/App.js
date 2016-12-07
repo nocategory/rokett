@@ -67,7 +67,7 @@ export default class App extends Component {
               <SplitPane split="vertical" minSize={200} defaultSize={240} className={'non--draggable'}>
                 {/* pane 1 */}
                 <div className="app--sidebar">
-                  <div>{this.xx(this.tree)}</div>
+                  {/* <div>{this.xx(this.tree)}</div> */}
                 </div>
 
                 {/* pane 2 */}
