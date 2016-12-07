@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import s from './Sidebar.css';
 
 const settingsButton = {
-  fontSize: '1.5em'
+  fontSize: '1.5em',
 };
 
 export default class Sidebar extends Component {

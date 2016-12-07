@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import dirTree from 'directory-tree';
 import Sidebar from '../components/Sidebar/Sidebar';
 import DraggableArea from '../components/DraggableArea/DraggableArea';
+import Modal from '../components/Modal/Modal';
 
 // // // // // // // //
 // import fs from 'fs-extra';
@@ -81,6 +82,7 @@ export default class App extends Component {
               </SplitPane>
             </SplitPane>
           </div>
+          <Modal />
         </ReactCSSTransitionGroup>
       </div>
     );
