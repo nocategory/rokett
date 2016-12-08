@@ -24,18 +24,7 @@ hr {
   background-color: rgb(41, 54, 62);
 }
 
-.non--draggable {
-  -webkit-app-region: no-drag;
-  display: inherit;
-}
-
-.app--wrapper {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-}
-
-.app--content--wrapper {
+.flex-grow {
   flex-grow: 1;
 }
 

@@ -1,0 +1,48 @@
+.frame-minimize {
+	background-image: url('./assets/min.png');
+}
+
+.frame-maximize {
+	background-image: url('./assets/max.png');
+}
+
+.frame-close {
+	background-image: url('./assets/close.png');
+}
+
+.frame-close, .frame-maximize, .frame-minimize {
+	opacity: .67;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	width: 19px;
+	height: 19px;
+	background-size: contain;
+	background-position: bottom;
+	margin: 7px;
+	justify-content: flex-end;
+	transition: .3s ease-in;
+}
+
+.frame-close:hover, .frame-maximize:hover, .frame-minimize:hover {
+	opacity: 1;
+	transition: .3s ease-in;
+}
+
+.frame-buttons {
+	-webkit-app-region: no-drag;
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	height: 52px;
+}
+
+.titlebar {
+	width: 100%;
+	position: absolute;
+	-webkit-app-region: drag;
+	height: 32px;
+	z-index: 1;
+	display: flex;
+}

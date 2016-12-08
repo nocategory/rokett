@@ -4,7 +4,8 @@ import SplitPane from 'react-split-pane';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import dirTree from 'directory-tree';
 import Sidebar from '../components/Sidebar/Sidebar';
-import DraggableArea from '../components/DraggableArea/DraggableArea';
+import TopHeader from '../components/TopHeader/TopHeader';
+import FrameButtons from '../components/FrameButtons/FrameButtons';
 import Modal from '../components/Modal/Modal';
 
 // // // // // // // //
@@ -54,7 +55,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="app--wrapper">
+      <div>
         <ReactCSSTransitionGroup
           transitionName="example"
           transitionAppear
@@ -62,19 +63,20 @@ export default class App extends Component {
           transitionEnter={false}
           transitionLeave={false}
         >
+          <FrameButtons />
           <div className="flex-vertical">
-            <SplitPane split="vertical" allowResize={false} minSize={90} defaultSize={90} resizerStyle={noCursorResize} className={'non--draggable'}>
+            <SplitPane split="vertical" allowResize={false} minSize={90} defaultSize={90} resizerStyle={noCursorResize}>
               <Sidebar />
-              <SplitPane split="vertical" minSize={200} defaultSize={240} className={'non--draggable'}>
+              <SplitPane split="vertical" minSize={200} defaultSize={240}>
                 {/* pane 1 */}
                 <div className="app--sidebar">
                   {/* <div>{this.xx(this.tree)}</div> */}
                 </div>
 
                 {/* pane 2 */}
-                <div className="app--content--wrapper">
-                  <DraggableArea />
+                <div className="flex-grow">
                   <div className="app--content" id="app--content">
+                    <TopHeader />
                     {this.props.children}
                   </div>
                 </div>
