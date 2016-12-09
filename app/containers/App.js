@@ -15,7 +15,6 @@ const noCursorResize = {
   display: 'none',
 };
 
-let z = 0;
 const fileFolders = [];
 let lastPath = '';
 
@@ -33,24 +32,15 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    this.tree = dirTree('L:\\Users\\joaoz\\Desktop\\quarkz\\app\\components');
+    this.tree = dirTree('C:\\Users\\joaosalg\\Desktop\\quarkz\\app\\components');
     console.log(this.tree);
   }
 
   componentDidMount() {
-    this.xx(this.tree, false);
+    this.getFilesandFolders(this.tree);
   }
 
-  getNewTree(q) {
-    console.log('Q: ' + q);
-  }
-
-  xx(y) {
-    /* if (z === 0) { // @root folder
-      console.log(`root folder: ${y.name}`);
-      folders.push(<h1>{y.name}</h1>);
-    }*/
-    // console.log(y);
+  getFilesandFolders(y) {
     for (let i = 0, len = y.children.length; i < len; i += 1) {
       if (y.children[i].extension == null) { // @folder
         // comparing w null here instead of !extension since
@@ -58,24 +48,35 @@ export default class App extends Component {
 
         console.log(`folder: ${y.children[i].name}`);
         if (y.children[i].path.indexOf(lastPath) === -1 || lastPath === '') {
-          console.log('NOT CHILDREN');
           console.log(y.children[i].path + ' and ' + lastPath);
-          fileFolders.push(<p className="tree-folder expanded" data-path={y.children[i].path} onClick={() => this.getNewTree(this)}><i className="fa fa-folder" aria-hidden="true"></i>{y.children[i].name}</p>);
+          fileFolders.push(
+            <p className="tree-folder expanded" data-path={y.children[i].path} onClick={() => console.log('click')}>
+              <i className="fa fa-folder" aria-hidden="true" />
+              {y.children[i].name}
+            </p>
+          );
         }
         else {
-          console.log('CHILDREN');
           console.log(y.children[i].path + ' and ' + lastPath);
-          fileFolders.push(<p className="tree-folder children collapsed" data-path={y.children[i].path} onClick={() => this.getNewTree(y.children[i].path)}><i className="fa fa-folder" aria-hidden="true"></i>{y.children[i].name}</p>);
+          fileFolders.push(
+            <p className="tree-folder children collapsed" data-path={y.children[i].path} onClick={() => console.log('click')}>
+              <i className="fa fa-folder" aria-hidden="true" />
+              {y.children[i].name}
+            </p>
+          );
         }
 
         lastPath = y.children[i].path;
-
-
-        this.xx(y.children[i]);
+        this.getFilesandFolders(y.children[i]);
       }
       else { // @file
         console.log(`file: ${y.children[i].name}`);
-        fileFolders.push(<p className="tree-folder children collapsed" data-path={y.children[i].path} onClick={() => this.getNewTree(this)}><i className="fa fa-file" aria-hidden="true"></i>{y.children[i].name}</p>);
+        fileFolders.push(
+          <p className="tree-folder children collapsed" data-path={y.children[i].path} onClick={() => console.log('click')}>
+            <i className="fa fa-file" aria-hidden="true" />
+            {y.children[i].name}
+          </p>
+        );
       }
     }
     // return [folders, files];
@@ -96,8 +97,11 @@ export default class App extends Component {
         >
           <FrameButtons />
           <div className="flex-vertical">
+            {/* left pane */}
             <SplitPane split="vertical" allowResize={false} minSize={90} defaultSize={90} resizerStyle={noCursorResize}>
+              {/* sidebar */}
               <Sidebar />
+              {/* right pane */}
               <SplitPane split="vertical" minSize={200} defaultSize={240}>
                 {/* pane 1 */}
                 <div className="app--sidebar">

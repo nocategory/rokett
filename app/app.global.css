@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -109,11 +108,11 @@ hr {
   border-right: 5px solid rgba(0, 0, 0, 0.5);
 }
 
-Resizer.disabled {
+.Resizer.disabled {
   cursor: not-allowed;
 }
 
-Resizer.disabled:hover {
+.Resizer.disabled:hover {
   border-color: transparent;
 }
 
