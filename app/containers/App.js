@@ -16,41 +16,72 @@ const noCursorResize = {
 };
 
 let z = 0;
-const files = [];
-const folders = [];
+const fileFolders = [];
+let lastPath = '';
 
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired
   };
 
-  componentWillMount() {
-    console.log('--');
+  constructor() {
+    super();
+    this.state = {
+      folders: '',
+      files: '',
+    };
+  }
 
-    this.tree = dirTree('C:/Users/joaosalg/Desktop/quarkz/app/components/Home/');
+  componentWillMount() {
+    this.tree = dirTree('L:\\Users\\joaoz\\Desktop\\quarkz\\app\\components');
     console.log(this.tree);
   }
 
+  componentDidMount() {
+    this.xx(this.tree, false);
+  }
+
+  getNewTree(q) {
+    console.log('Q: ' + q);
+  }
+
   xx(y) {
-    if (z === 0) { // @root folder
+    /* if (z === 0) { // @root folder
       console.log(`root folder: ${y.name}`);
       folders.push(<h1>{y.name}</h1>);
-    }
+    }*/
+    // console.log(y);
     for (let i = 0, len = y.children.length; i < len; i += 1) {
       if (y.children[i].extension == null) { // @folder
-        // using null here instead of !extension since
-        // extension might be "" which indicated no extension but still, a file
+        // comparing w null here instead of !extension since
+        // extension might be "" which indicates no extension but still, a file
+
         console.log(`folder: ${y.children[i].name}`);
-        folders.push(<h1>{y.children[i].name}</h1>);
-        // this.xx(y.children[i]);
+        if (y.children[i].path.indexOf(lastPath) === -1 || lastPath === '') {
+          console.log('NOT CHILDREN');
+          console.log(y.children[i].path + ' and ' + lastPath);
+          fileFolders.push(<p className="tree-folder expanded" data-path={y.children[i].path} onClick={() => this.getNewTree(this)}><i className="fa fa-folder" aria-hidden="true"></i>{y.children[i].name}</p>);
+        }
+        else {
+          console.log('CHILDREN');
+          console.log(y.children[i].path + ' and ' + lastPath);
+          fileFolders.push(<p className="tree-folder children collapsed" data-path={y.children[i].path} onClick={() => this.getNewTree(y.children[i].path)}><i className="fa fa-folder" aria-hidden="true"></i>{y.children[i].name}</p>);
+        }
+
+        lastPath = y.children[i].path;
+
+
+        this.xx(y.children[i]);
       }
       else { // @file
         console.log(`file: ${y.children[i].name}`);
-        files.push(<h3>{y.children[i].name}</h3>);
+        fileFolders.push(<p className="tree-folder children collapsed" data-path={y.children[i].path} onClick={() => this.getNewTree(this)}><i className="fa fa-file" aria-hidden="true"></i>{y.children[i].name}</p>);
       }
-      z = 1;
     }
-    return [folders, files];
+    // return [folders, files];
+    return this.setState({
+      filetree: fileFolders,
+    });
   }
 
   render() {
@@ -70,7 +101,7 @@ export default class App extends Component {
               <SplitPane split="vertical" minSize={200} defaultSize={240}>
                 {/* pane 1 */}
                 <div className="app--sidebar">
-                  {/* <div>{this.xx(this.tree)}</div> */}
+                  <div>{this.state.filetree}</div>
                 </div>
 
                 {/* pane 2 */}
@@ -84,7 +115,7 @@ export default class App extends Component {
               </SplitPane>
             </SplitPane>
           </div>
-          <Modal />
+          {/* <Modal /> */}
         </ReactCSSTransitionGroup>
       </div>
     );

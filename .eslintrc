@@ -9,6 +9,7 @@
   "rules": {
     "arrow-parens": ["off"],
     "consistent-return": "off",
+    "max-len": 0,
     "comma-dangle": "off",
     "generator-star-spacing": "off",
     "import/no-unresolved": ["error", { "ignore": ["electron"] }],

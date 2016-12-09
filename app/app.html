@@ -70,6 +70,20 @@
         -webkit-transform: scale(1.0);
       }
     }
+    .version-info {
+      color: #F5F5F5;
+      font-family: 'Open Sans';
+      display: flex;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      bottom: 0;
+      opacity: .67;
+    }
+    .version-info p {
+      font-weight: 600;
+      font-size: .9em;
+    }
   </style>
   <script>
     (function() {
@@ -86,11 +100,14 @@
 </head>
 
 <body style="background-color: rgb(41, 54, 62); margin: 0; padding: 0" onload="let x = document.getElementById('spinner'); x.remove();">
-
-  <div id="spinner" style="width: 100%; height: 100vh; background: rgb(41, 54, 62); display: flex; align-items: center; justify-content: center">
+  <div id="spinner" style="width: 100%; height: 100vh; background: rgb(41, 54, 62); display: flex; flex-direction: column;align-items: center; justify-content: center">
+    <div style="background-image: url('./quarkz_prerelease.png'); width: 200px; height: 200px; background-size: contain; background-repeat: no-repeat"></div>
     <div class="spinner">
       <div class="dot1"></div>
       <div class="dot2"></div>
+    </div>
+    <div class="version-info">
+      <p>v0.0.1-aurora PRE-RELEASE</p>
     </div>
   </div>
 

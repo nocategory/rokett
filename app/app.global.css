@@ -40,6 +40,28 @@ hr {
   flex-direction: column;
 }
 
+.tree-folder {
+  color: white;
+  font-size: 25px;
+  margin: 0;
+}
+
+.tree-folder i, .children i {
+  margin-right: 5px;
+}
+
+.children {
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.collapsed {
+  /* display: none; */
+}
+
+.expanded {
+  display: block;
+}
 
 /* RESIZER */
 

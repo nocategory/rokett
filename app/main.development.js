@@ -52,7 +52,7 @@ app.on('ready', async () => {
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
-    mainWindow.focus();
+    // mainWindow.focus();
   });
 
   mainWindow.on('closed', () => {
