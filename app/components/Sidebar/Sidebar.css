@@ -1,9 +1,14 @@
 .sidebarWrapper {
 	display: flex;
-	height: 100%;
+	height: 100vh;
 	background-color: #1a252b;
-  justify-content: center;
-  align-items: center;
+	justify-content: center;
+	align-items: center;
+	-webkit-box-orient: vertical;
+	width: 90px;
+	flex-direction: column;
+	flex-shrink: 0;
+	z-index: 15;
 }
 
 .sidebar {

@@ -1,6 +1,5 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import SplitPane from 'react-split-pane';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import dirTree from 'directory-tree';
 import Sidebar from '../components/Sidebar/Sidebar';
@@ -11,12 +10,13 @@ import Modal from '../components/Modal/Modal';
 // // // // // // // //
 // import fs from 'fs-extra';
 
-const noCursorResize = {
-  display: 'none',
-};
 
 const fileFolders = [];
 let lastPath = '';
+
+const treeChevron = {
+
+}
 
 export default class App extends Component {
   static propTypes = {
@@ -97,27 +97,30 @@ export default class App extends Component {
         >
           <FrameButtons />
           <div className="flex-vertical">
-            {/* left pane */}
-            <SplitPane split="vertical" allowResize={false} minSize={90} defaultSize={90} resizerStyle={noCursorResize}>
-              {/* sidebar */}
-              <Sidebar />
-              {/* right pane */}
-              <SplitPane split="vertical" minSize={200} defaultSize={240}>
-                {/* pane 1 */}
-                <div className="app--sidebar">
-                  <div>{this.state.filetree}</div>
-                </div>
 
-                {/* pane 2 */}
-                <div className="flex-grow">
-                  <div className="app--content" id="app--content">
-                    <TopHeader />
-                    {this.props.children}
-                  </div>
-                </div>
+            {/* sidebar */}
+            <Sidebar />
 
-              </SplitPane>
-            </SplitPane>
+            {/* pane 1 */}
+            <div className="app--tree">
+              <div>{this.state.filetree}</div>
+              <div className="tree-chevron-wrapper">
+                <i className="fa fa-chevron-left" style={treeChevron} />
+              </div>
+            </div>
+
+            {/* pane 2 */}
+            <div className="app--content" id="app--content">
+              <TopHeader />
+              {this.props.children}
+              <div id="editor"></div>
+              <div className="tabs-wrapper">
+                <div className="tabs-chevron-wrapper">
+                  <i className="fa fa-chevron-up" style={treeChevron} />
+                </div>
+              </div>
+            </div>
+
           </div>
           {/* <Modal /> */}
         </ReactCSSTransitionGroup>
