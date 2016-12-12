@@ -161,10 +161,12 @@
     "react-router": "^3.0.0",
     "react-router-redux": "^4.0.6",
     "react-split-pane": "^0.1.56",
+    "react-treebeard": "^1.1.4",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "source-map-support": "^0.4.6",
-    "url-loader": "^0.5.7"
+    "url-loader": "^0.5.7",
+    "walkdir": "0.0.11"
   },
   "devEngines": {
     "node": ">=6.x",

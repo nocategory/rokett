@@ -8,7 +8,7 @@
 	width: 90px;
 	flex-direction: column;
 	flex-shrink: 0;
-	z-index: 15;
+	z-index: 99999;
 }
 
 .sidebar {
@@ -22,4 +22,9 @@
 
 .sidebarButtons {
 	padding: 15px;
+}
+
+.sidebarButtons i:hover {
+	transform: rotate(30deg);
+	transition: transform 0.3s ease-in;
 }
