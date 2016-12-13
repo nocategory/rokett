@@ -167,6 +167,7 @@
     "redux-thunk": "^2.1.0",
     "source-map-support": "^0.4.6",
     "url-loader": "^0.5.7",
+    "velocity-react": "^1.1.11",
     "walkdir": "0.0.11"
   },
   "devEngines": {

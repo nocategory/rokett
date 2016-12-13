@@ -1,22 +1,21 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import dirTree from '../directory-tree';
-import Sidebar from '../components/Sidebar/Sidebar';
-import TopHeader from '../components/TopHeader/TopHeader';
-import FrameButtons from '../components/FrameButtons/FrameButtons';
-import Modal from '../components/Modal/Modal';
+import fs from 'fs';
 import { Treebeard } from 'react-treebeard';
 import brace from 'brace';
 import AceEditor from 'react-ace';
-
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow';
 import 'brace/ext/language_tools';
 import 'brace/ext/emmet';
+import dirTree from '../directory-tree';
+import Sidebar from '../components/Sidebar/Sidebar';
+import TopHeader from '../components/TopHeader/TopHeader';
+import FrameButtons from '../components/FrameButtons/FrameButtons';
+
 
 // // // // // // // //
-import fs from 'fs';
 let content;
 
 const treeStyle = {
@@ -36,7 +35,7 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    this.tree = dirTree('L:\\Users\\joaoz\\Desktop\\quarkz\\app\\components');
+    this.tree = dirTree('C:\\Users\\joaosalg\\Desktop\\quarkz\\app\\components');
   }
 
   // file tree
@@ -122,7 +121,6 @@ export default class App extends Component {
             </div>
 
           </div>
-          {/* <Modal /> */}
         </ReactCSSTransitionGroup>
       </div>
     );
