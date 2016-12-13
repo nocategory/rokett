@@ -1,3 +1,5 @@
+@import "~font-awesome/css/font-awesome.css";
+
 body {
   font-family: 'Open Sans', sans-serif;
   overflow: hidden;
@@ -40,6 +42,10 @@ hr {
   flex-shrink: 0;
   transition: left 0.3s ease-out;
   z-index: 99;
+}
+
+.app--tree div ul {
+  background-color: inherit !important;
 }
 
 .app--tree:hover {
@@ -118,11 +124,6 @@ hr {
 
 .collapsed {
   /* display: none; */
-}
-
-#editor {
-  width: 100%;
-  height: 90%;
 }
 
 .expanded {

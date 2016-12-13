@@ -2,24 +2,25 @@
 import React, { Component, PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import dirTree from 'directory-tree';
-import walk from 'walkdir';
-import p from 'path';
 import Sidebar from '../components/Sidebar/Sidebar';
 import TopHeader from '../components/TopHeader/TopHeader';
 import FrameButtons from '../components/FrameButtons/FrameButtons';
 import Modal from '../components/Modal/Modal';
 import { Treebeard } from 'react-treebeard';
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/javascript';
+import 'brace/theme/tomorrow';
 
 // // // // // // // //
-// import fs from 'fs-extra';
+import fs from 'fs';
+let content;
 
-
-const fileFolders = [];
-let lastPath = '';
-
-const treeChevron = {
-
-}
+const treeStyle = {
+  zIndex: 99,
+  WebkitAppRegion: 'no-drag',
+};
 
 export default class App extends Component {
   static propTypes = {
@@ -34,94 +35,37 @@ export default class App extends Component {
 
   componentWillMount() {
     this.tree = dirTree('L:\\Users\\joaoz\\Desktop\\quarkz\\app\\components');
-    console.log(this.tree);
-    //
-    // this.tt('L:\\Users\\joaoz\\Desktop\\quarkz\\app\\components', 'filetree');
   }
 
-  componentDidMount() {
-    // this.getFilesandFolders(this.tree);
-  }
-
+  // file tree
   onToggle(node, toggled) {
-    if(this.state.cursor){this.state.cursor.active = false;}
+    if (this.state.cursor) { this.state.cursor.active = false; }
     node.active = true;
-    if(node.children){ node.toggled = toggled; }
-    this.setState({ cursor: node });
-   }
-
-  getFilesandFolders(y) {
-    for (let i = 0, len = y.children.length; i < len; i += 1) {
-      if (y.children[i].extension == null) { // @folder
-        // comparing w null here instead of !extension since
-        // extension might be "" which indicates no extension but still, a file
-
-        console.log(`folder: ${y.children[i].name}`);
-        if (y.children[i].path.indexOf(lastPath) === -1 || lastPath === '') {
-          console.log(y.children[i].path + ' and ' + lastPath);
-          fileFolders.push(
-            <p className="tree-folder expanded" key={y.children[i].path} data-path={y.children[i].path} onClick={() => console.log('click')}>
-              <i className="fa fa-folder" aria-hidden="true" />
-              {y.children[i].name}
-            </p>
-          );
-        }
-        else {
-          console.log(y.children[i].path + ' and ' + lastPath);
-          fileFolders.push(
-            <p className="tree-folder children collapsed" key={y.children[i].path} data-path={y.children[i].path} onClick={() => console.log('click')}>
-              <i className="fa fa-folder" aria-hidden="true" />
-              {y.children[i].name}
-            </p>
-          );
-        }
-
-        lastPath = y.children[i].path;
-        this.getFilesandFolders(y.children[i]);
-      }
-      else { // @file
-        console.log(`file: ${y.children[i].name}`);
-        fileFolders.push(
-          <p className="tree-folder children collapsed" key={y.children[i].path} data-path={y.children[i].path} onClick={() => console.log('click')}>
-            <i className="fa fa-file" aria-hidden="true" />
-            {y.children[i].name}
-          </p>
-        );
-      }
+    if (node.children) { node.toggled = toggled; }
+    if (node.extension !== '') {
+      content = this.getFileContent(node.path);
+      console.log('content: ' + content);
     }
-    // return [folders, files];
-    return this.setState({
-      filetree: fileFolders,
+    else {
+      content = '';
+    }
+    this.setState({ cursor: node });
+  }
+
+  getFileContent(y) {
+    fs.readFile(y, 'utf8', (err, data) => {
+      if (err) {
+        return console.log(err);
+      }
+      this.setState({
+        value: data
+      });
+      return data;
     });
   }
 
-  tt(y, x) {
-    let emitter = walk(y, { "no_recurse": true });
-    emitter.on('file', (filename, stat) => {
-      console.log('file from emitter: ', filename);
-      fileFolders.push(
-        <p className="tree-folder children collapsed" key={filename} data-path={filename} onClick={() => console.log('click')}>
-          <i className="fa fa-file" aria-hidden="true" />
-          {p.basename(filename)}
-        </p>
-      );
-    });
-    emitter.on('directory', (path, stat) => {
-      let name = p.basename(path);
-      console.log('directory from emitter: ', path);
-      fileFolders.push(
-        <ol className="tree-folder expanded" key={path} data-path={path} onClick={() => tt(path, )}>
-          <i className="fa fa-folder" aria-hidden="true" />
-          {name}
-          {this.state.name}
-        </ol>
-      );
-    });
-    emitter.on('end', () => {
-      return this.setState({
-        filetree: fileFolders,
-      });
-    });
+  onChange(newValue) {
+    console.log('change',newValue);
   }
 
   render() {
@@ -142,14 +86,14 @@ export default class App extends Component {
 
             {/* pane 1 */}
             <div className="app--tree">
-              <div>
+              <div style={treeStyle}>
                 <Treebeard
                   data={this.tree}
                   onToggle={this.onToggle}
                 />
               </div>
               <div className="tree-chevron-wrapper">
-                <i className="fa fa-chevron-right" style={treeChevron} />
+                <i className="fa fa-chevron-right" />
               </div>
             </div>
 
@@ -157,10 +101,24 @@ export default class App extends Component {
             <div className="app--content" id="app--content">
               <TopHeader />
               {this.props.children}
-              <div id="editor"></div>
+              <AceEditor
+                mode="javascript"
+                theme="tomorrow"
+                onChange={this.onChange}
+                name="editor"
+                fontSize={17}
+                value={this.state.value}
+                width={'100%'}
+                height={'100vh'}
+                enableLiveAutocompletion
+                enableBasicAutocompletion
+                wrapEnabled
+                focus
+                editorProps={{ $blockScrolling: false }}
+              />
               <div className="tabs-wrapper">
                 <div className="tabs-chevron-wrapper">
-                  <i className="fa fa-chevron-up" style={treeChevron} />
+                  <i className="fa fa-chevron-up" />
                 </div>
               </div>
             </div>
