@@ -1,7 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import dirTree from 'directory-tree';
+import dirTree from '../directory-tree';
 import Sidebar from '../components/Sidebar/Sidebar';
 import TopHeader from '../components/TopHeader/TopHeader';
 import FrameButtons from '../components/FrameButtons/FrameButtons';
@@ -12,6 +12,8 @@ import AceEditor from 'react-ace';
 
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow';
+import 'brace/ext/language_tools';
+import 'brace/ext/emmet';
 
 // // // // // // // //
 import fs from 'fs';
@@ -62,10 +64,6 @@ export default class App extends Component {
       });
       return data;
     });
-  }
-
-  onChange(newValue) {
-    console.log('change',newValue);
   }
 
   render() {
