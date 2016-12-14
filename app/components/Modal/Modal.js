@@ -4,14 +4,16 @@ import s from './Modal.css';
 
 export default class Modal extends Component {
 
-  handleOverlayClick = () => {
-
-  }
+  props: {
+    modalOverlayClick: () => void,
+  };
 
   render() {
+    const { modalOverlayClick } = this.props;
+
     return (
       <div className="flex-vertical">
-        <div className={s.overlay} onClick={this.handleOverlayClick}>
+        <div className={s.overlay} onClick={modalOverlayClick}>
           <div className={s.modal}>
             <p>test</p>
           </div>

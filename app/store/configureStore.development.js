@@ -5,8 +5,11 @@ import { routerMiddleware, push } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 
+import * as modalActions from '../actions/modal';
+
 
 const actionCreators = {
+  ...modalActions,
   push,
 };
 
