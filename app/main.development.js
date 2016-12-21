@@ -46,11 +46,12 @@ app.on('ready', async () => {
     height: 768,
     frame: false,
     resizable: true,
+    show: false,
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
-  mainWindow.webContents.on('did-finish-load', () => {
+  mainWindow.webContents.on('ready-to-show', () => {
     mainWindow.show();
     // mainWindow.focus();
   });
