@@ -35,7 +35,7 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    this.tree = dirTree('C:\\Users\\joaosalg\\Desktop\\quarkz\\app\\components');
+    this.tree = dirTree('L:\\Users\\joaoz\\Desktop\\quarkz\\app\\components');
   }
 
   // file tree
