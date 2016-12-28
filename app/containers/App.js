@@ -111,7 +111,6 @@ export default class App extends Component {
                 enableBasicAutocompletion
                 wrapEnabled
                 focus
-                editorProps={{ $blockScrolling: false }}
               />
               <div className="tabs-wrapper">
                 <div className="tabs-chevron-wrapper">

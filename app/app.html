@@ -6,70 +6,54 @@
   <title>quarkz PRE-RELEASE</title>
   <style>
     @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
-    .spinner {
-      margin: 100px auto;
-      width: 40px;
-      height: 40px;
-      position: relative;
-      text-align: center;
-      -webkit-animation: sk-rotate 2.0s infinite linear;
-      animation: sk-rotate 2.0s infinite linear;
+
+    body {
+      background-color: rgb(41, 54, 62);
+      margin: 0;
+      padding: 0;
     }
 
-    .dot1,
-    .dot2 {
-      width: 60%;
-      height: 60%;
-      display: inline-block;
-      position: absolute;
-      top: 0;
-      background-color: #EEEEEE;
-      border-radius: 100%;
-      -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-      animation: sk-bounce 2.0s infinite ease-in-out;
+    #spinner {
+      width: 100%;
+      height: 100vh;
+      background: rgb(41, 54, 62);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .dot2 {
-      top: auto;
-      bottom: 0;
-      -webkit-animation-delay: -1.0s;
-      animation-delay: -1.0s;
+    .spinner-logo {
+      background-image: url('./quarkz_newlogo_color.png');
+      width: 200px;
+      height: 200px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: logo-scale 2.8s infinite ease;
     }
 
-    @-webkit-keyframes sk-rotate {
-      100% {
-        -webkit-transform: rotate(360deg)
-      }
-    }
 
-    @keyframes sk-rotate {
-      100% {
-        transform: rotate(360deg);
-        -webkit-transform: rotate(360deg)
-      }
-    }
-
-    @-webkit-keyframes sk-bounce {
+    @-webkit-keyframes logo-scale {
       0%,
       100% {
-        -webkit-transform: scale(0.0)
+        -webkit-transform: scale(.95);
       }
       50% {
-        -webkit-transform: scale(1.0)
+        -webkit-transform: scale(1);
       }
     }
 
-    @keyframes sk-bounce {
+    @keyframes logo-scale {
       0%,
       100% {
-        transform: scale(0.0);
-        -webkit-transform: scale(0.0);
+        -webkit-transform: scale(.95);
+        filter: 
       }
       50% {
-        transform: scale(1.0);
-        -webkit-transform: scale(1.0);
+        -webkit-transform: scale(1);
       }
     }
+
     .version-info {
       color: #F5F5F5;
       display: flex;
@@ -79,11 +63,13 @@
       bottom: 0;
       opacity: .67;
     }
+
     .version-info p {
       font-weight: 600;
       font-family: 'Titillium Web';
       font-size: .9em;
     }
+
   </style>
   <script>
     (function() {
@@ -95,25 +81,17 @@
       }
     }());
   </script>
-  <script>
-  </script>
 </head>
 
-<body style="background-color: rgb(41, 54, 62); margin: 0; padding: 0" onload="let x = document.getElementById('spinner'); x.remove();">
-  <div id="spinner" style="width: 100%; height: 100vh; background: rgb(41, 54, 62); display: flex; flex-direction: column;align-items: center; justify-content: center">
+<body onload="document.getElementById('spinner').remove();">
+  <div id="spinner">
 
     <!-- logo -->
-    <div style="background-image: url('./quarkz_newlogo_light.png'); width: 200px; height: 200px; background-size: contain; background-repeat: no-repeat"></div>
-
-    <!-- loading spinner -->
-    <div class="spinner">
-      <div class="dot1"></div>
-      <div class="dot2"></div>
-    </div>
+    <div class="spinner-logo" id="spinner-logo"></div>
 
     <!-- version info -->
     <div class="version-info">
-      <p>v0.0.1-aurora PRE-RELEASE</p>
+      <p>v0.0.1-aurora <span style="color: #d82e2e; font-weight: 800">ALPHA</span></p>
     </div>
   </div>
 
