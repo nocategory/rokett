@@ -97,7 +97,6 @@ export default class App extends Component {
             {/* pane 2 */}
             <div className="app--content" id="app--content">
               <TopHeader />
-              {this.props.children}
               <AceEditor
                 mode="javascript"
                 theme="tomorrow"
@@ -106,11 +105,16 @@ export default class App extends Component {
                 fontSize={17}
                 value={this.state.value}
                 width={'100%'}
-                height={'100vh'}
+                height={'calc(100vh - 52px - 24px)'}
                 enableLiveAutocompletion
                 enableBasicAutocompletion
                 wrapEnabled
                 focus
+                editorProps={{ $blockScrolling: Infinity }}
+                setOptions={{
+                  animatedScroll: true,
+                  scrollPastEnd: true,
+                }}
               />
               <div className="tabs-wrapper">
                 <div className="tabs-chevron-wrapper">

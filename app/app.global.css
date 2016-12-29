@@ -2,7 +2,6 @@
 
 body {
   font-family: 'Titillium Web';
-  overflow: hidden;
 }
 
 i {
@@ -23,6 +22,8 @@ hr {
 .app--content {
   display: flex;
   width: 100%;
+  margin: 0 0 24px 20px;
+  max-height: 100vh;
   flex-direction: column;
   background-color: rgb(41, 54, 62);
 }
@@ -31,13 +32,17 @@ hr {
   flex-grow: 1;
 }
 
+.test {
+  max-height: 100%;
+}
+
 .app--tree {
   background: rgb(32, 45, 53);
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   width: 240px;
-  height: 100vh;
+  height: 100%;
   left: -130px;
   flex-shrink: 0;
   transition: left 0.3s ease-out;
@@ -95,7 +100,7 @@ hr {
   background: #202d35;
   align-items: flex-end;
   height: 56px;
-  position: absolute;
+  position: fixed;
   bottom: -32px;
   flex-shrink: 0;
   transition: bottom 0.3s ease-out;

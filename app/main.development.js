@@ -1,8 +1,10 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
+import windowStateKeeper from 'electron-window-state';
 
 let menu;
 let template;
-let mainWindow = null;
+let win = null;
+
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support'); // eslint-disable-line
@@ -41,36 +43,49 @@ const installExtensions = async () => {
 app.on('ready', async () => {
   await installExtensions();
 
-  mainWindow = new BrowserWindow({
-    width: 1366,
-    height: 768,
-    frame: false,
-    resizable: true,
-    show: false,
+  // Load the previous state with fallback to defaults
+  const mainWindowState = windowStateKeeper({
+    defaultWidth: 1366,
+    defaultHeight: 768,
   });
 
-  mainWindow.loadURL(`file://${__dirname}/app.html`);
+  // Create the window using the state information
+  win = new BrowserWindow({
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
+    frame: false,
+    resizable: true,
+  });
 
-  mainWindow.webContents.on('did-finish-load', () => {
-    mainWindow.show();
+  // Let us register listeners on the window, so we can update the state
+  // automatically (the listeners will be removed when the window is closed)
+  // and restore the maximized or full screen state
+  mainWindowState.manage(win);
+
+  win.loadURL(`file://${__dirname}/app.html`);
+
+  win.webContents.on('did-finish-load', () => {
+    win.show();
     // mainWindow.focus();
   });
 
-  mainWindow.on('closed', () => {
-    mainWindow = null;
+  win.on('closed', () => {
+    win = null;
   });
 
   if (process.env.NODE_ENV === 'development') {
-    mainWindow.openDevTools();
-    mainWindow.webContents.on('context-menu', (e, props) => {
+    win.openDevTools();
+    win.webContents.on('context-menu', (e, props) => {
       const { x, y } = props;
 
       Menu.buildFromTemplate([{
         label: 'Inspect element',
         click() {
-          mainWindow.inspectElement(x, y);
+          win.inspectElement(x, y);
         }
-      }]).popup(mainWindow);
+      }]).popup(win);
     });
   }
 
@@ -142,25 +157,25 @@ app.on('ready', async () => {
         label: 'Reload',
         accelerator: 'Command+R',
         click() {
-          mainWindow.webContents.reload();
+          win.webContents.reload();
         }
       }, {
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
         click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen());
+          win.setFullScreen(!win.isFullScreen());
         }
       }, {
         label: 'Toggle Developer Tools',
         accelerator: 'Alt+Command+I',
         click() {
-          mainWindow.toggleDevTools();
+          win.toggleDevTools();
         }
       }] : [{
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
         click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen());
+          win.setFullScreen(!win.isFullScreen());
         }
       }]
     }, {
@@ -217,7 +232,7 @@ app.on('ready', async () => {
         label: '&Close',
         accelerator: 'Ctrl+W',
         click() {
-          mainWindow.close();
+          win.close();
         }
       }]
     }, {
@@ -226,25 +241,25 @@ app.on('ready', async () => {
         label: '&Reload',
         accelerator: 'Ctrl+R',
         click() {
-          mainWindow.webContents.reload();
+          win.webContents.reload();
         }
       }, {
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
         click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen());
+          win.setFullScreen(!win.isFullScreen());
         }
       }, {
         label: 'Toggle &Developer Tools',
         accelerator: 'Alt+Ctrl+I',
         click() {
-          mainWindow.toggleDevTools();
+          win.toggleDevTools();
         }
       }] : [{
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
         click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen());
+          win.setFullScreen(!win.isFullScreen());
         }
       }]
     }, {
@@ -272,6 +287,6 @@ app.on('ready', async () => {
       }]
     }];
     menu = Menu.buildFromTemplate(template);
-    mainWindow.setMenu(menu);
+    win.setMenu(menu);
   }
 });
