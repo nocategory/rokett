@@ -32,9 +32,6 @@ hr {
   flex-grow: 1;
 }
 
-.test {
-  max-height: 100%;
-}
 
 .app--tree {
   background: rgb(32, 45, 53);

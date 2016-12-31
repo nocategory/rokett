@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import s from './FrameButtons.css';
 
 // electron doesn't like import with remote, so require is used
-const remote = require('electron').remote;
+const { remote } = require('electron');
+
+const { dialog } = remote;
 
 // get window
 const appWindow = remote.getCurrentWindow();
@@ -27,6 +29,10 @@ export default class FrameButtons extends Component {
 
   closeClick() {
     appWindow.close();
+  }
+
+  test() {
+    dialog.showOpenDialog({ properties: ['openDirectory'] });
   }
 
   render() {

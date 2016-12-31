@@ -1,23 +1,17 @@
 // @flow
-import { HIDE_OVERLAY } from '../actions/modal';
+import { TOGGLE_MODAL } from '../actions/modal';
 
-const is = {
-  modalVisible: true,
+const initialState = {
+  modalVisible: false,
 };
 
-export default function modal(state = is, action) {
+export default function modal(state = initialState, action) {
   switch (action.type) {
-    case HIDE_OVERLAY:
-      console.log('REDUCER!!');
-      let x = Object.assign({}, state, {
-        modalVisible: !state.modalVisible
-      });
-      console.log(x)
+    case TOGGLE_MODAL:
       return Object.assign({}, state, {
         modalVisible: !state.modalVisible
       });
     default:
-      console.log('REDUCER 2');
       return state;
   }
 }

@@ -1,8 +1,8 @@
 // @flow
 
-export const HIDE_OVERLAY = 'HIDE_OVERLAY';
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
 export function modalOverlayClick() {
   console.log('ACTION');
-  return { type: HIDE_OVERLAY };
+  return { type: TOGGLE_MODAL };
 }

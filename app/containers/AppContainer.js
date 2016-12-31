@@ -6,7 +6,7 @@ import * as ModalActions from '../actions/modal';
 
 function mapStateToProps(state) {
   return {
-    modalVisible: state.modalVisible,
+    modalVisible: state.modal.modalVisible,
   };
 }
 
