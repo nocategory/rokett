@@ -12,23 +12,9 @@ const settingsButton = {
 
 export default class Sidebar extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      settingsOpen: false,
-    };
-  }
-
-  handleSettingsClick = () => {
-    console.log('ee');
-    return this.setState({
-      settingsOpen: true,
-    });
-  }
-
   render() {
     let settingsModal;
-    if (this.state.settingsOpen) {
+    if (this.props.modalVisible) {
       settingsModal = (
         <VelocityComponent animation="transition.fadeIn" duration={500} runOnMount>
           <Modal />
@@ -41,7 +27,7 @@ export default class Sidebar extends Component {
         <div className={s.sidebar}>
           <div className={s.sidebarButtons}>
             <hr />
-            <i className="fa fa-cog" aria-hidden="true" style={settingsButton} onClick={this.handleSettingsClick} />
+            <i className="fa fa-cog" aria-hidden="true" style={settingsButton} onClick={this.props.modalOverlayClick} />
           </div>
         </div>
         { settingsModal }

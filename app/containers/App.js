@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // TO USE VELOCITY LATER
 import fs from 'fs';
 import { Treebeard } from 'react-treebeard';
 import brace from 'brace';
@@ -24,10 +24,6 @@ const treeStyle = {
 };
 
 export default class App extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired
-  };
-
   constructor() {
     super();
     this.state = {};
@@ -79,7 +75,7 @@ export default class App extends Component {
           <div className="flex-vertical">
 
             {/* sidebar */}
-            <Sidebar />
+            <Sidebar {...this.props} />
 
             {/* pane 1 */}
             <div className="app--tree">
