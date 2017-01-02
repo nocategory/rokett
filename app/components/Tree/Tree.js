@@ -2,20 +2,14 @@
 import React, { Component } from 'react';
 import { Treebeard } from 'react-treebeard';
 import fs from 'fs';
-import dirTree from '../../directory-tree';
 import s from './Tree.css';
 
 export default class Tree extends Component {
-
   constructor() {
     super();
     this.state = {};
     this.onToggle = this.onToggle.bind(this);
     this.editorContentCallback = this.editorContentCallback.bind(this);
-  }
-
-  componentWillMount() {
-    this.tree = dirTree('L:\\Users\\joaoz\\Desktop\\quarkz\\app\\components');
   }
 
   // file tree
@@ -27,14 +21,16 @@ export default class Tree extends Component {
     if (node.children) {
       node.toggled = toggled;
     }
-    if (node.extension) { // file
+    if (node.extension || node.extension === '') { // file
       this.getFileContent(node.path);
     }
     this.setState({ cursor: node });
+    console.log(this.state.cursor);
   }
 
   getFileContent(path) {
     fs.readFile(path, 'utf8', (err, data) => {
+      console.log('Wohoo!');
       this.editorContentCallback(data, path);
     });
   }
@@ -54,16 +50,11 @@ export default class Tree extends Component {
     };
 
     return (
-      <div className="app--tree">
-        <div style={treeStyle}>
-          <Treebeard
-            data={this.tree}
-            onToggle={this.onToggle}
-          />
-        </div>
-        <div className="tree-chevron-wrapper">
-          <i className="fa fa-chevron-right" />
-        </div>
+      <div style={treeStyle}>
+        <Treebeard
+          data={this.props.currentFolderJSON}
+          onToggle={this.onToggle}
+        />
       </div>
     );
   }

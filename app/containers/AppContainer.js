@@ -8,9 +8,12 @@ import * as EditorActions from '../actions/editor';
 function mapStateToProps(state) {
   return {
     modalVisible: state.modal.modalVisible,
-    editorContent: state.editor.editorContent,
+    initialContent: state.editor.initialContent,
     currentFilePath: state.editor.currentFilePath,
     editorMode: state.editor.editorMode,
+    currentContent: state.editor.currentContent,
+    saved: state.editor.saved,
+    currentFolderJSON: state.editor.currentFolderJSON,
   };
 }
 
