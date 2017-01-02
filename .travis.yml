@@ -35,9 +35,9 @@ addons:
       - xorriso
 
 before_install:
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:wine/wine-builds -y ; fi
+   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntu-wine/ppa -y ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q --fix-missing ; fi
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install winehq-devel -y ; fi
+   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install wine1.8 winetricks -y ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export WINEARCH=win32 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then winecfg ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install winetricks ; fi
