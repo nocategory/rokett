@@ -11,13 +11,13 @@ const settingsButton = {
 
 export default class Sidebar extends Component {
   render() {
-
+    const { toggleModal } = this.props;
     return (
       <div className={s.sidebarWrapper}>
         <div className={s.sidebar}>
           <div className={s.sidebarButtons}>
             <hr />
-            <i className="fa fa-cog" aria-hidden="true" style={settingsButton} onClick={this.props.modalOverlayClick} />
+            <i className="fa fa-cog" aria-hidden="true" style={settingsButton} onClick={toggleModal} />
           </div>
         </div>
       </div>

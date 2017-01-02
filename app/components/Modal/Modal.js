@@ -6,17 +6,13 @@ import 'velocity-animate/velocity.ui';
 import s from './Modal.css';
 
 export default class Modal extends Component {
-  props: {
-    modalOverlayClick: () => void,
-  }
-
   render() {
     if (!this.props.modalVisible) return null;
-    const { modalOverlayClick } = this.props;
+    const { toggleModal } = this.props;
 
     return (
       <VelocityComponent animation={this.props.modalVisible ? 'transition.slideDownIn' : 'transition.fadeOut'} duration={500} runOnMount>
-        <div className={`${s.overlay} flex-vertical`} onClick={modalOverlayClick}>
+        <div className={`${s.overlay} flex-vertical`} onClick={toggleModal}>
           <div className={s.modal}>
             <p>test</p>
           </div>

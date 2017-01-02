@@ -6,10 +6,12 @@ import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 
 import * as modalActions from '../actions/modal';
+import * as editorActions from '../actions/editor';
 
 
 const actionCreators = {
   ...modalActions,
+  ...editorActions,
   push,
 };
 

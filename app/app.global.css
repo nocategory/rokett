@@ -22,7 +22,7 @@ hr {
 .app--content {
   display: flex;
   width: 100%;
-  margin: 0 0 24px 20px;
+  left: 20px;
   max-height: 100vh;
   flex-direction: column;
   background-color: rgb(41, 54, 62);
