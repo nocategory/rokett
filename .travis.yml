@@ -35,14 +35,12 @@ addons:
       - xorriso
 
 before_install:
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:jonathonf/wine -y ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q --fix-missing ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo wget "http://mirrors.kernel.org/ubuntu/pool/universe/w/wine1.6/wine_1.6.2-0ubuntu14_amd64.deb" ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt install wine_1.6.2-0ubuntu14_amd64.deb -y ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export WINEARCH=win32 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then winecfg ; fi
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install winetricks ; fi
-
+   
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8" ; fi
   - npm install -g npm@latest
