@@ -36,6 +36,7 @@ addons:
       - xorriso
 
 before_install:
+   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg --add-architecture i386 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo sh -c "echo 'foreign-architecture i386' > /etc/dpkg/dpkg.cfg.d/multiarch" ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntu-wine/ppa -y ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q --fix-missing ; fi
@@ -65,6 +66,7 @@ before_script:
 
 
 script:
+ 
   - npm run lint
   #- npm run test
   - npm run build
