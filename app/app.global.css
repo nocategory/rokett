@@ -5,7 +5,7 @@ body {
 }
 
 i {
-  color: rgba(255, 255, 255, 0.67);
+  color: rgba(255, 255, 255, 0.5);
   transition: 0.3s ease-in;
 }
 
@@ -40,7 +40,7 @@ hr {
   flex-direction: column;
   width: 240px;
   height: 100%;
-  left: -130px;
+  left: -150px;
   flex-shrink: 0;
   transition: left 0.3s ease-out;
   z-index: 10;
@@ -71,18 +71,15 @@ hr {
   display: flex;
   position: absolute;
   align-items: center;
-  height: 100%;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 20px;
-  right: 0;
+  height: 100%;
   z-index: 150;
-  background-color: #1a252b;
+  right: 0;
 }
 
-.tree-chevron-wrapper i {
-  position: absolute;
-  display: flex;
-  right: 4px;
+.tree-chevron-wrapper:hover .app--tree {
+  left: 90px;
 }
 
 .tabs-chevron-wrapper {
@@ -100,7 +97,7 @@ hr {
 }
 
 .editor-wrapper {
-  width: calc(100% - 20px);
+  width: 100%;
 }
 
 .flex-vertical {

@@ -28,9 +28,6 @@ export default class App extends Component {
                 {this.props.currentFolderJSON &&
                   <Tree {...this.props} />
                 }
-                <div className="tree-chevron-wrapper">
-                  <i className="fa fa-chevron-right" />
-                </div>
               </div>
 
               {/* pane 2 */}
