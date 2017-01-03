@@ -35,7 +35,7 @@ addons:
       - xorriso
 
 before_install:
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg --add-architecture i386 ; fi
+   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo sh -c "echo 'foreign-architecture i386' > /etc/dpkg/dpkg.cfg.d/multiarch" ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q --fix-missing ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo wget "http://mirrors.kernel.org/ubuntu/pool/universe/w/wine1.6/wine_1.6.2-0ubuntu14_amd64.deb" ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg -i wine_1.6.2-0ubuntu14_amd64.deb ; fi
