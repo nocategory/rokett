@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { VelocityComponent } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
+import Tree from '../Tree/Tree';
 import s from './Sidebar.css';
 
 const settingsButton = {
@@ -27,6 +28,12 @@ export default class Sidebar extends Component {
         </div>
         <div className="tree-chevron-wrapper">
           <i className="fa fa-chevron-right" />
+        </div>
+        {/* app tree */}
+        <div className="app--tree">
+          {this.props.currentFolderJSON &&
+            <Tree {...this.props} />
+          }
         </div>
       </div>
     );

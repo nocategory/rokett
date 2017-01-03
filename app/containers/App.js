@@ -7,7 +7,6 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import TopHeader from '../components/TopHeader/TopHeader';
 import FrameButtons from '../components/FrameButtons/FrameButtons';
 import Modal from '../components/Modal/Modal';
-import Tree from '../components/Tree/Tree';
 import Editor from '../components/Editor/Editor';
 
 export default class App extends Component {
@@ -18,21 +17,14 @@ export default class App extends Component {
         <VelocityComponent animation="transition.fadeIn" duration={500} runOnMount>
           <div>
             <FrameButtons {...this.props} />
+            <TopHeader {...this.props} />
             <div className="flex-vertical">
-
               {/* sidebar */}
               <Sidebar {...this.props} />
 
-              {/* app tree */}
-              <div className="app--tree">
-                {this.props.currentFolderJSON &&
-                  <Tree {...this.props} />
-                }
-              </div>
 
               {/* pane 2 */}
               <div className="app--content" id="app--content">
-                <TopHeader {...this.props} />
                 <Editor {...this.props} />
                 <div className="tabs-wrapper">
                   <div className="tabs-chevron-wrapper">

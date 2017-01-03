@@ -1,7 +1,6 @@
 .sidebarWrapper {
 	display: flex;
-	height: 100vh;
-	background-color: #1a252b;
+ 	height: calc(100vh - 52px);
 	justify-content: center;
 	align-items: center;
 	-webkit-box-orient: vertical;
@@ -15,10 +14,14 @@
 .sidebar {
 	flex: 0 0 auto;
 	display: flex;
-  align-items: flex-end;
+	align-items: flex-end;
 	position: relative;
+	justify-content: center;
 	outline: none;
 	height: 100%;
+	width: 100%;
+	z-index: 99;
+	background-color: #1a252b;
 }
 
 .sidebarButtons {

@@ -3,6 +3,9 @@
 	align-items: center;
 	justify-content: center;
 	height: 52px;
+	-webkit-box-orient: horizontal;
+	flex-shrink: 0;
+	flex-direction: row;
 	width: 100%;
 	background-color: rgb(41, 54, 62);
 }
