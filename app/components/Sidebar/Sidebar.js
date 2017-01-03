@@ -22,7 +22,6 @@ export default class Sidebar extends Component {
         <div className={s.sidebar}>
           <div className={s.sidebarButtons}>
             <i className="fa fa-user-circle" aria-hidden="true" style={userButton} />
-            <hr />
             <i className="fa fa-cog" aria-hidden="true" style={settingsButton} onClick={toggleModal} />
           </div>
         </div>
