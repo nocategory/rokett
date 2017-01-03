@@ -36,9 +36,9 @@ addons:
 
 before_install:
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo sh -c "echo 'foreign-architecture i386' > /etc/dpkg/dpkg.cfg.d/multiarch" ; fi
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntu-wine/ppa ; fi
+   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntu-wine/ppa -y ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q --fix-missing ; fi
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install wine1.7 --install-recommends ; fi
+   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install wine1.7 -y --install-recommends ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export WINEARCH=win32 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then winecfg ; fi
 
