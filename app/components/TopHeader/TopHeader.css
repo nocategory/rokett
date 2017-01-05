@@ -39,19 +39,18 @@
 	z-index: 10;
 }
 
-.saveStatusOK {
-	background-color: rgba(87, 173, 82, 0.55);
-}
-
-.saveStatusNO {
-	background-color: rgba(173, 82, 82, 0.55);
-}
-
-.saveStatusOK,
-.saveStatusNO {
+.signInButton {
 	color: #F5F5F5;
+	background-color: rgba(57, 75, 86, 0.85);
 	padding: 5px 10px 5px 10px;
 	border-radius: 2px;
-	position: absolute;
-	left: 120px;
+	position: relative;
+	border: none;
+	z-index: 11;
+	-webkit-app-region: no-drag;
+	outline: none;
+}
+
+.signInButton:hover {
+	cursor: pointer;
 }

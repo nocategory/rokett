@@ -42,7 +42,7 @@
 	width: 100%;
 	position: absolute;
 	-webkit-app-region: drag;
-	height: 32px;
+	height: 52px;
 	z-index: 1;
 	display: flex;
 }

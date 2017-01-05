@@ -24,25 +24,9 @@ export default class TopHeader extends Component {
   }
 
   render() {
-    let saveStatus;
-    if (!this.props.currentFilePath) {
-      saveStatus = null;
-    }
-    else {
-      if (this.props.saved) {
-        saveStatus = (
-          <span className={s.saveStatusOK}>SAVED</span>
-        );
-      }
-      else {
-        saveStatus = (
-          <span className={s.saveStatusNO}>NOT SAVED</span>
-        );
-      }
-    }
     return (
       <div className={`${s['app--command--box--wrapper']}`}>
-        {saveStatus}
+        <button className={s.signInButton}>Sign In</button>
         <i className={`${s.menuButton} fa fa-bars`} aria-hidden="true" onClick={this.chooseDirectory} />
         <input className={`${s['app--command--box']}`} />
       </div>

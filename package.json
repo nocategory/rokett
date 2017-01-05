@@ -167,6 +167,7 @@
     "react-split-pane": "^0.1.56",
     "react-treebeard": "^1.1.4",
     "redux": "^3.6.0",
+    "redux-persist": "^4.0.1",
     "redux-thunk": "^2.1.0",
     "requirejs": "^2.3.2",
     "source-map-support": "^0.4.6",
