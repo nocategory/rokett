@@ -165,6 +165,7 @@
     "react-router": "^3.0.0",
     "react-router-redux": "^4.0.6",
     "react-split-pane": "^0.1.56",
+    "react-tooltip": "^3.2.2",
     "react-treebeard": "^1.1.4",
     "redux": "^3.6.0",
     "redux-persist": "^4.0.1",

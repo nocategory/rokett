@@ -17,7 +17,7 @@
     #spinner {
       width: 100%;
       height: 100vh;
-      background: rgb(41, 54, 62);
+      background: url('./stardust.png');
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -25,7 +25,7 @@
     }
 
     .spinner-logo {
-      background-image: url('https://quarkzapp.com/quarkz.png');
+      background-image: url('./quarkz_newlogo_light.png');
       width: 200px;
       height: 200px;
       background-size: contain;
@@ -79,9 +79,14 @@
       }
     }());
   </script>
+  <script>
+    window.onload = function() {
+      document.getElementById('spinner').remove();
+    }
+  </script>
 </head>
 
-<body onload="document.getElementById('spinner').remove();">
+<body>
   <div id="spinner">
 
     <!-- logo -->

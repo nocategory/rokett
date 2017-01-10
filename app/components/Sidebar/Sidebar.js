@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { VelocityComponent } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
+import ReactTooltip from 'react-tooltip';
 import Tree from '../Tree/Tree';
 import s from './Sidebar.css';
 
@@ -22,8 +23,10 @@ export default class Sidebar extends Component {
       <div className={s.sidebarWrapper}>
         <div className={s.sidebar}>
           <div className={s.sidebarButtons}>
-            <i className="fa fa-user-circle" aria-hidden="true" style={userButton} />
-            <i className="fa fa-cog" aria-hidden="true" style={settingsButton} onClick={toggleModal} />
+            <i className="fa fa-user-circle" data-border data-place="right" data-for="userButton" data-effect="float" data-tip="Account settings" aria-hidden="true" style={userButton} />
+            <ReactTooltip id="userButton" />
+            <i className="fa fa-cog" data-border data-place="right" data-for="settingsButton" data-effect="float" data-tip="Settings" aria-hidden="true" style={settingsButton} onClick={toggleModal} />
+            <ReactTooltip id="settingsButton" />
           </div>
         </div>
         <div className="tree-chevron-wrapper">
