@@ -57,6 +57,7 @@ app.on('ready', async () => {
     height: mainWindowState.height,
     frame: false,
     resizable: true,
+    show: false,
   });
 
   // Let us register listeners on the window, so we can update the state
@@ -66,7 +67,7 @@ app.on('ready', async () => {
 
   win.loadURL(`file://${__dirname}/app.html`);
 
-  win.webContents.on('did-finish-load', () => {
+  win.webContents.on('dom-ready', () => {
     win.show();
     // mainWindow.focus();
   });
