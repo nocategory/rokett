@@ -4,7 +4,7 @@ import { VelocityComponent } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
 import s from './Modal.css';
-import logo from '../../quarkz_newlogo_dark.png';
+import tea from '../../tea.png';
 
 export default class Modal extends Component {
   render() {
@@ -15,7 +15,9 @@ export default class Modal extends Component {
       <VelocityComponent animation={this.props.modalVisible ? 'transition.slideDownIn' : 'transition.fadeOut'} duration={500} runOnMount>
         <div className={`${s.overlay} flex-vertical`} onClick={toggleModal}>
           <div className={s.modal}>
-            <img role="presentation" src={logo} />
+            <img className={s.modalTea} role="presentation" src={tea} />
+            <p><b>Sorry, not ready yet!</b></p>
+            <span>have some tea meanwhile</span>
           </div>
         </div>
       </VelocityComponent>
