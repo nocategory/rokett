@@ -1,10 +1,10 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
 import windowStateKeeper from 'electron-window-state';
+import autoUpdater from './autoUpdater';
 
 let menu;
 let template;
 let win = null;
-
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support'); // eslint-disable-line
@@ -42,6 +42,9 @@ const installExtensions = async () => {
 
 app.on('ready', async () => {
   await installExtensions();
+  if (process.env.NODE_ENV === 'production') {
+    await autoUpdater();
+  }
 
   // Load the previous state with fallback to defaults
   const mainWindowState = windowStateKeeper({
@@ -57,6 +60,7 @@ app.on('ready', async () => {
     height: mainWindowState.height,
     frame: false,
     resizable: true,
+    show: false,
   });
 
   // Let us register listeners on the window, so we can update the state
@@ -66,7 +70,7 @@ app.on('ready', async () => {
 
   win.loadURL(`file://${__dirname}/app.html`);
 
-  win.webContents.on('did-finish-load', () => {
+  win.webContents.on('dom-ready', () => {
     win.show();
     // mainWindow.focus();
   });
@@ -75,7 +79,7 @@ app.on('ready', async () => {
     win = null;
   });
 
-  if (process.env.NODE_ENV === 'development') {
+  // if (process.env.NODE_ENV === 'development') {
     win.openDevTools();
     win.webContents.on('context-menu', (e, props) => {
       const { x, y } = props;
@@ -87,7 +91,7 @@ app.on('ready', async () => {
         }
       }]).popup(win);
     });
-  }
+  // }
 
   if (process.platform === 'darwin') {
     template = [{

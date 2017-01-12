@@ -18,7 +18,7 @@
     "postinstall": "concurrently \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
     "dev": "npm run hot-server -- --start-hot",
     "package": "npm run build && build --publish onTagOrDraft",
-    "package-win": "npm run build && build --win --x64 --publish onTagOrDraft",
+    "package-win": "npm run build && build --win --publish onTagOrDraft",
     "package-linux": "npm run build && build --linux",
     "package-osx": "npm run build && build --macos --publish onTagOrDraft",
     "package-all": "npm run build && build -owl --publish onTagOrDraft",
