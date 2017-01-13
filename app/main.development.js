@@ -79,7 +79,7 @@ app.on('ready', async () => {
     win = null;
   });
 
-  // if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development') {
     win.openDevTools();
     win.webContents.on('context-menu', (e, props) => {
       const { x, y } = props;
@@ -91,7 +91,7 @@ app.on('ready', async () => {
         }
       }]).popup(win);
     });
-  // }
+  }
 
   if (process.platform === 'darwin') {
     template = [{
