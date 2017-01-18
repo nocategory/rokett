@@ -21,34 +21,34 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      -webkit-app-region: no-drag;
     }
 
     .spinner-logo {
-      background-image: url('https://quarkzapp.com/quarkz_newlogo_light.png');
+      background-image: url('./new_logo.png');
       width: 200px;
       height: 200px;
       background-size: contain;
       background-repeat: no-repeat;
-      animation: logo-scale 1.4s infinite ease;
+      animation: logo-scale 2s infinite linear;
     }
 
     @-webkit-keyframes logo-scale {
       0%,
       100% {
-        -webkit-transform: scale(.95);
+        -webkit-transform: rotate(0deg);
       }
       50% {
-        -webkit-transform: scale(1.15);
+        -webkit-transform: rotate(360deg);
       }
     }
 
     @keyframes logo-scale {
-      0%,
-      100% {
-        -webkit-transform: scale(.95);
+      0% {
+        -webkit-transform: rotate(0deg);
       }
-      50% {
-        -webkit-transform: scale(1.15);
+      100% {
+        -webkit-transform: rotate(360deg);
       }
     }
 
@@ -64,8 +64,23 @@
 
     .version-info p {
       font-weight: 600;
-      font-family: 'Titillium Web';
+      font-family: 'Segoe UI';
       font-size: 1rem;
+    }
+
+    #randomText {
+      color: #F5F5F5;
+      transition: opacity .5s ease-in-out;
+      opacity: 0;
+      font-weight: 500;
+    }
+
+    .spinner-logo-wrapper {
+      display: flex;
+      height: 40%;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
     }
   </style>
   <script>
@@ -83,17 +98,34 @@
       document.getElementById('spinner').remove();
     }
   </script>
+  <!-- <script>  to be used l8r when there's a server
+    let textList = ['Searching for satellites', 'Getting that powah', 'Looking in Uranus', 'Turning solar panels on', 'Rerouting trajectory', 'Getting some tea', 'Spinning \'round! wohoo!'];
+    let textListNum;
+    let lastTextListNum;
+    function setText() {
+      while (textListNum === lastTextListNum) {
+        textListNum = Math.floor((Math.random() * textList.length - 1) + 1);
+      }
+      lastTextListNum = textListNum;
+      document.getElementById('randomText').innerHTML = textList[textListNum];
+      document.getElementById('randomText').style.opacity = 1;
+      setTimeout(setText, 3500);
+    };
+    setText();
+  </script> -->
 </head>
 
 <body>
   <div id="spinner">
 
     <!-- logo -->
-    <div class="spinner-logo" id="spinner-logo"></div>
-
+    <div class="spinner-logo-wrapper">
+      <div class="spinner-logo" id="spinner-logo"></div>
+    </div>
+    <p id="randomText">&nbsp;</p>
     <!-- version info -->
     <div class="version-info">
-      <p>v0.0.1-aurora <span style="color: #d82e2e; font-weight: 800">ALPHA</span></p>
+      <p>v0.0.1-sarah <span style="color: #d82e2e; font-weight: 700">ALPHA</span></p>
     </div>
   </div>
 
