@@ -1,8 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import * as ace from 'brace';
-import 'brace/mode/javascript';
-import 'brace/theme/monokai';
+import 'brace/theme/tomorrow_night_bright';
 import 'brace/ext/language_tools';
 import 'brace/ext/emmet';
 import AceEditor from 'react-ace';
@@ -61,7 +60,7 @@ export default class Tree extends Component {
         <AceEditor
           {...this.props}
           mode={this.props.editorMode ? this.requireMode(this.props.editorMode) : 'text'}
-          theme="monokai"
+          theme="tomorrow_night_bright"
           onChange={this.onChange}
           name="editor"
           fontSize={17}

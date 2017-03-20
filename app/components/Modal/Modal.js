@@ -4,7 +4,7 @@ import { VelocityComponent } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
 import s from './Modal.css';
-import tea from '../../tea.png';
+import tea from '../../dist/tea.png';
 
 export default class Modal extends Component {
   render() {
