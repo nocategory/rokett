@@ -1,10 +1,16 @@
 // @flow
 import React, { Component } from 'react';
 import s from './TopHeader.css';
+import settings from '../../settings.json';
 
 const { remote } = require('electron');
 
 const { dialog } = remote;
+
+
+const topHeaderStyle = {
+  backgroundColor: settings.frame.mainColor,
+};
 
 export default class TopHeader extends Component {
   constructor() {
@@ -25,7 +31,7 @@ export default class TopHeader extends Component {
 
   render() {
     return (
-      <div className={`${s['app--command--box--wrapper']}`}>
+      <div className={`${s['app--command--box--wrapper']}`} style={topHeaderStyle}>
         <button className={s.signInButton}>Sign In</button>
         <i className={`${s.menuButton} fa fa-bars`} aria-hidden="true" onClick={this.chooseDirectory} />
         <input className={`${s['app--command--box']}`} />

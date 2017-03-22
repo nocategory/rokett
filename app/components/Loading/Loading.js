@@ -4,9 +4,8 @@ import { VelocityComponent } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
 import ReactTooltip from 'react-tooltip';
-import settings from '../../settings.json';
 import Tree from '../Tree/Tree';
-import s from './Sidebar.css';
+import s from './Loading.css';
 
 const settingsButton = {
   fontSize: '1.7rem',
@@ -17,16 +16,12 @@ const userButton = {
   fontSize: '1.7rem',
 };
 
-const sidebarStyle = {
-  backgroundColor: settings.frame.mainColor,
-}
-
 export default class Sidebar extends Component {
   render() {
     const { toggleModal } = this.props;
     return (
       <div className={s.sidebarWrapper}>
-        <div className={s.sidebar} style={sidebarStyle}>
+        <div className={s.sidebar}>
           <div className={s.sidebarButtons}>
             <i className="fa fa-user-circle" data-border data-place="right" data-for="userButton" data-effect="float" data-tip="Account settings" aria-hidden="true" style={userButton} />
             <ReactTooltip id="userButton" />

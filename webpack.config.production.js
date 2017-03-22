@@ -15,6 +15,7 @@ const config = validate(merge(baseConfig, {
 
   entry: [
     'babel-polyfill',
+    'whatwg-fetch',
     './app/index'
   ],
 

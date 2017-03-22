@@ -12,7 +12,7 @@ export default class Modal extends Component {
     const { toggleModal } = this.props;
 
     return (
-      <VelocityComponent animation={this.props.modalVisible ? 'transition.slideDownIn' : 'transition.fadeOut'} duration={500} runOnMount>
+      <VelocityComponent animation={this.props.modalVisible ? 'transition.slideDownIn' : 'transition.fadeOut'} duration={500} runOnMount runOnUnmount>
         <div className={`${s.overlay} flex-vertical`} onClick={toggleModal}>
           <div className={s.modal}>
             <img className={s.modalTea} role="presentation" src={tea} />
