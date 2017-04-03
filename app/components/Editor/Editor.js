@@ -1,20 +1,9 @@
 // @flow
 import React, { Component } from 'react';
-import * as ace from 'brace';
-import 'brace/theme/tomorrow_night_bright';
-import 'brace/ext/language_tools';
-import 'brace/ext/emmet';
-import AceEditor from 'react-ace';
+import MonacoEditor from 'react-monaco-editor/lib';
 import keydown from 'react-keydown';
 import fs from 'fs';
 import s from './Editor.css';
-
-/**
- * ACE editor modes file names differs from brace's
- */
-ace.config.set('modePath', 'ace_modes');
-const languageTools = ace.acequire('ace/ext/language_tools');
-const emmet = ace.acequire('ace/ext/emmet');
 
 export default class Tree extends Component {
   constructor() {
@@ -23,17 +12,8 @@ export default class Tree extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentDidMount() {
-    this.editor = ace.edit('editor');
-  }
-
   onChange() {
     this.props.editorOnChange(this.editor.getValue());
-  }
-
-  requireMode(r) {
-    require(`brace/mode/${r}`);
-    return r;
   }
 
   @keydown('ctrl+s')
@@ -57,25 +37,11 @@ export default class Tree extends Component {
   render() {
     return (
       <div className="editor-wrapper">
-        <AceEditor
-          {...this.props}
-          mode={this.props.editorMode ? this.requireMode(this.props.editorMode) : 'text'}
-          theme="tomorrow_night_bright"
-          onChange={this.onChange}
-          name="editor"
-          fontSize={17}
-          width={'100%'}
+        <MonacoEditor
+          width="800"
+          height="600"
+          language="javascript"
           value={this.props.currentContent}
-          height={'calc(100vh - 52px - 24px)'}
-          enableLiveAutocompletion
-          enableBasicAutocompletion
-          wrapEnabled
-          focus
-          editorProps={{ $blockScrolling: Infinity }}
-          setOptions={{
-            animatedScroll: true,
-            scrollPastEnd: true,
-          }}
         />
       </div>
     );

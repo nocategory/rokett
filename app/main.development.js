@@ -54,6 +54,7 @@ app.on('ready', async () => {
 
   // Create the window using the state information
   win = new BrowserWindow({
+    // webPreferences: { nodeIntegration: false },
     x: mainWindowState.x,
     y: mainWindowState.y,
     width: mainWindowState.width,

@@ -54,7 +54,7 @@ export default class Tree extends Component {
         <Treebeard
           data={this.props.currentFolderJSON}
           onToggle={this.onToggle}
-        />
+        />  
       </div>
     );
   }

@@ -19,7 +19,7 @@ const userButton = {
 
 const sidebarStyle = {
   backgroundColor: settings.frame.mainColor,
-}
+};
 
 export default class Sidebar extends Component {
   render() {
