@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import MonacoEditor from 'react-monaco-editor/lib';
+import MonacoEditor from 'react-monaco-editor';
 import keydown from 'react-keydown';
 import fs from 'fs';
 import s from './Editor.css';
@@ -35,6 +35,12 @@ export default class Tree extends Component {
   }
 
   render() {
+    const requireConfig = {
+      url: 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.1/require.min.js',
+      paths: {
+        'vs': 'node_modules/monaco-editor/min/vs',
+      }
+    };
     return (
       <div className="editor-wrapper">
         <MonacoEditor
@@ -42,6 +48,7 @@ export default class Tree extends Component {
           height="600"
           language="javascript"
           value={this.props.currentContent}
+          requireConfig={requireConfig}
         />
       </div>
     );

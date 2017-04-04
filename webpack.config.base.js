@@ -8,7 +8,8 @@ import {
   dependencies as externals
 } from './app/package.json';
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default validate({
   module: {
@@ -39,11 +40,12 @@ export default validate({
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
 
+
   plugins: [
     new CopyWebpackPlugin([
       {
         from: 'node_modules/monaco-editor/min/vs',
-        to: 'vs',
+        to: '/',
       }
     ])
   ],
