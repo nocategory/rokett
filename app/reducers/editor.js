@@ -1,13 +1,7 @@
 // @flow
 
-/** ace editor stuff for editorMode */
-import * as ace from 'brace';
-import 'brace/ext/modelist';
-
 import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH } from '../actions/editor';
 import dirTree from '../directory-tree';
-
-const modelist = ace.acequire('ace/ext/modelist');
 
 
 const initialState = {

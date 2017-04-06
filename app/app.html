@@ -1,146 +1,43 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <title>r0kk3t</title>
+    <script>
+      (() => {
+        if (!process.env.HOT) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = './dist/style.css';
+          // HACK: Writing the script path should be done with webpack
+          document.getElementsByTagName('head')[0].appendChild(link);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      {
+        // Dynamically include DLL if in development
+        if (process.env.NODE_ENV === 'development') {
+          const dllScript = document.createElement('script');
+          dllScript.src = '../dll/vendor.dll.js';
+          document.body.appendChild(dllScript);
+        }
 
-<head>
-  <meta charset="utf-8">
-  <title>quarkz PRE-RELEASE</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      background-color: rgb(41, 54, 62);
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
+        // Dynamically insert the renderer process
+        const script = document.createElement('script');
+        const port = process.env.PORT || 1212;
 
-    #spinner {
-      width: 100%;
-      height: 100vh;
-      background: url('./dist/stardust.png');
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      -webkit-app-region: no-drag;
-    }
+        script.src = (process.env.HOT)
+          ? 'http://localhost:' + port + '/dist/bundle.js'
+          : './dist/bundle.js';
 
-    .spinner-logo {
-      background-image: url('./dist/new_logo.png');
-      width: 200px;
-      height: 200px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: logo-scale 2s infinite linear;
-    }
-
-    @-webkit-keyframes logo-scale {
-      0%,
-      100% {
-        -webkit-transform: rotate(0deg);
+        // @HACK: Writing the script path should be done
+        //        with HtmlWebpackPlugin
+        document.body.appendChild(script);
       }
-      50% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes logo-scale {
-      0% {
-        -webkit-transform: rotate(0deg);
-      }
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    .version-info {
-      color: #F5F5F5;
-      display: flex;
-      position: absolute;
-      align-items: center;
-      justify-content: center;
-      bottom: 0;
-      opacity: .67;
-    }
-
-    .version-info p {
-      font-weight: 600;
-      font-family: 'Segoe UI';
-      font-size: 1rem;
-    }
-
-    #randomText {
-      color: #F5F5F5;
-      transition: opacity .5s ease-in-out;
-      opacity: 0;
-      font-weight: 500;
-    }
-
-    .spinner-logo-wrapper {
-      display: flex;
-      height: 40%;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-    }
-  </style>
-  <script>
-    (function() {
-      if (!process.env.HOT) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = './dist/style.css';
-        document.write(link.outerHTML);
-      }
-    }());
-  </script>
-  <script>
-    window.onload = function() {
-      document.getElementById('spinner').remove();
-    }
-  </script>
-  <!-- <script>  to be used l8r when there's a server
-    let textList = ['Searching for satellites', 'Getting that powah', 'Looking in Uranus', 'Turning solar panels on', 'Rerouting trajectory', 'Getting some tea', 'Spinning \'round! wohoo!'];
-    let textListNum;
-    let lastTextListNum;
-    function setText() {
-      while (textListNum === lastTextListNum) {
-        textListNum = Math.floor((Math.random() * textList.length - 1) + 1);
-      }
-      lastTextListNum = textListNum;
-      document.getElementById('randomText').innerHTML = textList[textListNum];
-      document.getElementById('randomText').style.opacity = 1;
-      setTimeout(setText, 3500);
-    };
-    setText();
-  </script> -->
-</head>
-
-<body>
-  <div id="spinner">
-
-    <!-- logo -->
-    <div class="spinner-logo-wrapper">
-      <div class="spinner-logo" id="spinner-logo"></div>
-    </div>
-    <p id="randomText">&nbsp;</p>
-    <!-- version info -->
-    <div class="version-info">
-      <p>v0.0.2-sarah <span style="color: #d82e2e; font-weight: 700">ALPHA</span></p>
-    </div>
-  </div>
-
-  <div id="app--root"></div>
-
-  <script>
-    {
-      const script = document.createElement('script');
-      const port = process.env.PORT || 3000;
-      script.src = (process.env.HOT) ?
-        'http://localhost:' + port + '/dist/bundle.js' :
-        './dist/bundle.js';
-      document.write(script.outerHTML);
-    }
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

@@ -4,18 +4,20 @@ import { VelocityComponent } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
 import s from './Modal.css';
-import tea from '../../dist/tea.png';
 
 export default class Modal extends Component {
+  props: {
+    toggleModal: () => void
+  };
+
   render() {
-    if (!this.props.modalVisible) return null;
-    const { toggleModal } = this.props;
+    const { toggleModal, modalVisible } = this.props;
+    if (!modalVisible) return null;
 
     return (
-      <VelocityComponent animation={this.props.modalVisible ? 'transition.slideDownIn' : 'transition.fadeOut'} duration={500} runOnMount runOnUnmount>
+      <VelocityComponent animation={modalVisible ? 'transition.slideDownIn' : 'transition.fadeOut'} duration={500} runOnMount runOnUnmount>
         <div className={`${s.overlay} flex-vertical`} onClick={toggleModal}>
           <div className={s.modal}>
-            <img className={s.modalTea} role="presentation" src={tea} />
             <p><b>Sorry, not ready yet!</b></p>
             <span>have some tea meanwhile</span>
           </div>

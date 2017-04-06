@@ -1,22 +1,27 @@
 {
-  "name": "quarkz",
-  "productName": "quarkz",
+  "name": "r0kk3t",
+  "productName": "r0kk3t",
   "version": "0.0.2",
   "description": "quarkz is an open-source code editor built with web technologies and ❤",
   "main": "main.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha --retries 2 --compilers js:babel-register --recursive --require ./test/setup.js test/**/*.spec.js",
+    "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings ./test/runTests.js",
+    "test-all": "npm run lint && npm run flow && npm run test && npm run build",
     "test-watch": "npm test -- --watch",
-    "test-e2e": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha --retries 2 --compilers js:babel-register --require ./test/setup.js ./test/e2e.js",
-    "lint": "eslint --ignore-path .eslintignore --format=node_modules/eslint-formatter-pretty app test *.js",
-    "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 -r babel-register server.js",
-    "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
-    "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
-    "build": "npm run build-main && npm run build-renderer",
+    "test-e2e": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings ./test/runTests.js e2e",
+    "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
+    "lint-fix": "npm run lint -- --fix",
+    "hot-updates-server": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.renderer.dev.js",
+    "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
+    "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --progress --profile --colors",
+    "build-main": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.main.prod.js --progress --profile --colors",
+    "build-renderer": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.prod.js --progress --profile --colors",
     "start": "cross-env NODE_ENV=production electron ./app/",
-    "start-hot": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
-    "postinstall": "concurrently \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
-    "dev": "npm run hot-server -- --start-hot",
+    "flow": "flow",
+    "flow-typed": "flow-typed install",
+    "start-hot-renderer": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
+    "postinstall": "concurrently \"npm run build-dll\" \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
+    "dev": "cross-env START_HOT=1 npm run hot-updates-server",
     "package": "npm run build && build --publish onTagOrDraft",
     "package-win": "npm run build && build --win --publish onTagOrDraft",
     "package-linux": "npm run build && build --linux",
@@ -24,24 +29,10 @@
     "package-all": "npm run build && build -owl --publish onTagOrDraft",
     "cleanup": "mop -v"
   },
+  "browserslist": "electron 1.4",
   "build": {
-    "appId": "org.quarkz-editor",
-    "category": "public.app-category.tools",
-    "dmg": {
-      "contents": [
-        {
-          "x": 410,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        },
-        {
-          "x": 130,
-          "y": 150,
-          "type": "file"
-        }
-      ]
-    },
+    "productName": "r0kk3t",
+    "appId": "org.r0kk3t",
     "files": [
       "dist/",
       "node_modules/",
@@ -50,23 +41,35 @@
       "main.js.map",
       "package.json"
     ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
     "win": {
-      "target": "nsis",
-      "icon": "./build/icon.ico"
+      "target": [
+        "nsis"
+      ]
     },
     "linux": {
       "target": [
         "deb",
         "AppImage"
       ]
+    },
+    "directories": {
+      "buildResources": "resources",
+      "output": "release"
     }
-  },
-  "directories": {
-    "buildResources": "resources",
-    "output": "release"
-  },
-  "bin": {
-    "electron": "./node_modules/.bin/electron"
   },
   "repository": {
     "type": "git",
@@ -85,107 +88,125 @@
     "electron",
     "boilerplate",
     "react",
-    "react-router",
-    "flux",
+    "redux",
+    "flow",
+    "sass",
     "webpack",
-    "react-hot"
+    "hot",
+    "reload"
   ],
-  "homepage": "https://github.com/uppe-r/quarkzt#readme",
+  "homepage": "https://github.com/uppe-r/quarkz#readme",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMock.js",
+      "\\.(css|less|sass|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "app/node_modules"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  },
   "devDependencies": {
-    "asar": "^0.12.3",
-    "babel-core": "^6.18.0",
-    "babel-eslint": "^7.1.0",
-    "babel-loader": "^6.2.7",
+    "asar": "^0.13.0",
+    "babel-core": "^6.24.0",
+    "babel-eslint": "^7.2.1",
+    "babel-jest": "^19.0.0",
+    "babel-loader": "^6.4.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-dev-expression": "^0.2.1",
-    "babel-plugin-tcomb": "^0.3.21",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-webpack-loaders": "^0.8.0",
-    "babel-polyfill": "^6.16.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
+    "babel-plugin-flow-runtime": "^0.10.0",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "babel-plugin-transform-es2015-classes": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-react": "^6.23.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-react-optimize": "^1.0.1",
-    "babel-preset-stage-0": "^6.16.0",
-    "babel-register": "^6.18.0",
-    "boiler-room-custodian": "^0.4.2",
-    "chai": "^3.5.0",
-    "concurrently": "^3.1.0",
-    "cross-env": "^3.1.3",
-    "css-loader": "^0.26.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-register": "^6.24.0",
+    "babili-webpack-plugin": "^0.0.11",
+    "boiler-room-custodian": "^0.6.1",
+    "chalk": "^1.1.3",
+    "concurrently": "^3.4.0",
+    "cross-env": "^4.0.0",
+    "cross-spawn": "^5.1.0",
+    "css-loader": "^0.28.0",
     "devtron": "^1.4.0",
-    "electron": "^1.4.4",
-    "electron-builder": "^8.6.0",
-    "electron-devtools-installer": "^2.0.1",
-    "enzyme": "^2.5.1",
-    "eslint": "^3.9.1",
-    "eslint-config-airbnb": "^13.0.0",
+    "electron": "^1.6.2",
+    "electron-builder": "^16.6.0",
+    "electron-devtools-installer": "^2.1.0",
+    "enzyme": "^2.8.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
     "eslint-formatter-pretty": "^1.1.0",
-    "eslint-import-resolver-webpack": "^0.7.0",
-    "eslint-loader": "^1.6.0",
-    "eslint-plugin-flowtype-errors": "^1.5.0",
-    "eslint-plugin-import": "^2.1.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-mocha": "^4.7.0",
-    "eslint-plugin-promise": "^3.3.0",
-    "eslint-plugin-react": "^6.7.1",
-    "express": "^4.14.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-plugin-compat": "^1.0.2",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-flowtype-errors": "^3.0.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jest": "^19.0.1",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.3",
+    "express": "^4.15.2",
     "fbjs-scripts": "^0.7.1",
-    "file-loader": "^0.9.0",
-    "html-webpack-plugin": "^2.24.0",
-    "jsdom": "^9.8.3",
-    "json-loader": "^0.5.4",
+    "file-loader": "^0.11.0",
+    "flow-bin": "^0.42.0",
+    "flow-runtime": "^0.10.0",
+    "flow-typed": "^2.0.0",
+    "html-webpack-plugin": "^2.28.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^19.0.2",
+    "jsdom": "^9.12.0",
     "minimist": "^1.2.0",
-    "mocha": "^3.1.2",
-    "react-addons-test-utils": "^15.3.2",
-    "redux-logger": "^2.7.4",
-    "sinon": "^1.17.6",
-    "spectron": "^3.4.0",
-    "style-loader": "^0.13.1",
-    "tcomb": "^3.2.15",
-    "url-loader": "^0.5.7",
-    "webpack": "^1.13.3",
-    "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.1",
-    "webpack-merge": "^0.17.0",
-    "webpack-validator": "^2.2.9"
+    "node-sass": "^4.5.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-test-renderer": "^15.4.2",
+    "redux-logger": "^3.0.1",
+    "sass-loader": "^6.0.3",
+    "sinon": "^2.1.0",
+    "spectron": "^3.6.1",
+    "style-loader": "^0.16.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2",
+    "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "app-root-path": "^2.0.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "copy-webpack-plugin": "^4.0.1",
     "directory-tree": "^1.1.1",
-    "electron-debug": "^1.0.1",
+    "electron-debug": "^1.1.0",
     "electron-window-state": "^4.0.1",
+    "extract-text-webpack-plugin": "^2.0.0",
     "font-awesome": "^4.7.0",
     "monaco-editor": "^0.8.3",
-    "react": "^15.3.2",
-    "react-ace": "^4.1.0",
-    "react-dom": "^15.3.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-hot-loader": "3.0.0-beta.6",
     "react-keydown": "^1.6.5",
     "react-monaco-editor": "^0.8.1",
-    "react-redux": "^4.4.5",
-    "react-router": "^3.0.0",
-    "react-router-redux": "^4.0.6",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.7",
     "react-spinkit": "^2.1.1",
     "react-split-pane": "^0.1.56",
     "react-tooltip": "^3.2.2",
     "react-treebeard": "^1.1.4",
     "redux": "^3.6.0",
     "redux-persist": "^4.0.1",
-    "redux-thunk": "^2.1.0",
-    "requirejs": "^2.3.2",
-    "source-map-support": "^0.4.6",
-    "sweetalert": "^1.1.3",
-    "toastr": "^2.1.2",
-    "url-loader": "^0.5.7",
-    "velocity-react": "^1.1.11",
-    "walkdir": "0.0.11",
-    "whatwg-fetch": "^2.0.3"
+    "redux-thunk": "^2.2.0",
+    "source-map-support": "^0.4.10",
+    "velocity-react": "^1.1.11"
   },
   "devEngines": {
     "node": ">=6.x",
-    "npm": ">=3.x"
+    "npm": ">=3.x",
+    "yarn": "0.21.3"
   }
 }

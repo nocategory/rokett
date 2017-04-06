@@ -22,6 +22,10 @@ const sidebarStyle = {
 };
 
 export default class Sidebar extends Component {
+  props: {
+    toggleModal: () => void
+  };
+
   render() {
     const { toggleModal } = this.props;
     return (
