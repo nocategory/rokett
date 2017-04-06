@@ -18,6 +18,10 @@ function mapStateToProps(state) {
   };
 }
 
+/**
+ * mapStateToProps is needed so that components know when to update,
+ */
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...editorActions, ...modalActions }, dispatch);
 }
