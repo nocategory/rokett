@@ -41,6 +41,6 @@ export default {
   },
 
   plugins: [
-    new webpack.NamedModulesPlugin(),
+    new webpack.NamedModulesPlugin()
   ],
 };

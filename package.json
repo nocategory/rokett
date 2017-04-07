@@ -118,7 +118,6 @@
     "babel-eslint": "^7.2.1",
     "babel-jest": "^19.0.0",
     "babel-loader": "^6.4.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-flow-runtime": "^0.10.0",
     "babel-plugin-transform-class-properties": "^6.23.0",
@@ -179,7 +178,6 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "copy-webpack-plugin": "^4.0.1",
     "directory-tree": "^1.1.1",
     "electron-debug": "^1.1.0",
     "electron-window-state": "^4.0.1",

@@ -1,45 +1,20 @@
 // @flow
 import React, { Component } from 'react';
-// import MonacoEditor from 'react-monaco-editor/lib';
 import keydown from 'react-keydown';
+import MonacoEditor from './index';
 import fs from 'fs';
 import s from './Editor.css';
 
 export default class Tree extends Component {
 
-  /* @keydown('ctrl+s') */
-  saveFile() {
-    console.log(this.props.currentContent);
-    if (!this.props.currentContent || (this.props.currentContent === this.props.initialContent && this.props.saved === true)) return null;
-    fs.writeFile(this.props.currentFilePath, this.props.currentContent, (err) => {
-      if (err) {
-        console.log('error saving file: ' + err.message);
-        console.log(err);
-        return;
-      }
-      // set the saved to true
-      // and
-      // initialContent = currentContent
-      this.props.setEditorContent(this.props.currentContent, this.props.currentFilePath);
-      console.log('SAVED');
-    });
-  }
-
-  constructor() {
-    super();
-    this.saveFile = this.saveFile.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange() {
-    this.props.editorOnChange(this.editor.getValue());
-  }
-
   render() {
     return (
-      <div className="editor-wrapper">
-        
-      </div>
+      <MonacoEditor
+       width="100%"
+       height="100%"
+       language="javascript"
+       value={"ee"}
+     />
     );
   }
 }

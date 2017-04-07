@@ -7,7 +7,7 @@
     "stage-0",
     "react"
   ],
-  "plugins": ["add-module-exports"],
+  "plugins": [],
   "env": {
     "production": {
       "presets": ["react-optimize"],
