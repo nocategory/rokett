@@ -1,6 +1,6 @@
 // @flow
 
-import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH } from '../actions/editor';
+import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED } from '../actions/editor';
 import dirTree from '../directory-tree';
 
 
@@ -11,22 +11,19 @@ const initialState = {
   currentContent: '',
   saved: true,
   currentFolderJSON: '',
+  editorDidMount: false,
 };
 
 export default function editor(state = initialState, action) {
   switch (action.type) {
     case SET_CONTENT:
-      // returns 'ace/mode/x'
-      let mode = modelist.getModeForPath(action.filePath).mode;
-      mode = mode.substring(mode.indexOf('mode/') + 'mode/'.length, mode.length);
-      console.log(mode);
-      return Object.assign({}, state, {
+      return { ...state, 
         initialContent: action.initialContent,
         currentFilePath: action.filePath,
         editorMode: mode,
         currentContent: action.initialContent,
         saved: true,
-      });
+      };
     case SET_NEWCONTENT:
       let savedBool;
       if (action.currentContent === state.initialContent) {
@@ -35,15 +32,14 @@ export default function editor(state = initialState, action) {
       else {
         savedBool = false;
       }
-      return Object.assign({}, state, {
+      return { ...state, 
         currentContent: action.currentContent,
         saved: savedBool,
-      });
+      };
     case SET_FOLDERPATH:
-      console.log('REDUCER');
-      return Object.assign({}, state, {
-        currentFolderJSON: dirTree(action.currentFolderPath),
-      });
+      return { ...state, currentFolderJSON: dirTree(action.currentFolderPath) };
+    case SET_EDITORMOUNTED:
+      return { ...state, editorDidMount: true }
     default:
       return state;
   }

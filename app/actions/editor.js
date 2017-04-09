@@ -31,3 +31,9 @@ export function setActiveFolder(currentFolderPath) {
     currentFolderPath,
   };
 }
+
+export function editorMount() {
+  return {
+    type: SET_EDITOR_MOUNTED,
+  }
+}
