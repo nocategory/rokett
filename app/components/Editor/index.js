@@ -50,7 +50,6 @@ class MonacoEditor extends React.Component {
     });
   }
   afterViewInit() {
-    console.log("1");
     let amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
     amdRequire.config({
       baseUrl: 'node_modules/monaco-editor/min/'
@@ -60,24 +59,8 @@ class MonacoEditor extends React.Component {
     self.module = undefined;
     // workaround monaco-typescript not understanding the environment
     self.process.browser = true;
-    var editor;
     amdRequire(['vs/editor/editor.main'], () => {
       this.initMonaco();
-      /* editor = monaco.editor.create(document.getElementById(id), {
-        value: "ee",
-        language: 'javascript',
-        theme: "vs-dark",
-      }); */
-      window.addEventListener('resize', () => {
-        if (id === this.props.activeTab) {
-          let editorNode = document.getElementById(id);
-          let parent = editorNode.parentElement;
-          editorNode.style.width = parent.clientWidth;
-          editorNode.firstElementChild.style.width = parent.clientWidth;
-          editorNode.firstElementChild.firstElementChild.style.width = parent.clientWidth;
-          editorNode.getElementsByClassName('monaco-scrollable-element')[0].style.width = parent.clientWidth - 46;
-        }
-      })
     });
   }
   initMonaco() {

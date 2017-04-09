@@ -230,7 +230,8 @@ export default merge.smart(baseConfig, {
     contentBase: path.join(__dirname, 'dist'),
     watchOptions: {
       aggregateTimeout: 300,
-      poll: 100
+      poll: 100,
+      ignored: /node_modules/
     },
     historyApiFallback: {
       verbose: true,
