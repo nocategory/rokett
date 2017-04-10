@@ -3,6 +3,7 @@
 export const SET_CONTENT = 'SET_CONTENT';
 export const SET_NEWCONTENT = 'SET_NEWCONTENT';
 export const SET_FOLDERPATH = 'SET_FOLDERPATH';
+export const SET_EDITORMOUNTED = 'SET_EDITORMOUNTED';
 
 /**
  * [setEditorContent]
@@ -25,15 +26,15 @@ export function editorOnChange(currentContent) {
 }
 
 export function setActiveFolder(currentFolderPath) {
-  console.log('ACTION');
   return {
     type: SET_FOLDERPATH,
     currentFolderPath,
   };
 }
 
-export function editorMount() {
+export function setEditorMount() {
+  console.log("MOUNTED");
   return {
-    type: SET_EDITOR_MOUNTED,
-  }
+    type: SET_EDITORMOUNTED,
+  };
 }

@@ -1,38 +1,7 @@
-.sidebarWrapper {
-	display: flex;
- 	height: calc(100vh - 52px);
-	justify-content: center;
-	align-items: center;
-	-webkit-box-orient: vertical;
-	width: 90px;
-	flex-direction: column;
-	flex-shrink: 0;
-	z-index: 99999;
-	position: relative;
-}
-
-.sidebar {
-	flex: 0 0 auto;
-	display: flex;
-	align-items: flex-end;
-	position: relative;
-	justify-content: center;
-	outline: none;
-	height: 100%;
+.loading {
 	width: 100%;
-	z-index: 99;
-	background-color: #1a252b;
-}
-
-.sidebarButtons {
-	padding: 15px;
-	display: flex;
+	height: 100%;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
-}
-
-.sidebarButtons i:hover {
-	transform: rotate(45deg);
-	transition: transform 0.3s ease-in-out;
+	display: flex;
 }

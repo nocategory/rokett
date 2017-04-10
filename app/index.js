@@ -4,12 +4,13 @@ import { hashHistory } from 'react-router';
 import { AppContainer } from 'react-hot-loader';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { persistStore } from 'redux-persist';
+import { localStorage } from 'redux-persist/storages';
 import Root from './containers/Root';
 import configureStore from './store/configureStore';
 import './app.global.css';
 
 const store = configureStore();
-persistStore(store);
+persistStore(store, { storage: localStorage });
 const history = syncHistoryWithStore(hashHistory, store);
 
 render(

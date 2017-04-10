@@ -2,17 +2,41 @@
 import React, { Component } from 'react';
 import keydown from 'react-keydown';
 import fs from 'fs';
+import {
+  ChasingDots,
+  Circle,
+  CubeGrid,
+  DoubleBounce,
+  FadingCircle,
+  FoldingCube,
+  Pulse,
+  RotatingPlane,
+  ThreeBounce,
+  WanderingCubes,
+  Wave
+} from 'better-react-spinkit';
 import MonacoEditor from './index';
+import Loading from '../Loading/Loading';
 import s from './Editor.css';
+
+const test = {
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#212121',
+  opacity: '.4',
+}
 
 export default class Editor extends Component {
   props: {
-    editorMount: () => void
+    setEditorMount: () => void
   };
 
   editorDidMount(editor, monaco) {
-    console.log('editorDidMount', editor);
-    editorMount();
+    const { setEditorMount } = this.props;
+    setEditorMount();
     editor.focus();
   }
 
@@ -21,16 +45,21 @@ export default class Editor extends Component {
   }
 
   render() {
-    const { editorMount } = this.props;
+    const { editorIsMounted } = this.props;
     return (
-      <MonacoEditor
-        width="100%"
-        height="100%"
-        language="javascript"
-        onChange={::this.onChange}
-        editorDidMount={::this.editorDidMount}
-        value={"ee"}
-      />
+      <div className={s.editorWrapper}>
+        {!editorIsMounted &&
+          <Loading />
+        }
+        <MonacoEditor
+          width="100%"
+          height="100%"
+          language="javascript"
+          onChange={::this.onChange}
+          editorDidMount={::this.editorDidMount}
+          value={"ee"}
+        />
+      </div>
     );
   }
 }

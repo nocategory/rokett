@@ -9,7 +9,7 @@
     "arrow-parens": ["off"],
     "compat/compat": "error",
     "consistent-return": "off",
-    "comma-dangle": "true",
+    "comma-dangle": 2,
     "class-methods-use-this": "off",
     "flowtype-errors/show-errors": "error",
     "generator-star-spacing": "off",

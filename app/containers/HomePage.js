@@ -15,7 +15,7 @@ function mapStateToProps(state) {
     currentContent: state.editor.currentContent,
     saved: state.editor.saved,
     currentFolderJSON: state.editor.currentFolderJSON,
-    editorDidMount: state.editor.editorDidMount,
+    editorIsMounted: state.editor.editorIsMounted,
   };
 }
 

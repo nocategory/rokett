@@ -10,14 +10,14 @@ const initialState = {
   editorMode: '',
   currentContent: '',
   saved: true,
-  currentFolderJSON: '',
-  editorDidMount: false,
+  currentFolderJSONfalse: false,
+  editorIsMounted: false,
 };
 
 export default function editor(state = initialState, action) {
   switch (action.type) {
     case SET_CONTENT:
-      return { ...state, 
+      return { ...state,
         initialContent: action.initialContent,
         currentFilePath: action.filePath,
         editorMode: mode,
@@ -32,15 +32,16 @@ export default function editor(state = initialState, action) {
       else {
         savedBool = false;
       }
-      return { ...state, 
+      return { ...state,
         currentContent: action.currentContent,
         saved: savedBool,
       };
     case SET_FOLDERPATH:
       return { ...state, currentFolderJSON: dirTree(action.currentFolderPath) };
     case SET_EDITORMOUNTED:
-      return { ...state, editorDidMount: true }
+      return { ...state, editorIsMounted: true }
     default:
+      if (state.editorIsMounted) return { ...state, editorIsMounted: false } // set editor mount status to false at the start of the app
       return state;
   }
 }
