@@ -1,26 +1,19 @@
 .sidebarWrapper {
-	display: flex;
- 	height: calc(100vh - 52px);
-	justify-content: center;
-	align-items: center;
-	-webkit-box-orient: vertical;
-	width: 90px;
-	flex-direction: column;
-	flex-shrink: 0;
-	z-index: 99999;
-	position: relative;
+	order: 0;
+  flex: 0 1 auto;
+  align-self: stretch;
+	width: 65px;
+	z-index: 10;
 }
 
 .sidebar {
-	flex: 0 0 auto;
 	display: flex;
-	align-items: flex-end;
-	position: relative;
-	justify-content: center;
-	outline: none;
+  align-items: flex-end;
+  justify-content: center;
+  outline: none;
+  width: 100%;
 	height: 100%;
-	width: 100%;
-	z-index: 99;
+  z-index: 11;
 }
 
 .sidebarButtons {

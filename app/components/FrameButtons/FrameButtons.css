@@ -43,6 +43,6 @@
 	position: absolute;
 	-webkit-app-region: drag;
 	height: 52px;
-	z-index: 1;
+	z-index: 100;
 	display: flex;
 }

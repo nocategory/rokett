@@ -1,8 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { VelocityComponent } from 'velocity-react';
-import 'velocity-animate';
-import 'velocity-animate/velocity.ui';
+import Animate from 'rc-animate';
 import s from './Modal.css';
 
 export default class Modal extends Component {
@@ -15,14 +13,33 @@ export default class Modal extends Component {
     if (!modalVisible) return null;
 
     return (
-      <VelocityComponent animation={modalVisible ? 'transition.slideDownIn' : 'transition.fadeOut'} duration={500} runOnMount runOnUnmount>
-        <div className={`${s.overlay} flex-vertical`} onClick={toggleModal}>
-          <div className={s.modal}>
-            <p><b>Sorry, not ready yet!</b></p>
-            <span>have some tea meanwhile</span>
+      <Animate animation={{ }}>
+      <div className="flex-vertical" onClick={toggleModal}>
+        <div className={s.modal}>
+          <div className="flex-horizontal h100">
+            <div className={s.sidebarWrapper}>
+              <div className={s.sidebar}>
+                <div className={s.sectionTitle}>
+                  Editor settings
+                </div>
+                <div className={s.sectionTitle}>
+                  UI settings
+                </div>
+                <div className={s.sectionTitle}>
+                  User settings
+                </div>
+              </div>
+            </div>
+            <div className={s.contentWrapper}>
+              <div className={s.content}>
+                <p><b>Sorry, not ready yet!</b></p>
+                <span>have some tea meanwhile</span>
+              </div>
+            </div>
           </div>
         </div>
-      </VelocityComponent>
+      </div>
+    </Animate>
     );
   }
 }

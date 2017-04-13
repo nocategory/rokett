@@ -48,9 +48,9 @@ export default class Editor extends Component {
     const { editorIsMounted } = this.props;
     return (
       <div className={s.editorWrapper}>
-        {!editorIsMounted &&
+        {/*{!editorIsMounted &&
           <Loading />
-        }
+        }*/}
         <MonacoEditor
           width="100%"
           height="100%"

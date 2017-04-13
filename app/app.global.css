@@ -1,9 +1,20 @@
 @import "~font-awesome/css/font-awesome.css";
+@import "dist/latofonts.css";
+
+.app {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
 
 body {
-  font-family: 'Segoe UI';
+  font-family: 'LatoWeb';
+  font-size: 16px;
   padding: 0;
   margin: 0;
+  text-rendering: optimizeLegibility;
 }
 
 i {
@@ -25,14 +36,13 @@ hr {
   display: flex;
   width: 100%;
   left: 20px;
-  max-height: 100vh;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   background-color: rgb(41, 54, 62);
 }
 
-.flex-grow {
-  flex-grow: 1;
+.flex1 {
+  flex: 1;
 }
 
 .app--tree {
@@ -88,19 +98,42 @@ hr {
   width: 100%;
 }
 
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
 .tabs-wrapper:hover .tabs-chevron-wrapper i {
   transform: rotate(180deg);
   transition: transform 0.3s ease-in;
 }
 
 .editor-wrapper {
-  width: 100%;
+  order: 0;
+  flex: 1 0 auto;
+  align-self: stretch;
 }
 
 .flex-vertical {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
-  -webkit-flex-direction: column;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex-horizontal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
 }
 
