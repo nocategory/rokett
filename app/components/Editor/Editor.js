@@ -13,7 +13,7 @@ import {
   RotatingPlane,
   ThreeBounce,
   WanderingCubes,
-  Wave
+  Wave,
 } from 'better-react-spinkit';
 import MonacoEditor from './index';
 import Loading from '../Loading/Loading';
@@ -27,7 +27,7 @@ const test = {
   justifyContent: 'center',
   backgroundColor: '#212121',
   opacity: '.4',
-}
+};
 
 export default class Editor extends Component {
   props: {
@@ -48,7 +48,7 @@ export default class Editor extends Component {
     const { editorIsMounted } = this.props;
     return (
       <div className={s.editorWrapper}>
-        {/*{!editorIsMounted &&
+        {/* {!editorIsMounted &&
           <Loading />
         }*/}
         <MonacoEditor
@@ -57,7 +57,7 @@ export default class Editor extends Component {
           language="javascript"
           onChange={::this.onChange}
           editorDidMount={::this.editorDidMount}
-          value={"ee"}
+          value={'ee'}
         />
       </div>
     );

@@ -1,6 +1,6 @@
 {
-  "name": "r0kk3t",
-  "productName": "r0kk3t",
+  "name": "quarkz",
+  "productName": "quarkz",
   "version": "0.0.2",
   "description": "quarkz is an open-source code editor built with web technologies and ❤",
   "main": "main.js",
@@ -31,8 +31,8 @@
   },
   "browserslist": "electron 1.4",
   "build": {
-    "productName": "r0kk3t",
-    "appId": "org.r0kk3t",
+    "productName": "quarkz",
+    "appId": "org.quarkz",
     "files": [
       "dist/",
       "node_modules/",
@@ -185,6 +185,7 @@
     "extract-text-webpack-plugin": "^2.0.0",
     "font-awesome": "^4.7.0",
     "monaco-editor": "^0.8.3",
+    "rc-animate": "^2.3.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-hot-loader": "3.0.0-beta.6",
