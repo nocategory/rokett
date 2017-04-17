@@ -13,6 +13,8 @@ const store = configureStore();
 persistStore(store, { storage: localStorage });
 const history = syncHistoryWithStore(hashHistory, store);
 
+console.log("AYY!");
+
 render(
   <AppContainer>
     <Root store={store} history={history} />

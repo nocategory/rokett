@@ -178,7 +178,9 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "app-root-dir": "^1.0.2",
     "better-react-spinkit": "^2.0.0-6",
+    "classnames": "^2.2.5",
     "directory-tree": "^1.1.1",
     "electron-debug": "^1.1.0",
     "electron-window-state": "^4.0.1",

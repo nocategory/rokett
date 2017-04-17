@@ -177,18 +177,16 @@ export default merge.smart(baseConfig, {
   },
 
   plugins: [
-    new webpack.DllReferencePlugin({
+    /* new webpack.DllReferencePlugin({
       context: process.cwd(),
       manifest: require(manifest),
       sourceType: 'var',
-    }),
+    }), */
 
     /**
      * https://webpack.js.org/concepts/hot-module-replacement/
      */
-    new webpack.HotModuleReplacementPlugin({
-      multiStep: true
-    }),
+    new webpack.HotModuleReplacementPlugin(),
 
     new webpack.NoEmitOnErrorsPlugin(),
 

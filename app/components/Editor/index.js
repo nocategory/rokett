@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+const appRoot = require('app-root-dir').get()
 
 function noop() {}
 
@@ -52,7 +53,7 @@ class MonacoEditor extends React.Component {
   afterViewInit() {
     const amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
     amdRequire.config({
-      baseUrl: 'node_modules/monaco-editor/min/'
+      baseUrl: `${appRoot}/node_modules/monaco-editor/min/`
     });
 
     // workaround monaco-css not understanding the environment

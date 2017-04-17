@@ -36,8 +36,28 @@
 	background: rgb(62, 62, 70);
 }
 
-.sectionTitle {
+.sectionHeader {
 	opacity: .75;
 	font-size: .9rem;
   text-transform: uppercase;
+	transition: .2s ease-out;
+}
+
+.sectionHeader:hover {
+	cursor: pointer;
+	opacity: 1;
+	transition: .2s ease-in;
+}
+
+.sectionSpan {
+	color: #EEE;
+	cursor: pointer;
+	padding: 5px 15px 5px 15px;
+	margin: 7px 0 7px 0;
+	background-color: transparent;
+	border-radius: 3px;
+}
+
+.sectionSpan.selectedSectionSpan {
+	background-color: #3e3e46;
 }
