@@ -1,8 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import { VelocityComponent } from 'velocity-react';
-import 'velocity-animate';
-import 'velocity-animate/velocity.ui';
 import Sidebar from '../components/Sidebar/Sidebar';
 import TopHeader from '../components/TopHeader/TopHeader';
 import FrameButtons from '../components/FrameButtons/FrameButtons';
@@ -11,6 +8,7 @@ import Editor from '../components/Editor/Editor';
 
 export default class App extends Component {
   render() {
+    const { modalVisible } = this.props;
     return (
         <div className="app">
           <div className="flex-vertical flex1" style={{ height: '100%' }}>
@@ -32,7 +30,9 @@ export default class App extends Component {
                 </div>
               </div>
             </div>
-            <Modal {...this.props} />
+            {modalVisible &&
+              <Modal {...this.props} />
+            }
           </div>
         </div>
     );

@@ -9,6 +9,8 @@ import * as modalActions from '../actions/modal';
 function mapStateToProps(state) {
   return {
     modalVisible: state.modal.modalVisible,
+    selectedSection: state.modal.selectedSection,
+
     initialContent: state.editor.initialContent,
     currentFilePath: state.editor.currentFilePath,
     editorMode: state.editor.editorMode,

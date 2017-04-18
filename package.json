@@ -178,6 +178,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "app-root-dir": "^1.0.2",
     "better-react-spinkit": "^2.0.0-6",
     "classnames": "^2.2.5",
@@ -187,7 +188,6 @@
     "extract-text-webpack-plugin": "^2.0.0",
     "font-awesome": "^4.7.0",
     "monaco-editor": "^0.8.3",
-    "rc-animate": "^2.3.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-hot-loader": "3.0.0-beta.6",
@@ -199,12 +199,13 @@
     "react-router-redux": "^4.0.7",
     "react-split-pane": "^0.1.56",
     "react-tooltip": "^3.2.2",
+    "react-transition-group": "^1.1.1",
     "react-treebeard": "^1.1.4",
     "redux": "^3.6.0",
     "redux-persist": "^4.0.1",
     "redux-thunk": "^2.2.0",
     "source-map-support": "^0.4.10",
-    "velocity-react": "^1.1.11"
+    "velocity-react": "^1.2.1"
   },
   "devEngines": {
     "node": ">=6.x",

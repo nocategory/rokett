@@ -1,57 +1,63 @@
 // @flow
 import React, { Component } from 'react';
-import Animate from 'rc-animate';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import classNames from 'classnames';
 import s from './Modal.css';
 
 export default class Modal extends Component {
   props: {
-    toggleModal: () => void
+    toggleModal: () => void,
+    selectSection: () => void
   };
 
   render() {
-    const { toggleModal, modalVisible } = this.props;
-    if (!modalVisible) { return null; }
-
+    const { toggleModal, modalVisible, selectSection, selectedSection } = this.props;
+    // @TODO: actual settings with section names n stuff
     // onClick={toggleModal}
     return (
-      <Animate animation={{}}>
-        <div className="flex-vertical">
-          <div className={s.modal}>
-            <div className="flex-horizontal h100">
-              <div className={s.sidebarWrapper}>
-                <div className={s.sidebar}>
-                  <div className={s.sectionLink}>
-                    <div className={s.sectionHeader}>Editor settings</div>
-                    <div className={classNames(s.sectionSpan, s.selectedSectionSpan)}>test12</div>
-                    <div className={s.sectionSpan}>test2</div>
-                  </div>
-                  <div className={s.sectionLink}>
-                    <div className={s.sectionHeader}>UI settings</div>
-                    <div className={s.sectionSpan}>test1</div>
-                    <div className={s.sectionSpan}>test2</div>
-                  </div>
-                  <div className={s.sectionLink}>
-                    <div className={s.sectionHeader}>User settings</div>
-                    <div className={s.sectionSpan}>test1</div>
-                    <div className={s.sectionSpan}>test2</div>
-                  </div>
+      <TransitionGroup className="animated fadeIn">
+      <div className="flex-vertical" onClick={() => toggleModal() }>
+        <div className={s.modal}>
+          <div className="flex-horizontal h100">
+            <div className={s.sidebarWrapper}>
+              <div className={s.sidebar}>
+                <div className={s.sectionLink}>
+                  <div className={s.sectionHeader}>Editor settings</div>
+                  <div className={selectedSection === 'test1' ? classNames(s.sectionSpan, s.selectedSectionSpan) : s.sectionSpan} onClick={() => selectSection('test1')}>test1</div>
+                  <div className={selectedSection === 'test2' ? classNames(s.sectionSpan, s.selectedSectionSpan) : s.sectionSpan} onClick={() => selectSection('test2')}>test2</div>
+                </div>
+                <div className={s.sectionLink}>
+                  <div className={s.sectionHeader}>UI settings</div>
+                  <div className={selectedSection === 'test3' ? classNames(s.sectionSpan, s.selectedSectionSpan) : s.sectionSpan} onClick={() => selectSection('test3')}>test3</div>
+                  <div className={selectedSection === 'test4' ? classNames(s.sectionSpan, s.selectedSectionSpan) : s.sectionSpan} onClick={() => selectSection('test4')}>test4</div>
+                </div>
+                <div className={s.sectionLink}>
+                  <div className={s.sectionHeader}>User settings</div>
+                  <div className={selectedSection === 'test5' ? classNames(s.sectionSpan, s.selectedSectionSpan) : s.sectionSpan} onClick={() => selectSection('test5')}>test5</div>
+                  <div className={selectedSection === 'test6' ? classNames(s.sectionSpan, s.selectedSectionSpan) : s.sectionSpan} onClick={() => selectSection('test6')}>test6</div>
                 </div>
               </div>
-              <div className={s.contentWrapper}>
-                <div className={s.content}>
+            </div>
+            <div className={s.contentWrapper}>
+              <div className={s.content}>
+                {/* @TODO: add other sections */}
+                {selectedSection === 'test1' ?
                   <p>
                     <b>Sorry, not ready yet! 1</b>
                   </p>
-                  <p>
-                    <b>Sorry, not ready yet! 2</b>
-                  </p>
-                </div>
+                    : selectedSection === 'test2' ?
+                      <p>
+                        <b>Sorry, not ready yet! 2</b>
+                      </p>
+                    :
+                      <p>fail</p>
+                  }
               </div>
             </div>
           </div>
         </div>
-      </Animate>
+      </div>
+    </TransitionGroup>
     );
   }
 }
