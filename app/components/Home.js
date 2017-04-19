@@ -24,15 +24,13 @@ export default class App extends Component {
                 <Sidebar {...this.props} />
                 <Editor {...this.props} />
                 <div className="tabs-wrapper">
-                  <div className="tabs-chevron-wrapper">
+                  {/* <div className="tabs-chevron-wrapper">
                     <i className="fa fa-chevron-up" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
-            {modalVisible &&
-              <Modal {...this.props} />
-            }
+            <Modal {...this.props} />
           </div>
         </div>
     );

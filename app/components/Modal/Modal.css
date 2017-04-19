@@ -21,9 +21,16 @@
 	background: rgb(39, 39, 45);
 }
 
-.sidebar,
+.sidebar {
+	display: flex;
+	flex-direction: column;
+}
+
+.sectionWrapper,
 .content {
 	padding: 50px 0 0 50px;
+	width: 100%;
+	z-index: 22;
 }
 
 .content {}
@@ -60,4 +67,16 @@
 
 .sectionSpan.selectedSectionSpan {
 	background-color: #3e3e46;
+}
+
+.exitModal {
+	display: flex;
+	height: 100%;
+	align-items: flex-end;
+	justify-content: center;
+	margin-bottom: 45px;
+}
+
+.exitModalIcon {
+	background-color: black;
 }

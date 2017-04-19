@@ -32,10 +32,10 @@ export default class FrameButtons extends Component {
   render() {
     return (
       <div className={s.titlebar}>
-        <div className={`${s['frame-buttons']}`}>
-          <div className={`${s['frame-minimize']}`} onClick={this.minClick} />
-          <div className={`${s['frame-maximize']}`} onClick={this.maxClick} />
-          <div className={`${s['frame-close']}`} onClick={this.closeClick} />
+        <div className={s.frameButtons}>
+          <div className={s.frameMinimize} onClick={this.minClick} />
+          <div className={s.frameMaximize} onClick={this.maxClick} />
+          <div className={s.frameClose} onClick={this.closeClick} />
         </div>
       </div>
     );

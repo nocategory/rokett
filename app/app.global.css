@@ -36,7 +36,6 @@ hr {
 .app--content {
   display: flex;
   width: 100%;
-  left: 20px;
   flex-direction: column;
   align-items: flex-start;
   background-color: rgb(41, 54, 62);

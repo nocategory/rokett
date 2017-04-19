@@ -1,16 +1,16 @@
-.frame-minimize {
-	background-image: url('./assets/min.png');
+.frameMinimize {
+	background-image: url('./assets/min.svg');
 }
 
-.frame-maximize {
-	background-image: url('./assets/max.png');
+.frameMaximize {
+	background-image: url('./assets/max.svg');
 }
 
-.frame-close {
-	background-image: url('./assets/close.png');
+.frameClose {
+	background-image: url('./assets/close.svg');
 }
 
-.frame-close, .frame-maximize, .frame-minimize {
+.frameClose, .frameMaximize, .frameMinimize {
 	opacity: .67;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -23,12 +23,12 @@
 	transition: .3s ease-in;
 }
 
-.frame-close:hover, .frame-maximize:hover, .frame-minimize:hover {
+.frameClose:hover, .frameMaximize:hover, .frameMinimize:hover {
 	opacity: 1;
 	transition: .3s ease-in;
 }
 
-.frame-buttons {
+.frameButtons {
 	-webkit-app-region: no-drag;
 	display: flex;
 	align-items: center;
