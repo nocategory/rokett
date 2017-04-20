@@ -51,7 +51,9 @@ class MonacoEditor extends React.Component {
     });
   }
   afterViewInit() {
-    const amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
+    console.log(__dirname);
+    const amdRequire = global.require(`${appRoot}/app/monaco-editor/min/vs/loader.js`).require;
+    console.log('x');
     amdRequire.config({
       baseUrl: `${appRoot}/node_modules/monaco-editor/min/`
     });
@@ -61,6 +63,7 @@ class MonacoEditor extends React.Component {
     // workaround monaco-typescript not understanding the environment
     self.process.browser = true;
     amdRequire(['vs/editor/editor.main'], () => {
+      console.log('x2');
       this.initMonaco();
     });
   }

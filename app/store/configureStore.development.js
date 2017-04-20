@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { hashHistory } from 'react-router';
+import { hashHistory } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { routerMiddleware, push } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import { autoRehydrate } from 'redux-persist';
@@ -8,7 +9,9 @@ import rootReducer from '../reducers';
 import * as editorActions from '../actions/editor';
 import * as modalActions from '../actions/modal';
 
-export default (initialState) => {
+const history = createBrowserHistory();
+
+const configureStore = (initialState) => {
   // Redux Configuration
   const middleware = [];
   const enhancers = [];
@@ -59,3 +62,5 @@ export default (initialState) => {
 
   return store;
 };
+
+export default { configureStore, history };

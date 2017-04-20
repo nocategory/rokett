@@ -31,6 +31,10 @@ app/node_modules
 # OSX
 .DS_Store
 
+# flow-typed
+flow-typed/npm/*
+!flow-typed/npm/module_vx.x.x.js
+
 # App packaged
 release
 app/main.js
@@ -39,9 +43,11 @@ app/bundle.js
 app/bundle.js.map
 app/style.css
 app/style.css.map
+dist
 dll
 main.js
 main.js.map
 
 .idea
 npm-debug.log.*
+__snapshots__

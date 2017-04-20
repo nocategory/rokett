@@ -6,8 +6,6 @@ import path from 'path';
 import webpack from 'webpack';
 import { dependencies as externals } from './app/package.json';
 
-require('app-root-dir').set(__dirname);
-
 export default {
   externals: Object.keys(externals || {}),
 
@@ -43,6 +41,6 @@ export default {
   },
 
   plugins: [
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
   ],
 };

@@ -1,8 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import { VelocityComponent } from 'velocity-react';
-import 'velocity-animate';
-import 'velocity-animate/velocity.ui';
 import ReactTooltip from 'react-tooltip';
 import settings from '../../settings.json';
 import Tree from '../Tree/Tree';
