@@ -5,6 +5,8 @@ import windowStateKeeper from 'electron-window-state';
 import autoUpdater from './autoUpdater';
 import MenuBuilder from './menu';
 
+require('electron-debug')({ enabled: true, showDevTools: true });
+
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {

@@ -20,11 +20,11 @@ export default class Modal extends Component {
           component={false} // don't use a wrapping component
           enter={{
             opacity: 1,
-            scale: 1,
+            translateY: 100,
           }}
           leave={{
             opacity: 0,
-            scale: 0,
+            translateY: 0,
           }}
         >
           {modalVisible &&
