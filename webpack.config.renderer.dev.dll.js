@@ -162,8 +162,7 @@ export default merge.smart(baseConfig, {
   entry: {
     vendor: [
       'babel-polyfill',
-      ...Object.keys(dependencies),
-      './app/monaco-editor/min/vs/loader.js'
+      ...Object.keys(dependencies)
     ]
     .filter(dependency => dependency !== 'font-awesome')
   },
