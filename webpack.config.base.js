@@ -10,6 +10,7 @@ export default {
   externals: Object.keys(externals || {}),
 
   module: {
+    exprContextCritical: false,
     rules: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
