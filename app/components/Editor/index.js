@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import loader from 'monaco-loader';
+const loader = require('monaco-loader');
 const appRoot = require('app-root-dir').get()
 
 function noop() {}

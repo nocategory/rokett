@@ -15,7 +15,7 @@ import {
   WanderingCubes,
   Wave,
 } from 'better-react-spinkit';
-import MonacoEditor from './index';
+// const MonacoEditor = require('./index');
 import Loading from '../Loading/Loading';
 import s from './Editor.css';
 
@@ -34,6 +34,48 @@ export default class Editor extends Component {
     setEditorMount: () => void
   };
 
+  componentDidMount() {
+    let amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
+    var path = require('path');
+    var fs = require('fs');
+    function uriFromPath(_path) {
+      var pathName = path.resolve(_path).replace(/\\/g, '/');
+      if (pathName.length > 0 && pathName.charAt(0) !== '/') {
+        pathName = '/' + pathName;
+      }
+      return encodeURI('file://' + pathName);
+    }
+    //
+    amdRequire.config({
+      baseUrl: uriFromPath(path.resolve(__dirname, '../node_modules/monaco-editor/min'))
+    });
+    // workaround monaco-css not understanding the environment
+    self.module = undefined;
+    // workaround monaco-typescript not understanding the environment
+    self.process.browser = true;
+    const id = this.props.id;
+    var editor;
+    amdRequire(['vs/editor/editor.main'], () => {
+      editor = monaco.editor.create(document.getElementById(id), {
+        value: 'ee',
+        language: 'javascript',
+        theme: "vs-dark",
+      });
+      this.props.addEditorInstance(editor, id);
+
+      window.addEventListener('resize', () => {
+        if (id === this.props.activeTab) {
+          let editorNode = document.getElementById(id);
+          let parent = editorNode.parentElement;
+          editorNode.style.width = parent.clientWidth;
+          editorNode.firstElementChild.style.width = parent.clientWidth;
+          editorNode.firstElementChild.firstElementChild.style.width = parent.clientWidth;
+          editorNode.getElementsByClassName('monaco-scrollable-element')[0].style.width = parent.clientWidth - 46;
+        }
+      })
+    });
+  }
+
   editorDidMount(editor, monaco) {
     const { setEditorMount } = this.props;
     setEditorMount();
@@ -51,14 +93,7 @@ export default class Editor extends Component {
         {/* {!editorIsMounted &&
           <Loading />
         }*/}
-        <MonacoEditor
-          width="100%"
-          height="100%"
-          language="javascript"
-          onChange={::this.onChange}
-          editorDidMount={::this.editorDidMount}
-          value={'ee'}
-        />
+        <div className="editor-container" style={{ height: '100%', width: '100%' }}></div>
       </div>
     );
   }

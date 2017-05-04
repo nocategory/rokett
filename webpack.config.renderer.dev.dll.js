@@ -175,6 +175,7 @@ export default merge.smart(baseConfig, {
   },
 
   plugins: [
+    new webpack.ContextReplacementPlugin(/monaco-editor$/, /^$/),
     new webpack.DllPlugin({
       path: path.join(dist, '[name].json'),
       name: '[name]',

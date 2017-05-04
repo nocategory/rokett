@@ -11,6 +11,8 @@ export default {
 
   module: {
     exprContextCritical: false,
+    unknownContextRegExp: /$^/,
+    unknownContextCritical: false,
     rules: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,

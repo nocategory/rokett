@@ -13,6 +13,7 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import merge from 'webpack-merge';
 import express from 'express';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { spawn, execSync } from 'child_process';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -22,6 +23,7 @@ const port = process.env.PORT || 1212;
 const publicPath = `http://localhost:${port}/dist`;
 const dll = path.resolve(process.cwd(), 'dll');
 const manifest = path.resolve(dll, 'vendor.json');
+
 
 /**
  * Warn if the DLL is not built
@@ -50,6 +52,8 @@ export default merge.smart(baseConfig, {
   },
 
   module: {
+    unknownContextRegExp: /$^/,
+    unknownContextCritical: false,
     rules: [
       {
         test: /\.global\.css$/,
@@ -179,6 +183,8 @@ export default merge.smart(baseConfig, {
   },
 
   plugins: [
+    new webpack.ContextReplacementPlugin(/.*$/, /a^/),
+
     new webpack.DllReferencePlugin({
       context: process.cwd(),
       manifest: require(manifest),
@@ -237,6 +243,7 @@ export default merge.smart(baseConfig, {
     stats: 'errors-only',
     inline: true,
     lazy: false,
+    overlay: true,
     hot: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     contentBase: path.join(__dirname, 'dist'),
