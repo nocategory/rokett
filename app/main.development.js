@@ -58,16 +58,33 @@ app.on('ready', async () => {
     defaultHeight: 768,
   });
 
-  mainWindow = new BrowserWindow({
-    backgroundColor: '#2e2c29',
-    x: mainWindowState.x,
-    y: mainWindowState.y,
-    width: mainWindowState.width,
-    height: mainWindowState.height,
-    frame: false,
-    resizable: true,
-    show: false,
-  });
+  if (process.env.NODE_ENV === 'development') {
+	  mainWindow = new BrowserWindow({
+		backgroundColor: '#2e2c29',
+		x: mainWindowState.x,
+		y: mainWindowState.y,
+		width: mainWindowState.width,
+		height: mainWindowState.height,
+		frame: false,
+		resizable: true,
+		show: false,
+		webPreferences: {webSecurity: false}
+	  });
+  }
+  
+  if (process.env.NODE_ENV === 'production') {
+	  mainWindow = new BrowserWindow({
+		backgroundColor: '#2e2c29',
+		x: mainWindowState.x,
+		y: mainWindowState.y,
+		width: mainWindowState.width,
+		height: mainWindowState.height,
+		frame: false,
+		resizable: true,
+		show: false,
+		webPreferences: {webSecurity: true}
+	  });
+  }
 
   const url = (process.env.NODE_ENV === 'development')
     ? `http://localhost:${process.env.PORT || 1212}/dist/app.html`
