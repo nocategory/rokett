@@ -36,6 +36,7 @@ export default class Editor extends Component {
 
   editorDidMount(editor, monaco) {
     const { setEditorMount } = this.props;
+    console.log("KAPPA123")
     setEditorMount();
     editor.focus();
   }
@@ -56,6 +57,7 @@ export default class Editor extends Component {
           height={'100%'}
           language="javascript"
           value={this.props.currentContent}
+          editorDidMount={::this.editorDidMount}
         />
       </div>
     );

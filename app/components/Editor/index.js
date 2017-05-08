@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-const appRoot = require('app-root-dir').get()
+import React, { PropTypes } from 'react';
+const appRoot = require('app-root-dir').get();
 
 function noop() {}
 
@@ -15,7 +15,6 @@ class MonacoEditor extends React.Component {
     this.destroyMonaco();
   }
   componentDidUpdate(prevProps) {
-
     const context = this.props.context || window;
     if (this.props.value !== this.__current_value) {
       // Always refer to the latest value
@@ -78,6 +77,23 @@ class MonacoEditor extends React.Component {
         theme,
         ...options,
       });
+      window.addEventListener('resize', () => {
+        const editorNode = document.getElementsByClassName(containerElement.className)[0];
+        const parent = editorNode.parentElement;
+        editorNode.style.width = `${parent.clientWidth}px`;
+        editorNode.style.height = `${parent.clientHeight}px`;
+
+        editorNode.firstElementChild.style.width = `${parent.clientWidth}px`;
+        editorNode.firstElementChild.style.height = `${parent.clientHeight}px`;
+
+        editorNode.firstElementChild.firstElementChild.style.width = `${parent.clientWidth}px`;
+        editorNode.firstElementChild.firstElementChild.style.height = `${parent.clientHeight}px`;
+
+        editorNode.firstElementChild.firstElementChild.firstElementChild.style.width = `${parent.clientWidth}px`;
+        editorNode.firstElementChild.firstElementChild.firstElementChild.style.height = `${parent.clientHeight}px`;
+
+        editorNode.getElementsByClassName('monaco-scrollable-element')[0].style.width = `${parent.clientWidth - 46}px`;
+      });
       // After initializing monaco editor
       this.editorDidMount(this.editor, context.monaco);
     }
@@ -96,8 +112,8 @@ class MonacoEditor extends React.Component {
       height: fixedHeight,
     };
     return (
-      <div ref="container" style={style} className="react-monaco-editor-container"></div>
-    )
+      <div ref="container" style={style} className="react-monaco-editor-container" />
+    );
   }
 }
 

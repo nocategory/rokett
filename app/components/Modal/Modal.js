@@ -15,16 +15,16 @@ export default class Modal extends Component {
     const { toggleModal, modalVisible, selectSection, selectedSection } = this.props;
     // @TODO: actual settings with section names n stuff
     return (
-      <div className="flex-vertical" onClick={() => toggleModal()}>
+      <div className="flex-vertical">
         <Transition
           component={false} // don't use a wrapping component
           enter={{
             opacity: 1,
-            translateY: 100,
+            scale: 1,
           }}
           leave={{
             opacity: 0,
-            translateY: 0,
+            scale: 0.6,
           }}
         >
           {modalVisible &&
@@ -57,7 +57,7 @@ export default class Modal extends Component {
                     {selectedSection === 'test1' ?
                       <p>
                         <b>Sorry, not ready yet! 1</b>
-                      </p>: selectedSection === 'test2' ?
+                      </p> : selectedSection === 'test2' ?
                         <p>
                           <b>Sorry, not ready yet! 2</b>
                         </p> :
