@@ -15,7 +15,7 @@ import {
   WanderingCubes,
   Wave,
 } from 'better-react-spinkit';
-import MonacoEditor from 'react-monaco-editor';
+import MonacoEditor from './index';
 import Loading from '../Loading/Loading';
 import s from './Editor.css';
 
@@ -52,8 +52,8 @@ export default class Editor extends Component {
           <Loading />
         }*/}
         <MonacoEditor
-          width="800"
-          height="600"
+          width={'100%'}
+          height={'100%'}
           language="javascript"
           value={this.props.currentContent}
         />

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-const loader = require('monaco-loader');
 const appRoot = require('app-root-dir').get()
 
 function noop() {}
@@ -52,15 +51,18 @@ class MonacoEditor extends React.Component {
     });
   }
   afterViewInit() {
+    const amdRequire = global.require(`${appRoot}/node_modules/monaco-editor/min/vs/loader.js`).require;
+    amdRequire.config({
+      baseUrl: `${appRoot}/node_modules/monaco-editor/min/`
+    });
+
     // workaround monaco-css not understanding the environment
     self.module = undefined;
     // workaround monaco-typescript not understanding the environment
     self.process.browser = true;
-    loader().then((monaco) => {
-      console.log('x2');
+    amdRequire(['vs/editor/editor.main'], () => {
       this.initMonaco();
-    })
-    console.log('x');
+    });
   }
   initMonaco() {
     const value = this.props.value !== null ? this.props.value : this.props.defaultValue;
