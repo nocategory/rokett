@@ -1,4 +1,4 @@
-// flow-typed signature: 03dfb6bb5b3031a1f8944313fe349334
+// flow-typed signature: 75ec0881f3a2690f85c879e27dee222c
 // flow-typed version: <<STUB>>/concurrently_v^3.4.0/flow_v0.44.2
 
 /**
@@ -8,8 +8,8 @@
  *
  * Fill this stub out by replacing all the `any` types.
  *
- * Once filled out, we encourage you to share your work with the 
- * community by sending a pull request to: 
+ * Once filled out, we encourage you to share your work with the
+ * community by sending a pull request to:
  * https://github.com/flowtype/flow-typed
  */
 
