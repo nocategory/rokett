@@ -56,6 +56,7 @@ export default class Editor extends Component {
           width={'100%'}
           height={'100%'}
           language="javascript"
+          theme="vs-dark"
           value={this.props.currentContent}
           editorDidMount={::this.editorDidMount}
         />
