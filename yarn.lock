@@ -4101,7 +4101,7 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.2.0:
+hoist-non-react-statics@1.2.0, hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
@@ -4256,6 +4256,14 @@ husky@^0.13.1:
 hyphenate-style-name@^1.0.1, hyphenate-style-name@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
+
+i18next-browser-languagedetector@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-1.0.1.tgz#73e43aa46fc1c909cac6178b9d1b803d02610faa"
+
+i18next@^8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-8.2.1.tgz#6d2e8884516c320b4020c5af63e0316be626ac95"
 
 iconv-lite@0.4.13, iconv-lite@~0.4.13:
   version "0.4.13"
@@ -6717,13 +6725,6 @@ react-addons-test-utils@^15.5.1:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-"react-addons-transition-group@^0.14.0 || ^15.0.0":
-  version "15.5.2"
-  resolved "https://registry.yarnpkg.com/react-addons-transition-group/-/react-addons-transition-group-15.5.2.tgz#da6989d9cffe27dffacaedc862000ffb09ae2206"
-  dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
-
 react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
@@ -6751,6 +6752,12 @@ react-hot-loader@3.0.0-beta.6:
     react-proxy "^3.0.0-alpha.0"
     redbox-react "^1.2.5"
     source-map "^0.4.4"
+
+react-i18next@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-3.1.0.tgz#c4921e786f23b2898648dfebdb20b457ba6fba45"
+  dependencies:
+    hoist-non-react-statics "1.2.0"
 
 react-keydown@^1.7.0:
   version "1.7.0"
@@ -8364,15 +8371,7 @@ velocity-animate@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/velocity-animate/-/velocity-animate-1.5.0.tgz#fc8771d8dfe1136ff02a707e10fbb0957c4b030f"
 
-velocity-react@^1.1.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/velocity-react/-/velocity-react-1.2.2.tgz#4e3dcd6a4ba2b5b44748b3b1c18391838265ad56"
-  dependencies:
-    lodash "^3.10.1"
-    react-addons-transition-group "^0.14.0 || ^15.0.0"
-    velocity-animate "^1.4.0"
-
-velocity-react@^1.3.0:
+velocity-react@^1.1.2, velocity-react@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/velocity-react/-/velocity-react-1.3.0.tgz#0ae480ac37b7387a38317dd35447ec5925f59036"
   dependencies:

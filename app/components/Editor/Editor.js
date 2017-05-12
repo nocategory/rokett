@@ -19,16 +19,6 @@ import MonacoEditor from './index';
 import Loading from '../Loading/Loading';
 import s from './Editor.css';
 
-const test = {
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: '#212121',
-  opacity: '.4',
-};
-
 export default class Editor extends Component {
   props: {
     setEditorMount: () => void
@@ -36,7 +26,6 @@ export default class Editor extends Component {
 
   editorDidMount(editor, monaco) {
     const { setEditorMount } = this.props;
-    console.log("KAPPA123")
     setEditorMount();
     editor.focus();
   }

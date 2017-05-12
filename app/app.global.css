@@ -44,35 +44,6 @@ hr {
   flex: 1;
 }
 
-.app--tree {
-  background: rgb(32, 45, 53);
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  width: 240px;
-  height: calc(100vh - 52px);
-  left: -150px;
-  flex-shrink: 0;
-  transition: left 0.3s ease-out;
-  z-index: 10;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-}
-
-.app--tree div ul {
-  background-color: inherit !important;
-}
-
-.app--tree:hover {
-  left: 90px;
-  transition: left 0.3s ease-in;
-}
-
-.app--tree:hover .tree-chevron-wrapper i {
-  transform: rotate(180deg);
-  transition: transform 0.3s ease-in;
-}
-
 .tree-chevron-wrapper {
   display: flex;
   position: absolute;

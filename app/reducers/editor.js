@@ -20,7 +20,7 @@ export default function editor(state = initialState, action) {
       return { ...state,
         initialContent: action.initialContent,
         currentFilePath: action.filePath,
-        editorMode: mode,
+        editorMode: '',
         currentContent: action.initialContent,
         saved: true,
       };
@@ -41,7 +41,8 @@ export default function editor(state = initialState, action) {
     case SET_EDITORMOUNTED:
       return { ...state, editorIsMounted: true }
     default:
-      if (state.editorIsMounted) return { ...state, editorIsMounted: false } // set editor mount status to false at the start of the app
+      // set editor mount status to false at the start of the app
+      if (state.editorIsMounted) return { ...state, editorIsMounted: false };
       return state;
   }
 }

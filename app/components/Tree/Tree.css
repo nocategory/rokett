@@ -1,0 +1,28 @@
+.treeWrapper {
+  background: rgb(62, 62, 70);
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  order: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 0 1 auto;
+  height: 100%;
+  z-index: 11;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.treeWrapper div ul {
+  background-color: inherit !important;
+}
+
+.treeWrapper:hover {
+  left: 90px;
+  transition: left 0.3s ease-in;
+}
+
+.treeWrapper:hover .tree-chevron-wrapper i {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in;
+}

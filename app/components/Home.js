@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import Sidebar from '../components/Sidebar/Sidebar';
+import Tree from '../components/Tree/Tree';
 import TopHeader from '../components/TopHeader/TopHeader';
 import FrameButtons from '../components/FrameButtons/FrameButtons';
 import Modal from '../components/Modal/Modal';
@@ -22,12 +23,13 @@ export default class App extends Component {
               <div className="flex-horizontal flex1 w100">
                 {/* sidebar */}
                 <Sidebar {...this.props} />
+                <Tree {...this.props} />
                 <Editor {...this.props} />
-                <div className="tabs-wrapper">
-                  {/* <div className="tabs-chevron-wrapper">
+                {/* <div className="tabs-wrapper">
+                  <div className="tabs-chevron-wrapper">
                     <i className="fa fa-chevron-up" />
-                  </div> */}
-                </div>
+                  </div>
+                </div>*/}
               </div>
             </div>
             <Modal {...this.props} />

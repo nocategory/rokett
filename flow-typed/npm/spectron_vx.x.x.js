@@ -1,4 +1,4 @@
-// flow-typed signature: 2af124bf11017fc748019511e66e18cc
+// flow-typed signature: ff504c283c755477b173fa8be20b33cd
 // flow-typed version: <<STUB>>/spectron_v^3.6.1/flow_v0.44.2
 
 /**
@@ -8,8 +8,8 @@
  *
  * Fill this stub out by replacing all the `any` types.
  *
- * Once filled out, we encourage you to share your work with the
- * community by sending a pull request to:
+ * Once filled out, we encourage you to share your work with the 
+ * community by sending a pull request to: 
  * https://github.com/flowtype/flow-typed
  */
 
@@ -31,6 +31,10 @@ declare module 'spectron/lib/api' {
 }
 
 declare module 'spectron/lib/application' {
+  declare module.exports: any;
+}
+
+declare module 'spectron/lib/check-minor-version' {
   declare module.exports: any;
 }
 
@@ -61,6 +65,9 @@ declare module 'spectron/lib/api.js' {
 }
 declare module 'spectron/lib/application.js' {
   declare module.exports: $Exports<'spectron/lib/application'>;
+}
+declare module 'spectron/lib/check-minor-version.js' {
+  declare module.exports: $Exports<'spectron/lib/check-minor-version'>;
 }
 declare module 'spectron/lib/chrome-driver.js' {
   declare module.exports: $Exports<'spectron/lib/chrome-driver'>;

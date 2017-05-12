@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
 import settings from '../../settings.json';
-import Tree from '../Tree/Tree';
 import s from './Sidebar.css';
 
 const settingsButton = {
@@ -15,7 +14,7 @@ const userButton = {
 };
 
 const sidebarStyle = {
-  backgroundColor: settings.frame.mainColor,
+  backgroundColor: settings.frame.secondaryColor,
 };
 
 export default class Sidebar extends Component {
@@ -38,13 +37,11 @@ export default class Sidebar extends Component {
         {/*<div className="tree-chevron-wrapper">
           <i className="fa fa-chevron-right" />
         </div> */}
-        {/* app tree */}
-        <div className="app--tree">
-          {this.props.currentFolderJSON &&
-            <Tree {...this.props} />
-          }
-        </div>
       </div>
     );
   }
 }
+
+// {this.props.currentFolderJSON &&
+  // <Tree {...this.props} />
+// }

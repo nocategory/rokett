@@ -50,11 +50,13 @@ export default class Tree extends Component {
     };
 
     return (
-      <div style={treeStyle}>
-        <Treebeard
-          data={this.props.currentFolderJSON}
-          onToggle={this.onToggle}
-        />  
+      <div className={s.treeWrapper}>
+        <div style={treeStyle}>
+          <Treebeard
+            data={this.props.currentFolderJSON ? this.props.currentFolderJSON : ''}
+            onToggle={this.onToggle}
+          />
+        </div>
       </div>
     );
   }

@@ -32,9 +32,7 @@ export default class TopHeader extends Component {
   render() {
     return (
       <div className={`${s['app--command--box--wrapper']}`} style={topHeaderStyle}>
-        <button className={s.signInButton}>Sign In</button>
         <i className={`${s.menuButton} fa fa-bars`} aria-hidden="true" onClick={this.chooseDirectory} />
-        <input className={`${s['app--command--box']}`} />
       </div>
     );
   }

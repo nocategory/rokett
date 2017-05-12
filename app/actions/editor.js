@@ -33,7 +33,6 @@ export function setActiveFolder(currentFolderPath) {
 }
 
 export function setEditorMount() {
-  console.log("MOUNTED");
   return {
     type: SET_EDITORMOUNTED,
   };
