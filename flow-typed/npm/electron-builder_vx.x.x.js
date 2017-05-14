@@ -1,4 +1,4 @@
-// flow-typed signature: 5962cbdd65e1a80c5b6e8c329a0906fa
+// flow-typed signature: 8bd8c3fc6c32d8baf8a365328622f8e0
 // flow-typed version: <<STUB>>/electron-builder_v^17.0.1/flow_v0.44.2
 
 /**
@@ -8,8 +8,8 @@
  *
  * Fill this stub out by replacing all the `any` types.
  *
- * Once filled out, we encourage you to share your work with the 
- * community by sending a pull request to: 
+ * Once filled out, we encourage you to share your work with the
+ * community by sending a pull request to:
  * https://github.com/flowtype/flow-typed
  */
 
@@ -158,7 +158,15 @@ declare module 'electron-builder/out/targets/dmg' {
   declare module.exports: any;
 }
 
+declare module 'electron-builder/out/targets/dmgLicense' {
+  declare module.exports: any;
+}
+
 declare module 'electron-builder/out/targets/fpm' {
+  declare module.exports: any;
+}
+
+declare module 'electron-builder/out/targets/license' {
   declare module.exports: any;
 }
 
@@ -309,8 +317,14 @@ declare module 'electron-builder/out/targets/ArchiveTarget.js' {
 declare module 'electron-builder/out/targets/dmg.js' {
   declare module.exports: $Exports<'electron-builder/out/targets/dmg'>;
 }
+declare module 'electron-builder/out/targets/dmgLicense.js' {
+  declare module.exports: $Exports<'electron-builder/out/targets/dmgLicense'>;
+}
 declare module 'electron-builder/out/targets/fpm.js' {
   declare module.exports: $Exports<'electron-builder/out/targets/fpm'>;
+}
+declare module 'electron-builder/out/targets/license.js' {
+  declare module.exports: $Exports<'electron-builder/out/targets/license'>;
 }
 declare module 'electron-builder/out/targets/LinuxTargetHelper.js' {
   declare module.exports: $Exports<'electron-builder/out/targets/LinuxTargetHelper'>;
