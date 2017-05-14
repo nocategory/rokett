@@ -4,7 +4,8 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import Tree from '../components/Tree/Tree';
 import TopHeader from '../components/TopHeader/TopHeader';
 import FrameButtons from '../components/FrameButtons/FrameButtons';
-import Modal from '../components/Modal/Modal';
+import AppLayer from '../components/AppLayer/AppLayer';
+import SettingsLayer from '../components/SettingsLayer/SettingsLayer';
 import Editor from '../components/Editor/Editor';
 
 export default class App extends Component {
@@ -32,7 +33,9 @@ export default class App extends Component {
                 </div>*/}
               </div>
             </div>
-            <Modal {...this.props} />
+            <AppLayer {...this.props}>
+              <SettingsLayer {...this.props} />
+            </AppLayer>
           </div>
         </div>
     );

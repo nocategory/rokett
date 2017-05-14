@@ -47,7 +47,7 @@ export default class Editor extends Component {
           language="javascript"
           theme="vs-dark"
           value={this.props.currentContent}
-          editorDidMount={::this.editorDidMount}
+          editorDidMount={this.editorDidMount}
         />
       </div>
     );
