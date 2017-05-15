@@ -1,4 +1,4 @@
-// flow-typed signature: 57d091752210d0cef1fbb5880e03c93b
+// flow-typed signature: 28f582794e8e848ef4c21ec3a3354488
 // flow-typed version: <<STUB>>/cross-spawn_v^5.1.0/flow_v0.44.2
 
 /**
@@ -8,8 +8,8 @@
  *
  * Fill this stub out by replacing all the `any` types.
  *
- * Once filled out, we encourage you to share your work with the
- * community by sending a pull request to:
+ * Once filled out, we encourage you to share your work with the 
+ * community by sending a pull request to: 
  * https://github.com/flowtype/flow-typed
  */
 
