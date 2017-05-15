@@ -24,7 +24,13 @@ export default class Editor extends Component {
     setEditorMount: () => void
   };
 
+  constructor() {
+    super();
+    this.editorDidMount = this.editorDidMount.bind(this)
+  }
+
   editorDidMount(editor, monaco) {
+    console.log(this)
     const { setEditorMount } = this.props;
     setEditorMount();
     editor.focus();

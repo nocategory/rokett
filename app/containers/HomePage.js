@@ -3,13 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Home from '../components/Home';
 import * as editorActions from '../actions/editor';
-import * as modalActions from '../actions/modal';
+import * as layerActions from '../actions/layer';
 
 
 function mapStateToProps(state) {
   return {
-    modalVisible: state.modal.modalVisible,
-    selectedSection: state.modal.selectedSection,
+    settingsVisible: state.layer.settingsVisible,
+    selectedSection: state.layer.selectedSection,
 
     initialContent: state.editor.initialContent,
     currentFilePath: state.editor.currentFilePath,
@@ -26,7 +26,7 @@ function mapStateToProps(state) {
  */
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...editorActions, ...modalActions }, dispatch);
+  return bindActionCreators({ ...editorActions, ...layerActions }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

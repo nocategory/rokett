@@ -24,6 +24,7 @@ export default function editor(state = initialState, action) {
         currentContent: action.initialContent,
         saved: true,
       };
+
     case SET_NEWCONTENT:
       let savedBool;
       if (action.currentContent === state.initialContent) {
@@ -36,10 +37,13 @@ export default function editor(state = initialState, action) {
         currentContent: action.currentContent,
         saved: savedBool,
       };
+
     case SET_FOLDERPATH:
       return { ...state, currentFolderJSON: dirTree(action.currentFolderPath) };
+
     case SET_EDITORMOUNTED:
       return { ...state, editorIsMounted: true }
+
     default:
       // set editor mount status to false at the start of the app
       if (state.editorIsMounted) return { ...state, editorIsMounted: false };

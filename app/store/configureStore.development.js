@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import { autoRehydrate } from 'redux-persist';
 import rootReducer from '../reducers';
 import * as editorActions from '../actions/editor';
-import * as modalActions from '../actions/modal';
+import * as layerActions from '../actions/layer';
 
 const history = createBrowserHistory();
 
@@ -33,7 +33,7 @@ const configureStore = (initialState) => {
   // Redux DevTools Configuration
   const actionCreators = {
     ...editorActions,
-    ...modalActions,
+    ...layerActions,
     push,
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose

@@ -1,10 +1,10 @@
 // @flow
 
-export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const TOGGLE_SETTINGS = 'TOGGLE_SETTINGS';
 export const SELECT_SECTION = 'SELECT_SECTION';
 
-export function toggleModal() {
-  return { type: TOGGLE_MODAL };
+export function toggleSettings() {
+  return { type: TOGGLE_SETTINGS };
 }
 
 export function selectSection(sectionName) {

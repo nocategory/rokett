@@ -6,7 +6,7 @@ import s from './AppLayer.css';
 
 export default class Modal extends Component {
   render() {
-    const { modalVisible } = this.props;
+    const { settingsVisible } = this.props;
     // @TODO: actual settings with section names n stuff
     return (
       <Transition
@@ -22,7 +22,7 @@ export default class Modal extends Component {
           opacity: 0,
         }}
       >
-        {modalVisible &&
+        {settingsVisible &&
         <div className={s.modal} key={1}>
           <div className="flex-vertical h100">
             {this.props.children}
