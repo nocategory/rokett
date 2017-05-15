@@ -19,18 +19,19 @@ const sidebarStyle = {
 
 export default class Sidebar extends Component {
   props: {
-    toggleSettings: () => void
+    toggleSettings: () => void,
+    toggleFileTree: () => void
   };
 
   render() {
-    const { toggleSettings } = this.props;
+    const { toggleSettings, toggleFileTree } = this.props;
     return (
       <div className={s.sidebarWrapper}>
         <div className={s.sidebar} style={sidebarStyle}>
           <div className={s.sidebarButtons}>
-            <i className="fa fa-user-circle" data-border data-place="right" data-for="userButton" data-effect="float" data-tip="Account settings" aria-hidden="true" style={userButton} />
+            <i className="fa fa-bars" data-place="right" data-for="userButton" data-effect="float" data-tip="File Tree" aria-hidden="true" style={userButton} onClick={toggleFileTree} />
             <ReactTooltip id="userButton" />
-            <i className="fa fa-cog" data-border data-place="right" data-for="settingsButton" data-effect="float" data-tip="Settings" aria-hidden="true" style={settingsButton} onClick={toggleSettings} />
+            <i className="fa fa-cog" data-place="right" data-for="settingsButton" data-effect="float" data-tip="Settings" aria-hidden="true" style={settingsButton} onClick={toggleSettings} />
             <ReactTooltip id="settingsButton" />
           </div>
         </div>

@@ -24,7 +24,9 @@ export default class App extends Component {
             <div className="flex-horizontal flex1 w100">
               {/* sidebar */}
               <Sidebar {...this.props} />
-              <Tree {...this.props} />
+              <AppLayer {...this.props}>
+                <Tree {...this.props} />
+              </AppLayer>
               <Editor {...this.props} />
               {/* <div className="tabs-wrapper">
                 <div className="tabs-chevron-wrapper">

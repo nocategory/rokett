@@ -9,6 +9,7 @@ import * as layerActions from '../actions/layer';
 function mapStateToProps(state) {
   return {
     settingsVisible: state.layer.settingsVisible,
+    fileTreeVisible: state.layer.fileTreeVisible,
     selectedSection: state.layer.selectedSection,
 
     initialContent: state.editor.initialContent,
