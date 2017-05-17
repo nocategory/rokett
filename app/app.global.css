@@ -135,6 +135,24 @@ hr {
   margin-right: 5px;
 }
 
+.layer {
+	background-color: #3e3e46;
+	color: #FFFFFF;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 20;
+  top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+  position: absolute;
+  flex-direction: column;
+}
+
+
+
+
 .children {
   margin-left: 20px;
   font-size: 16px;

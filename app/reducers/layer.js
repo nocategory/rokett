@@ -7,7 +7,7 @@ const initialState = {
   selectedSection: 1,
 };
 
-export default function modal(state = initialState, action) {
+export default function layer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_SETTINGS:
       return { ...state, settingsVisible: !state.settingsVisible };

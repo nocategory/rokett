@@ -1,5 +1,7 @@
 // @flow
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import Transition from 'react-motion-ui-pack';
+import {spring} from 'react-motion';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Tree from '../components/Tree/Tree';
 import TopHeader from '../components/TopHeader/TopHeader';
@@ -10,13 +12,15 @@ import Editor from '../components/Editor/Editor';
 
 export default class App extends Component {
   render() {
-    const { settingsVisible } = this.props;
+    const {settingsVisible, fileTreeVisible} = this.props;
     return (
       <div className="app">
-        <div className="flex-vertical flex1" style={{ height: '100%' }}>
+        <div className="flex-vertical flex1" style={{
+          height: '100%'
+        }}>
           <div>
-            <FrameButtons {...this.props} />
-            <TopHeader {...this.props} />
+            <FrameButtons {...this.props}/>
+            <TopHeader {...this.props}/>
           </div>
 
           {/* pane 2 */}
@@ -24,9 +28,25 @@ export default class App extends Component {
             <div className="flex-horizontal flex1 w100">
               {/* sidebar */}
               <Sidebar {...this.props} />
-              <AppLayer {...this.props}>
-                <Tree {...this.props} />
-              </AppLayer>
+              <Transition
+                component={false}
+                measure={false}
+                enter={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                leave={{
+                  opacity: 0,
+                  scale: 0.8
+                }}>
+                {fileTreeVisible &&
+                  <div key="tree" className="layer">
+                    <AppLayer {...this.props}>
+                      <Tree {...this.props} />
+                    </AppLayer>
+                  </div>
+                }
+              </Transition>
               <Editor {...this.props} />
               {/* <div className="tabs-wrapper">
                 <div className="tabs-chevron-wrapper">
@@ -35,9 +55,25 @@ export default class App extends Component {
               </div>*/}
             </div>
           </div>
-          <AppLayer {...this.props}>
-            <SettingsLayer {...this.props} />
-          </AppLayer>
+          <Transition
+            component={false}
+            measure={false}
+            enter={{
+              opacity: 1,
+              scale: 1
+            }}
+            leave={{
+              opacity: 0,
+              scale: 0.8
+            }}>
+            {settingsVisible &&
+              <div key="settings">
+                <AppLayer {...this.props}>
+                  <SettingsLayer {...this.props} />
+                </AppLayer>
+              </div>
+            }
+          </Transition>
         </div>
       </div>
     );
