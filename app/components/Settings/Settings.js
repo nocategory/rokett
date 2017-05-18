@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import s from './SettingsLayer.css';
+import s from './Settings.css';
 
-export default class SettingsLayer extends Component {
+export default class Settings extends Component {
   render() {
     const { toggleModal, selectSection, selectedSection } = this.props;
     return (
