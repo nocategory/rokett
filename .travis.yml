@@ -75,4 +75,4 @@ script:
   #- npm run test-e2e
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-linux ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-win ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-osx ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-macos ; fi
