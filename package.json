@@ -58,7 +58,7 @@
     },
     "win": {
       "target": [
-        "nsis"
+        "squirrel"
       ]
     },
     "linux": {
@@ -190,6 +190,7 @@
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.0.1",
     "directory-tree": "^1.1.1",
+    "electron-builder-squirrel-windows": "^17.9.0",
     "electron-debug": "^1.1.0",
     "electron-window-state": "^4.0.1",
     "extract-text-webpack-plugin": "^2.1.0",
@@ -197,6 +198,7 @@
     "history": "^4.6.1",
     "i18next": "^8.2.1",
     "i18next-browser-languagedetector": "^1.0.1",
+    "json-query": "^2.2.2",
     "monaco-editor": "^0.8.3",
     "monaco-loader": "^0.8.2",
     "react": "^15.5.4",

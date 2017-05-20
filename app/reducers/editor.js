@@ -2,6 +2,7 @@
 
 import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED } from '../actions/editor';
 import dirTree from '../directory-tree';
+var jsonQuery = require('json-query')
 
 
 const initialState = {
@@ -39,6 +40,11 @@ export default function editor(state = initialState, action) {
       };
 
     case SET_FOLDERPATH:
+		let x = dirTree(action.currentFolderPath)
+		let q = jsonQuery('x[name=Editor]', {
+			data: x
+		})
+		console.log(q)
       return { ...state, currentFolderJSON: dirTree(action.currentFolderPath) };
 
     case SET_EDITORMOUNTED:
