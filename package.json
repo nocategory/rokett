@@ -18,7 +18,6 @@
     "build-main": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.main.prod.js --profile --colors",
     "build-renderer": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.prod.js --profile --colors",
     "start": "cross-env NODE_ENV=production electron ./app/",
-    "prestart": "npm run build",
     "flow": "flow",
     "flow-typed": "flow-typed install --overwrite",
     "start-hot-renderer": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
@@ -27,7 +26,7 @@
     "package": "npm run build && build --publish never",
     "package-win": "npm run build && build --win --x64 --publish onTagOrDraft",
     "package-linux": "npm run build && build --linux --publish onTagOrDraft",
-	  "package-macos": "npm run build && build --macos --publish onTagOrDraft",
+    "package-macos": "npm run build && build --macos --publish onTagOrDraft",
     "cleanup": "mop -v"
   },
   "browserslist": "electron 1.4",

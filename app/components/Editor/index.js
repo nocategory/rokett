@@ -50,7 +50,7 @@ class MonacoEditor extends React.Component {
     });
   }
   afterViewInit() {
-    const amdRequire = global.require(`${appRoot}/node_modules/monaco-editor/min/vs/loader.js`).require;
+    const amdRequire = require(`${appRoot}monaco-editor/min/vs/loader.js`).require;
     amdRequire.config({
       baseUrl: `${appRoot}/node_modules/monaco-editor/min/`
     });
