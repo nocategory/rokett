@@ -30,7 +30,6 @@ export default class Tree extends Component {
 
   getFileContent(path) {
     fs.readFile(path, 'utf8', (err, data) => {
-      console.log('Wohoo!');
       this.editorContentCallback(data, path);
     });
   }
@@ -40,6 +39,7 @@ export default class Tree extends Component {
      * editor content
      */
     const { setEditorContent } = this.props;
+    console.log(d);
     setEditorContent(d, p);
   }
 

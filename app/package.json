@@ -11,6 +11,5 @@
   },
   "license": "MIT",
   "dependencies": {
-    "monaco-editor": "^0.8.3"
   }
 }
