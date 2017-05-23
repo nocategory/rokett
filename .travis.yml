@@ -1,4 +1,41 @@
-nux" ]]; then sudo dpkg --add-architecture i386 ; fi
+sudo: true
+dist: trusty
+
+language:
+  - node_js
+  - objective-c ## to fix hdiutil required by osx build
+
+os:
+  - linux
+  - osx
+
+node_js:
+  - 7
+
+cache:
+  directories:
+    - node_modules
+
+# Enable when https://github.com/yarnpkg/yarn/issues/1233 and
+# https://github.com/yarnpkg/yarn/issues/1059 are resolved and disable npm cache
+#
+# cache:
+#   directories:
+#   - $HOME/.yarn-cache
+
+addons:
+  apt:
+    sources:
+     - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+      - icnsutils
+      - graphicsmagick
+      - xz-utils
+      - xorriso
+
+before_install:
+   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg --add-architecture i386 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntu-wine/ppa -y ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q --fix-missing ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install --no-install-recommends -y wine1.8 ; fi
