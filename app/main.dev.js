@@ -1,5 +1,15 @@
 /* eslint global-require: 1, flowtype-errors/show-errors: 0 */
-// @flow
+
+/**
+ * This module executes inside of electron's main process. You can start
+ * electron renderer process from here and communicate with the other processes
+ * through IPC.
+ *
+ * When running `npm run build` or `npm run build-main`, this file is compiled to
+ * `./app/main.prod.js` using webpack. This gives us some performance wins.
+ *
+ * @flow
+ */
 import { app, BrowserWindow } from 'electron';
 import windowStateKeeper from 'electron-window-state';
 import autoUpdater from './autoUpdater';
@@ -14,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
   sourceMapSupport.install();
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
   require('electron-debug')();
   const path = require('path');
   const p = path.join(__dirname, '..', 'app', 'node_modules');
@@ -34,6 +44,9 @@ const installExtensions = async () => {
     .catch(console.log);
 };
 
+/**
+ * Add event listeners...
+ */
 
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
@@ -45,7 +58,7 @@ app.on('window-all-closed', () => {
 
 
 app.on('ready', async () => {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
   if (process.env.NODE_ENV === 'production') {
@@ -86,10 +99,7 @@ app.on('ready', async () => {
     });
   }
 
-  const url = (process.env.NODE_ENV === 'development')
-    ? `http://localhost:${process.env.PORT || 1212}/dist/app.html`
-    : `file://${__dirname}/dist/app.html`;
-  mainWindow.loadURL(url);
+  mainWindow.loadURL(`file://${__dirname}/app.html`);
 
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
@@ -98,7 +108,6 @@ app.on('ready', async () => {
       throw new Error('"mainWindow" is not defined');
     }
     mainWindow.show();
-    // mainWindow.focus();
   });
 
   mainWindow.on('closed', () => {

@@ -13,12 +13,12 @@ export default merge.smart(baseConfig, {
 
   target: 'electron-main',
 
-  entry: ['babel-polyfill', './app/main.development'],
+  entry: ['babel-polyfill', './app/main.dev'],
 
   // 'main.js' in root
   output: {
     path: __dirname,
-    filename: './app/main.js'
+    filename: './app/main.prod.js'
   },
 
   plugins: [
@@ -42,7 +42,8 @@ export default merge.smart(baseConfig, {
      * development checks
      */
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+      'process.env.DEBUG_PROD': JSON.stringify(process.env.DEBUG_PROD || 'false')
     })
   ],
 
