@@ -1,22 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import keydown from 'react-keydown';
-import fs from 'fs';
-import {
-  ChasingDots,
-  Circle,
-  CubeGrid,
-  DoubleBounce,
-  FadingCircle,
-  FoldingCube,
-  Pulse,
-  RotatingPlane,
-  ThreeBounce,
-  WanderingCubes,
-  Wave,
-} from 'better-react-spinkit';
 import MonacoEditor from './index';
-import Loading from '../Loading/Loading';
 import s from './Editor.css';
 
 export default class Editor extends Component {
@@ -26,33 +10,31 @@ export default class Editor extends Component {
 
   constructor() {
     super();
-    this.editorDidMount = this.editorDidMount.bind(this)
+    // $FlowFixMe
+    this.editorDidMount = this.editorDidMount.bind(this);
   }
 
-  editorDidMount(editor, monaco) {
-    console.log(this)
+  editorDidMount(editor) {
     const { setEditorMount } = this.props;
     setEditorMount();
     editor.focus();
   }
 
-  onChange(newValue, e) {
+  // $FlowFixMe
+  onChange(newValue: string, e) {
     console.log('onChange', newValue, e);
   }
 
   render() {
-    const { editorIsMounted } = this.props;
+    const { currentContent } = this.props;
     return (
       <div className={s.editorWrapper}>
-        {/* {!editorIsMounted &&
-          <Loading />
-        }*/}
         <MonacoEditor
           width={'100%'}
           height={'100%'}
           language="javascript"
           theme="vs-dark"
-          value={this.props.currentContent}
+          value={currentContent}
           editorDidMount={this.editorDidMount}
         />
       </div>

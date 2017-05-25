@@ -24,6 +24,7 @@ enhancers.push(autoRehydrate());
 
 const enhancer = composeEnhancers(...enhancers);
 
+// $FlowFixMe
 function configureStore(initialState) {
   return createStore(rootReducer, initialState, enhancer); // eslint-disable-line
 }

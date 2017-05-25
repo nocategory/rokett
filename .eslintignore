@@ -51,3 +51,7 @@ main.js.map
 .idea
 npm-debug.log.*
 __snapshots__
+
+app/directory-tree.js
+# to remove l8r
+app/components/Loading/*

@@ -19,8 +19,7 @@ export default class FrameButtons extends Component {
   maxClick() {
     if (!appWindow.isMaximized()) {
       appWindow.maximize();
-    }
-    else {
+    } else {
       appWindow.unmaximize();
     }
   }

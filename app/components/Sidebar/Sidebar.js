@@ -35,9 +35,6 @@ export default class Sidebar extends Component {
             <ReactTooltip id="settingsButton" />
           </div>
         </div>
-        {/*<div className="tree-chevron-wrapper">
-          <i className="fa fa-chevron-right" />
-        </div> */}
       </div>
     );
   }

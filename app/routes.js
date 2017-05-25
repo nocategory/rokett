@@ -7,6 +7,7 @@ import HomePage from './containers/HomePage';
 
 export default () => (
   <Router>
+    {/* $FlowFixMe => https://github.com/facebook/flow/issues/1964 */}
     <App>
       <Switch>
         <Route path="/" component={HomePage} />

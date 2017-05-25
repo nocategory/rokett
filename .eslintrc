@@ -9,6 +9,15 @@
     "browser": true,
     "node": true
   },
+  "plugins": [
+    "eslint-plugin-flowtype",
+    "flowtype",
+    "flowtype-errors",
+    "import",
+    "promise",
+    "compat",
+    "react"
+  ],
   "rules": {
     "arrow-parens": ["off"],
     "compat/compat": "error",
@@ -31,22 +40,8 @@
     "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "react/prefer-stateless-function": "off",
-    "global-require": 0,
-    "react/prop-types": 0
-  },
-  "plugins": [
-    "flowtype",
-    "flowtype-errors",
-    "import",
-    "promise",
-    "compat",
-    "react"
-  ],
-  "settings": {
-    "import/resolver": {
-      "webpack": {
-        "config": "webpack.config.eslint.js"
-      }
-    }
+    "react/prop-types": 0,
+    "jsx-a11y/no-static-element-interactions": "off",
+    "class-methods-use-this": "off"
   }
 }

@@ -1,12 +1,12 @@
 // @flow
 import React, { Component } from 'react';
-import { translate, Interpolate } from 'react-i18next';
+import { translate } from 'react-i18next';
 import classNames from 'classnames';
 import s from './Settings.css';
 
 class Settings extends Component {
   render() {
-    const { toggleModal, selectSection, selectedSection, t } = this.props;
+    const { selectSection, selectedSection, t } = this.props;
     return (
       <div>
         <div className={s.sidebarWrapper}>
@@ -27,15 +27,21 @@ class Settings extends Component {
         <div className={s.contentWrapper}>
           <div className={s.content}>
             {/* @TODO: add other sections */}
-            {selectedSection === 'test1' ?
-              <p>
-                <b>Sorry, not ready yet! 1</b>
-              </p> : selectedSection === 'test2' ?
-                <p>
-                      <b>Sorry, not ready yet! 2</b>
-                    </p> :
-                    <p>fail</p>
-                }
+            {(() => {
+              if (selectedSection === 'test1') {
+                return (
+                  <p>
+                    <b>Sorry, not ready yet! 1</b>
+                  </p>
+                );
+              } else if (selectedSection === 'test2') {
+                return (
+                  <p>
+                    <b>Sorry, not ready yet! 2</b>
+                  </p>
+                );
+              }
+            })()}
           </div>
         </div>
         {/* <div className={s.exitModal}>

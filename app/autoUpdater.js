@@ -12,13 +12,13 @@ const updaterFeedURL = `https://quarkzapp.com/application/update/${platform}/${v
 
 export default function appUpdater() {
   autoUpdater.setFeedURL(updaterFeedURL);
-	// Log whats happening
+  // Log whats happening
   autoUpdater.on('error', err => console.log(err));
   autoUpdater.on('checking-for-update', () => console.log('checking-for-update'));
   autoUpdater.on('update-available', () => console.log('update-available'));
   autoUpdater.on('update-not-available', () => console.log('update-not-available'));
 
-	// Ask the user if update is available
+  // Ask the user if update is available
   autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     let message = `${app.getName()} ${releaseName} is now available. It will be installed the next time you restart the application.`;
     if (releaseNotes) {
@@ -28,7 +28,7 @@ export default function appUpdater() {
         message += `${notes}\n\n`;
       });
     }
-		// Ask user to update the app
+    // Ask user to update the app
     dialog.showMessageBox({
       type: 'question',
       buttons: ['Install and Relaunch', 'Later'],
@@ -41,6 +41,6 @@ export default function appUpdater() {
       }
     });
   });
-	// init for updates
+  // init for updates
   autoUpdater.checkForUpdates();
 }

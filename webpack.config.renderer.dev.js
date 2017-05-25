@@ -13,7 +13,6 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import merge from 'webpack-merge';
 import express from 'express';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { spawn, execSync } from 'child_process';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

@@ -13,8 +13,10 @@ const topHeaderStyle = {
 };
 
 export default class TopHeader extends Component {
+
   constructor() {
     super();
+    // $FlowFixMe
     this.chooseDirectory = this.chooseDirectory.bind(this);
   }
 

@@ -28,7 +28,7 @@ i18n
     interpolation: {
       escapeValue: false, // not needed for react!!
       formatSeparator: ',',
-      format: function(value, format, lng) {
+      format: (value, format) => {
         if (format === 'uppercase') return value.toUpperCase();
         return value;
       }

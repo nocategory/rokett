@@ -7,40 +7,47 @@ import s from './Tree.css';
 export default class Tree extends Component {
   constructor() {
     super();
+    // $FlowIssue
     this.state = {};
+    // $FlowIssue
     this.onToggle = this.onToggle.bind(this);
+    // $FlowIssue
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
 
   // file tree
+  // $FlowIssue
   onToggle(node, toggled) {
+    const currentNode = node;
+    // $FlowIssue
     if (this.state.cursor) {
       this.state.cursor.active = false;
     }
-    node.active = true;
+    currentNode.active = true;
     if (node.children) {
-      node.toggled = toggled;
+      currentNode.toggled = toggled;
     }
     if (node.extension || node.extension === '') { // file
       this.getFileContent(node.path);
     }
+    // $FlowIssue
     this.setState({ cursor: node });
+    // $FlowIssue
     console.log(this.state.cursor);
   }
 
-  getFileContent(path) {
+  getFileContent(path: string) {
     fs.readFile(path, 'utf8', (err, data) => {
       this.editorContentCallback(data, path);
     });
   }
 
-  editorContentCallback(d, p) {
+  editorContentCallback(initContent: string, filePath: string) {
     /** call redux action to set
      * editor content
      */
     const { setEditorContent } = this.props;
-    console.log(d);
-    setEditorContent(d, p);
+    setEditorContent(initContent, filePath);
   }
 
   render() {
