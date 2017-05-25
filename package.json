@@ -200,6 +200,7 @@
     "history": "^4.6.1",
     "i18next": "^8.2.1",
     "i18next-browser-languagedetector": "^1.0.1",
+    "i18next-xhr-backend": "^1.4.1",
     "json-query": "^2.2.2",
     "monaco-editor": "^0.8.3",
     "monaco-loader": "^0.8.2",

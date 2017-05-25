@@ -1,24 +1,25 @@
 // @flow
 import React, { Component } from 'react';
+import { translate, Interpolate } from 'react-i18next';
 import classNames from 'classnames';
 import s from './Settings.css';
 
-export default class Settings extends Component {
+class Settings extends Component {
   render() {
-    const { toggleModal, selectSection, selectedSection } = this.props;
+    const { toggleModal, selectSection, selectedSection, t } = this.props;
     return (
       <div>
         <div className={s.sidebarWrapper}>
           <div className={s.sidebar}>
             <div className={s.sectionWrapper}>
               <div className={s.sectionLink}>
-                <div className={selectedSection === 'test1' ? classNames(s.sectionHeader, s.selectedSectionHeader) : s.sectionHeader} onClick={() => selectSection('test1')}>Editor</div>
+                <div className={selectedSection === 'test1' ? classNames(s.sectionHeader, s.selectedSectionHeader) : s.sectionHeader} onClick={() => selectSection('test1')}>{t('settings:firstSection')}</div>
               </div>
               <div className={s.sectionLink}>
-                <div className={selectedSection === 'test2' ? classNames(s.sectionHeader, s.selectedSectionHeader) : s.sectionHeader} onClick={() => selectSection('test2')}>UI</div>
+                <div className={selectedSection === 'test2' ? classNames(s.sectionHeader, s.selectedSectionHeader) : s.sectionHeader} onClick={() => selectSection('test2')}>{t('settings:secondSection')}</div>
               </div>
               <div className={s.sectionLink}>
-                <div className={selectedSection === 'test3' ? classNames(s.sectionHeader, s.selectedSectionHeader) : s.sectionHeader} onClick={() => selectSection('test3')}>User</div>
+                <div className={selectedSection === 'test3' ? classNames(s.sectionHeader, s.selectedSectionHeader) : s.sectionHeader} onClick={() => selectSection('test3')}>{t('settings:thirdSection')}</div>
               </div>
             </div>
           </div>
@@ -44,3 +45,5 @@ export default class Settings extends Component {
     );
   }
 }
+
+export default translate(['settings'], { wait: true })(Settings);
