@@ -7,8 +7,7 @@ const initialState = {
   selectedSection: 1,
 };
 
-// $FlowFixMe
-export default function layer(state = initialState, action) {
+export default function layer(state: Object = initialState, action: Object) {
   switch (action.type) {
     case TOGGLE_SETTINGS:
       return { ...state, settingsVisible: !state.settingsVisible };

@@ -14,8 +14,8 @@ const initialState = {
   editorIsMounted: false,
 };
 
-// $FlowFixMe
-export default function editor(state = initialState, action) {
+
+export default function editor(state: Object = initialState, action: Object) {
   switch (action.type) {
     case SET_CONTENT: {
       return { ...state,

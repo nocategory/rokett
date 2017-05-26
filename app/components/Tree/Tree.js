@@ -5,21 +5,21 @@ import fs from 'fs';
 import s from './Tree.css';
 
 export default class Tree extends Component {
+
+  state: Object;
+  onToggle: Function;
+  editorContentCallback: Function;
+
   constructor() {
     super();
-    // $FlowIssue
     this.state = {};
-    // $FlowIssue
     this.onToggle = this.onToggle.bind(this);
-    // $FlowIssue
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
 
   // file tree
-  // $FlowIssue
-  onToggle(node, toggled) {
+  onToggle(node: Object, toggled: boolean) {
     const currentNode = node;
-    // $FlowIssue
     if (this.state.cursor) {
       this.state.cursor.active = false;
     }
@@ -30,9 +30,7 @@ export default class Tree extends Component {
     if (node.extension || node.extension === '') { // file
       this.getFileContent(node.path);
     }
-    // $FlowIssue
     this.setState({ cursor: node });
-    // $FlowIssue
     console.log(this.state.cursor);
   }
 

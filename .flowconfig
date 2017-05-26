@@ -8,6 +8,7 @@
 <PROJECT_ROOT>/dll/.*
 <PROJECT_ROOT>/release/.*
 <PROJECT_ROOT>/git/.*
+<PROJECT_ROOT>/app/components/Editor/index.js
 
 [include]
 
