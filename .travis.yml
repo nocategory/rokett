@@ -48,20 +48,9 @@ before_install:
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8" ; fi
-  - yarn install
-  - cd app
-  - yarn install
-  - cd ..
+  - npm install -g npm@next
+  - npm install
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi
-
-# Enable when https://github.com/yarnpkg/yarn/issues/1233 and
-# https://github.com/yarnpkg/yarn/issues/1059 are resolved and disable npm cache
-#
-# install:
-#   - export CXX="g++-4.8"
-#   - npm install -g yarnpkg
-#   - yarn
-#   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0 ; fi
@@ -71,9 +60,9 @@ before_script:
 
 script:
 
-  - yarn run lint
+  - npm run lint
   #- npm run test
   #- npm run test-e2e
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn run package-linux ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn run package-win ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn run package-macos ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-linux ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-win ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-macos ; fi
