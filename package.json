@@ -28,8 +28,7 @@
     "package": "npm run build && build --publish never",
     "package-win": "npm run build && build --win --x64 --publish onTagOrDraft",
     "package-linux": "npm run build && build --linux --publish onTagOrDraft",
-    "package-macos": "npm run build && build --macos --publish onTagOrDraft",
-    "cleanup": "mop -v"
+    "package-macos": "npm run build && build --macos --publish onTagOrDraft"
   },
   "browserslist": "electron 1.6",
   "build": {
