@@ -14,7 +14,8 @@ body {
   font-size: 16px;
   padding: 0;
   margin: 0;
-  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
+  white-space: pre;
 }
 
 i {
@@ -37,7 +38,7 @@ hr {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  background-color: rgb(41, 54, 62);
+  background-color: rgb(40, 42, 54);
 }
 
 .flex1 {

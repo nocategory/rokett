@@ -5,16 +5,16 @@ import settings from '../../settings.json';
 import s from './Sidebar.css';
 
 const settingsButton = {
-  fontSize: '1.7rem',
+  fontSize: '1.2rem',
 };
 
 const userButton = {
   marginBottom: '20px',
-  fontSize: '1.7rem',
+  fontSize: '1.2rem',
 };
 
 const sidebarStyle = {
-  backgroundColor: settings.frame.secondaryColor,
+  backgroundColor: settings.frame.mainColor,
 };
 
 export default class Sidebar extends Component {

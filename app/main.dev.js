@@ -14,6 +14,7 @@ import { app, BrowserWindow } from 'electron';
 import windowStateKeeper from 'electron-window-state';
 import autoUpdater from './autoUpdater';
 import MenuBuilder from './menu';
+import settings from './settings.json';
 
 require('electron-debug')({ enabled: true, showDevTools: true });
 
@@ -73,7 +74,7 @@ app.on('ready', async () => {
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow = new BrowserWindow({
-      backgroundColor: '#2e2c29',
+      backgroundColor: settings.frame.mainColor,
       x: mainWindowState.x,
       y: mainWindowState.y,
       width: mainWindowState.width,
@@ -87,7 +88,7 @@ app.on('ready', async () => {
 
   if (process.env.NODE_ENV === 'production') {
     mainWindow = new BrowserWindow({
-      backgroundColor: '#2e2c29',
+      backgroundColor: settings.frame.mainColor,
       x: mainWindowState.x,
       y: mainWindowState.y,
       width: mainWindowState.width,

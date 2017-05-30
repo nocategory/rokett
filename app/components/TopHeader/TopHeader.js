@@ -9,7 +9,7 @@ const { dialog } = remote;
 
 
 const topHeaderStyle = {
-  backgroundColor: settings.frame.mainColor,
+  backgroundColor: settings.frame.secondaryColor,
 };
 
 export default class TopHeader extends Component {

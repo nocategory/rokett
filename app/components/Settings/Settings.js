@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import classNames from 'classnames';
 import s from './Settings.css';
+import settings from '../../settings.json';
 
 class Settings extends Component {
   render() {
     const { selectSection, selectedSection, t } = this.props;
     return (
       <div>
-        <div className={s.sidebarWrapper}>
+        <div className={s.sidebarWrapper} style={{ background: settings.frame.secondaryColor }}>
           <div className={s.sidebar}>
             <div className={s.sectionWrapper}>
               <div className={s.sectionLink}>
