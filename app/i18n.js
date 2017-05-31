@@ -1,14 +1,15 @@
 import i18n from 'i18next';
 import XHR from 'i18next-xhr-backend';
 // import Cache from 'i18next-localstorage-cache';
-import LanguageDetector from 'i18next-browser-languagedetector';
+// import LanguageDetector from 'i18next-browser-languagedetector';
 
 
 i18n
   .use(XHR)
-  .use(LanguageDetector)
+  // .use(LanguageDetector)
   .init({
     fallbackLng: 'en',
+    lng: 'en',
     // wait: true, // globally set to wait for loaded translations in translate hoc
 
     // have a common namespace used around the full app
@@ -16,7 +17,7 @@ i18n
     defaultNS: 'common',
 
     backend: {
-      loadPath: './dist/locales/{{lng}}/{{ns}}.json'
+      loadPath: 'locales/{{lng}}/{{ns}}.json'
     },
 
     debug: true,
