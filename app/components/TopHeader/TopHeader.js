@@ -9,10 +9,13 @@ const { dialog } = remote;
 
 
 const topHeaderStyle = {
-  backgroundColor: settings.frame.mainColor,
+  backgroundColor: settings.frame.secondaryColor,
 };
 
 export default class TopHeader extends Component {
+
+  chooseDirectory: Function;
+
   constructor() {
     super();
     this.chooseDirectory = this.chooseDirectory.bind(this);

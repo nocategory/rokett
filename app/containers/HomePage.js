@@ -30,4 +30,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...editorActions, ...layerActions }, dispatch);
 }
 
+// $FlowIssue
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

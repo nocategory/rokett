@@ -3,13 +3,15 @@
   "productName": "quarkz",
   "version": "0.0.2",
   "description": "An open-source code editor built with web technologies and ❤",
-  "main": "./main.js",
+  "main": "./main.prod.js",
   "author": {
     "name": "uppe-r",
     "email": "joaozinn98@gmail.com",
     "url": "https://github.com/uppe-r/quarkz"
   },
+  "scripts": {
+    "postinstall": "npm rebuild --runtime=electron --target=1.6.6 --disturl=https://atom.io/download/atom-shell --build-from-source"
+  },
   "license": "MIT",
-  "dependencies": {
-  }
+  "dependencies": {}
 }

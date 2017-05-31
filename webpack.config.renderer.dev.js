@@ -13,7 +13,6 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import merge from 'webpack-merge';
 import express from 'express';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { spawn, execSync } from 'child_process';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -234,6 +233,16 @@ export default merge.smart(baseConfig, {
       dll: `${publicPath}/dll/vendor.dll.js`
     })
   ],
+
+  /**
+   * Disables webpack processing of __dirname and __filename.
+   * If you run the bundle in node.js it falls back to these values of node.js.
+   * https://github.com/webpack/webpack/issues/2010
+   */
+  node: {
+    __dirname: false,
+    __filename: false
+  },
 
   devServer: {
     port,

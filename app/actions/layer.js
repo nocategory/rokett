@@ -12,7 +12,7 @@ export function toggleFileTree() {
   return { type: TOGGLE_FILETREE };
 }
 
-export function selectSection(sectionName) {
+export function selectSection(sectionName: string) {
   return {
     type: SELECT_SECTION,
     sectionName,

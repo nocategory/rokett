@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import loader from 'monaco-loader';
 const appRoot = require('app-root-dir').get();
 
 function noop() {}
@@ -50,18 +51,31 @@ class MonacoEditor extends React.Component {
     });
   }
   afterViewInit() {
-    const amdRequire = global.require(`${appRoot}/node_modules/monaco-editor/min/vs/loader.js`).require;
-    amdRequire.config({
-      baseUrl: `${appRoot}/node_modules/monaco-editor/min/`
-    });
-
-    // workaround monaco-css not understanding the environment
-    self.module = undefined;
-    // workaround monaco-typescript not understanding the environment
-    self.process.browser = true;
-    amdRequire(['vs/editor/editor.main'], () => {
-      this.initMonaco();
-    });
+    if (process.env.NODE_ENV === 'development') {
+      const amdRequire = global.require(`${appRoot}/node_modules/monaco-editor/dev/vs/loader.js`).require;
+      amdRequire.config({
+        baseUrl: `${appRoot}/node_modules/monaco-editor/dev/`
+      });
+      // workaround monaco-css not understanding the environment
+      self.module = undefined;
+      // workaround monaco-typescript not understanding the environment
+      self.process.browser = true;
+      amdRequire(['vs/editor/editor.main'], () => {
+        this.initMonaco();
+      });
+    } else if (process.env.NODE_ENV === 'production') {
+      const amdRequire = global.require(`${__dirname}/dist/monaco-editor/min/vs/loader.js`).require;
+      amdRequire.config({
+        baseUrl: `${__dirname}/dist/monaco-editor/min/`
+      });
+      // workaround monaco-css not understanding the environment
+      self.module = undefined;
+      // workaround monaco-typescript not understanding the environment
+      self.process.browser = true;
+      amdRequire(['vs/editor/editor.main'], () => {
+        this.initMonaco();
+      });
+    }
   }
   initMonaco() {
     const value = this.props.value !== null ? this.props.value : this.props.defaultValue;

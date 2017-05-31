@@ -5,6 +5,11 @@ import fs from 'fs';
 import s from './Tree.css';
 
 export default class Tree extends Component {
+
+  state: Object;
+  onToggle: Function;
+  editorContentCallback: Function;
+
   constructor() {
     super();
     this.state = {};
@@ -13,13 +18,14 @@ export default class Tree extends Component {
   }
 
   // file tree
-  onToggle(node, toggled) {
+  onToggle(node: Object, toggled: boolean) {
+    const currentNode = node;
     if (this.state.cursor) {
       this.state.cursor.active = false;
     }
-    node.active = true;
+    currentNode.active = true;
     if (node.children) {
-      node.toggled = toggled;
+      currentNode.toggled = toggled;
     }
     if (node.extension || node.extension === '') { // file
       this.getFileContent(node.path);
@@ -28,19 +34,18 @@ export default class Tree extends Component {
     console.log(this.state.cursor);
   }
 
-  getFileContent(path) {
+  getFileContent(path: string) {
     fs.readFile(path, 'utf8', (err, data) => {
-      console.log('Wohoo!');
       this.editorContentCallback(data, path);
     });
   }
 
-  editorContentCallback(d, p) {
+  editorContentCallback(initContent: string, filePath: string) {
     /** call redux action to set
      * editor content
      */
     const { setEditorContent } = this.props;
-    setEditorContent(d, p);
+    setEditorContent(initContent, filePath);
   }
 
   render() {

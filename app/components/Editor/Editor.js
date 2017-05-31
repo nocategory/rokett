@@ -1,60 +1,75 @@
 // @flow
 import React, { Component } from 'react';
-import keydown from 'react-keydown';
-import fs from 'fs';
-import {
-  ChasingDots,
-  Circle,
-  CubeGrid,
-  DoubleBounce,
-  FadingCircle,
-  FoldingCube,
-  Pulse,
-  RotatingPlane,
-  ThreeBounce,
-  WanderingCubes,
-  Wave,
-} from 'better-react-spinkit';
+import Style from 'react-style-tag';
+// $FlowIssue => index is a modified version of react-monaco-editor
 import MonacoEditor from './index';
-import Loading from '../Loading/Loading';
+import settings from '../../settings.json';
 import s from './Editor.css';
 
 export default class Editor extends Component {
+
+  editorDidMount: Function;
+
   props: {
     setEditorMount: () => void
   };
 
   constructor() {
     super();
-    this.editorDidMount = this.editorDidMount.bind(this)
+    this.editorDidMount = this.editorDidMount.bind(this);
   }
 
-  editorDidMount(editor, monaco) {
-    console.log(this)
+  editorDidMount(editor: Object) {
     const { setEditorMount } = this.props;
     setEditorMount();
     editor.focus();
   }
 
-  onChange(newValue, e) {
+  onChange(newValue: string, e: Event) {
     console.log('onChange', newValue, e);
   }
 
   render() {
-    const { editorIsMounted } = this.props;
+    // $FlowIssue
+    const { currentContent } = this.props;
     return (
       <div className={s.editorWrapper}>
-        {/* {!editorIsMounted &&
-          <Loading />
-        }*/}
         <MonacoEditor
           width={'100%'}
           height={'100%'}
           language="javascript"
           theme="vs-dark"
-          value={this.props.currentContent}
+          value={currentContent}
           editorDidMount={this.editorDidMount}
         />
+        <Style>{`
+          .monaco-editor, .monaco-editor-background {
+            background: ${settings.frame.mainColor} !important;
+          }
+
+          /* Current line */
+          .monaco-editor .current-line {
+            background: rgba(255, 255, 255, 0.1) !important;
+          }
+
+          /* Line Numbers */
+          .monaco-editor .line-numbers {
+            color: rgb(235, 235, 235) !important;
+          }
+
+          /* Selection */
+          .monaco-editor .view-overlays.focused .selected-text {
+            background: rgba(225, 225, 225, 0.15) !important;
+          }
+          .monaco-editor .view-overlays .selected-text {
+            background: rgba(225, 225, 225, 0.15) !important;
+          }
+
+          /* Scroll border */
+          .monaco-editor .decorationsOverviewRuler {
+            visibility: hidden;
+          }
+        `}</Style>
       </div>
     );
   }
