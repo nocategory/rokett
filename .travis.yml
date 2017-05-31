@@ -29,7 +29,6 @@ addons:
      - ubuntu-toolchain-r-test
      - sourceline: 'ppa:ubuntu-wine/ppa'
      - sourceline: 'deb http://download.mono-project.com/repo/ubuntu trusty main'
-     - key_url:
     packages:
       - g++-4.8
       - icnsutils
