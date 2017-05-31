@@ -9,7 +9,10 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import BabiliPlugin from 'babili-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import baseConfig from './webpack.config.base';
+
+const outputPath = path.join(__dirname, 'app/dist');
 
 export default merge.smart(baseConfig, {
   devtool: 'source-map',
@@ -19,7 +22,7 @@ export default merge.smart(baseConfig, {
   entry: ['babel-polyfill', './app/index'],
 
   output: {
-    path: path.join(__dirname, 'app/dist'),
+    path: outputPath,
     publicPath: '../dist/'
   },
 
@@ -137,6 +140,16 @@ export default merge.smart(baseConfig, {
   },
 
   plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: 'app/locales',
+        to: `${path.join(__dirname, 'app/dist')}/locales`
+      },
+      {
+        from: 'node_modules/monaco-editor',
+        to: `${path.join(__dirname, 'app/dist')}/monaco-editor`
+      }
+    ]),
     /**
      * Create global constants which can be configured at compile time.
      *
