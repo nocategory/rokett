@@ -27,18 +27,17 @@ addons:
   apt:
     sources:
      - ubuntu-toolchain-r-test
+     - ubuntu-wine
     packages:
       - g++-4.8
       - icnsutils
       - graphicsmagick
       - xz-utils
       - xorriso
+      - wine1.8
 
 before_install:
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg --add-architecture i386 ; fi
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntu-wine/ppa -y ; fi
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -q --fix-missing ; fi
-   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install --no-install-recommends -y wine1.8 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export WINEARCH=win32 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then winecfg ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF ; fi
