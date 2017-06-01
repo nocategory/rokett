@@ -40,7 +40,7 @@ addons:
       - ca-certificates-mono
 
 before_install:
-   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -o- -L https://yarnpkg.com/install.sh | bash ; fi
+   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm install -g yarn ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg --add-architecture i386 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export WINEARCH=win32 ; fi
    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then winecfg ; fi
