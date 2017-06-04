@@ -4,7 +4,7 @@ import Transition from 'react-motion-ui-pack';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Tree from '../components/Tree/Tree';
 import TopHeader from '../components/TopHeader/TopHeader';
-import FrameButtons from '../components/FrameButtons/FrameButtons';
+import Titlebar from '../components/Titlebar/Titlebar';
 import AppLayer from '../components/AppLayer/AppLayer';
 import Settings from '../components/Settings/Settings';
 import Editor from '../components/Editor/Editor';
@@ -21,7 +21,7 @@ export default class App extends Component {
           }}
         >
           <div>
-            <FrameButtons {...this.props} />
+            <Titlebar {...this.props} />
             <TopHeader {...this.props} />
           </div>
 

@@ -195,7 +195,6 @@
     "electron-builder-squirrel-windows": "^17.9.0",
     "electron-debug": "^1.1.0",
     "electron-window-state": "^4.0.1",
-    "font-awesome": "^4.7.0",
     "history": "^4.6.1",
     "i18next": "^8.2.1",
     "i18next-browser-languagedetector": "^1.0.1",
