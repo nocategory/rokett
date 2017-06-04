@@ -3,6 +3,86 @@ import React, { Component } from 'react';
 import { Treebeard } from 'react-treebeard';
 import fs from 'fs';
 import s from './Tree.css';
+import settings from '../../settings.json';
+
+const tree = {
+  tree: {
+    base: {
+      listStyle: 'none',
+      backgroundColor: 'inherit',
+      margin: 0,
+      padding: 0,
+      color: '#9DA5AB',
+      fontFamily: 'rubikregular',
+      fontSize: '1rem'
+    },
+    node: {
+      base: {
+        position: 'relative'
+      },
+      link: {
+        cursor: 'pointer',
+        position: 'relative',
+        padding: '0px 20px',
+        display: 'block'
+      },
+      activeLink: {
+        background: '#484eaf',
+        borderRadius: '3px',
+      },
+      toggle: {
+        base: {
+          position: 'relative',
+          display: 'inline-block',
+          verticalAlign: 'top',
+          marginLeft: '-5px',
+          height: '24px',
+          width: '24px'
+        },
+        wrapper: {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          margin: '-9px 0 0 -9px',
+          height: '11px'
+        },
+        height: 11,
+        width: 11,
+        arrow: {
+          fill: '#9DA5AB',
+          strokeWidth: 0
+        }
+      },
+      header: {
+        base: {
+          display: 'inline-block',
+          verticalAlign: 'top',
+          color: '#9DA5AB'
+        },
+        connector: {
+          width: '2px',
+          height: '12px',
+          borderLeft: 'solid 2px black',
+          borderBottom: 'solid 2px black',
+          position: 'absolute',
+          top: '0px',
+          left: '-21px'
+        },
+        title: {
+          lineHeight: '24px',
+          verticalAlign: 'middle'
+        }
+      },
+      subtree: {
+        listStyle: 'none',
+        paddingLeft: '27px'
+      },
+      loading: {
+        color: '#E2C089'
+      }
+    }
+  }
+};
 
 export default class Tree extends Component {
 
@@ -55,14 +135,16 @@ export default class Tree extends Component {
     };
 
     return (
-      <div className={s.treeWrapper}>
-        <div style={treeStyle}>
+      <div className={s.treeWrapper} style={{ background: settings.frame.secondaryColor }}>
+        <div className={s.fileTreeSidebar} style={treeStyle}>
           <Treebeard
             data={this.props.currentFolderJSON ? this.props.currentFolderJSON : ''}
             onToggle={this.onToggle}
             animations={false}
+            style={tree}
           />
         </div>
+        <div className={s.treeActions}>SOON</div>
       </div>
     );
   }

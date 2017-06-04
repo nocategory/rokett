@@ -1,20 +1,12 @@
 .treeWrapper {
-  background: rgb(62, 62, 70);
   display: flex;
-  flex-direction: column;
-  width: 240px;
-  order: 1;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex: 0 1 auto;
-  height: 100%;
+  order: 0;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
   z-index: 11;
   overflow-x: hidden;
   text-overflow: ellipsis;
-}
-
-.treeWrapper div ul {
-  background-color: inherit !important;
 }
 
 .treeWrapper:hover {
@@ -25,4 +17,18 @@
 .treeWrapper:hover .tree-chevron-wrapper i {
   transform: rotate(180deg);
   transition: transform 0.3s ease-in;
+}
+
+.fileTreeSidebar {
+  z-index: 99;
+  -webkit-app-region: no-drag;
+  display: flex;
+  order: 0;
+  justify-content: center;
+  flex: 1;
+}
+
+.treeActions {
+  display: flex;
+  flex: 1;
 }
