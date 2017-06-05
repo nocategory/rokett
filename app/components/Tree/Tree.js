@@ -142,7 +142,7 @@ export default class Tree extends Component {
       <div className={s.treeWrapper} style={{ background: settings.frame.secondaryColor }}>
         <div className={s.fileTreeSidebar} style={treeStyle}>
           <Treebeard
-            data={this.props.currentFolderJSON ? this.props.currentFolderJSON : ''}
+            data={this.props.currentFolderJSON ? this.props.currentFolderJSON : {}}
             onToggle={this.onToggle}
             animations={false}
             style={tree}
