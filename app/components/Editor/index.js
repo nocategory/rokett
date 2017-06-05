@@ -92,21 +92,7 @@ class MonacoEditor extends React.Component {
         ...options,
       });
       window.addEventListener('resize', () => {
-        const editorNode = document.getElementsByClassName(containerElement.className)[0];
-        const parent = editorNode.parentElement;
-        editorNode.style.width = `${parent.clientWidth}px`;
-        editorNode.style.height = `${parent.clientHeight}px`;
-
-        editorNode.firstElementChild.style.width = `${parent.clientWidth}px`;
-        editorNode.firstElementChild.style.height = `${parent.clientHeight}px`;
-
-        editorNode.firstElementChild.firstElementChild.style.width = `${parent.clientWidth}px`;
-        editorNode.firstElementChild.firstElementChild.style.height = `${parent.clientHeight}px`;
-
-        editorNode.firstElementChild.firstElementChild.firstElementChild.style.width = `${parent.clientWidth}px`;
-        editorNode.firstElementChild.firstElementChild.firstElementChild.style.height = `${parent.clientHeight}px`;
-
-        editorNode.getElementsByClassName('monaco-scrollable-element')[0].style.width = `${parent.clientWidth - 46}px`;
+        this.editor.layout();
       });
       // After initializing monaco editor
       this.editorDidMount(this.editor, context.monaco);
