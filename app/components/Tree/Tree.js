@@ -11,10 +11,13 @@ const tree = {
       listStyle: 'none',
       backgroundColor: 'inherit',
       margin: 0,
-      padding: 0,
+      padding: '50px',
       color: '#9DA5AB',
       fontFamily: 'rubikregular',
-      fontSize: '1rem'
+      fontSize: '1rem',
+      overflow: 'auto',
+      width: '240px',
+      maxWidth: '240px'
     },
     node: {
       base: {
@@ -24,7 +27,8 @@ const tree = {
         cursor: 'pointer',
         position: 'relative',
         padding: '0px 20px',
-        display: 'block'
+        display: 'block',
+        whiteSpace: 'nowrap'
       },
       activeLink: {
         background: '#484eaf',

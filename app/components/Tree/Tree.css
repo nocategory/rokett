@@ -1,7 +1,6 @@
 .treeWrapper {
   display: flex;
   order: 0;
-  align-items: center;
   justify-content: center;
   flex: 1;
   z-index: 11;

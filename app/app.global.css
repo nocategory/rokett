@@ -17,6 +17,29 @@ body {
   white-space: pre;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  visibility: hidden;
+  border-radius: 10px;
+} /* the new scrollbar will have a flat appearance with the set background color */
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-button {
+  visibility: hidden;
+}
+
+::-webkit-scrollbar-corner {
+  border-radius: 10px;
+}
+
 i {
   color: rgba(255, 255, 255, 0.5);
   transition: 0.3s ease-in;
