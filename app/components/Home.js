@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import Transition from 'react-motion-ui-pack';
-import Sidebar from '../components/Sidebar/Sidebar';
+import PanelGroup from 'react-panelgroup';
 import Tree from '../components/Tree/Tree';
 import TopHeader from '../components/TopHeader/TopHeader';
 import Titlebar from '../components/Titlebar/Titlebar';
@@ -28,30 +28,34 @@ export default class App extends Component {
           {/* pane 2 */}
           <div className="app--content flex1" id="app--content">
             <div className="flex-horizontal flex1 w100">
-              {/* sidebar */}
-              <Sidebar {...this.props} />
-              <Transition
-                component={false}
-                measure={false}
-                enter={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                leave={{
-                  opacity: 0,
-                  scale: 0.8,
-                }}
-              >
-                {/* https://github.com/souporserious/react-motion-ui-pack/issues/72 */}
-                {fileTreeVisible &&
-                  <div key="tree" className="layer">
-                    <AppLayer {...this.props}>
-                      <Tree {...this.props} />
-                    </AppLayer>
-                  </div>
-                }
-              </Transition>
-              <Editor {...this.props} />
+              <PanelGroup panelWidths={[
+                { size: 240, minSize: 240, resize: "dynamic" }
+              ]} onUpdate={console.log("hi!!")}>
+                <Tree {...this.props} />
+                {/*<Transition
+                  component={false}
+                  measure={false}
+                  enter={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  leave={{
+                    opacity: 0,
+                    scale: 0.8,
+                  }}
+                >
+                  {/* https://github.com/souporserious/react-motion-ui-pack/issues/72 */}
+                  {/*{fileTreeVisible &&
+                    <div key="tree" className="layer">
+                      <AppLayer {...this.props}>
+                        <Tree {...this.props} />
+                      </AppLayer>
+                    </div>
+                  }
+                </Transition>*/}
+                <div className="divider" onDrag={console.log("hi")}></div>
+                <Editor {...this.props} />
+              </PanelGroup>
             </div>
           </div>
           <Transition

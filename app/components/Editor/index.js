@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import loader from 'monaco-loader';
 const appRoot = require('app-root-dir').get();
 
@@ -94,6 +95,11 @@ class MonacoEditor extends React.Component {
       window.addEventListener('resize', () => {
         this.editor.layout();
       });
+      console.log(document.getElementsByClassName('react-monaco-editor-container')[0]);
+      document.getElementsByClassName('react-monaco-editor-container')[0].addEventListener('resize', () => {
+        console.log("hi");
+      })
+
       // After initializing monaco editor
       this.editorDidMount(this.editor, context.monaco);
     }

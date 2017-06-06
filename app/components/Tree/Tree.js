@@ -15,7 +15,6 @@ const tree = {
       color: '#9DA5AB',
       fontFamily: 'rubikregular',
       fontSize: '1rem',
-      overflow: 'auto',
       width: '240px',
       maxWidth: '240px'
     },
@@ -148,7 +147,6 @@ export default class Tree extends Component {
             style={tree}
           />
         </div>
-        <div className={s.treeActions}>SOON</div>
       </div>
     );
   }

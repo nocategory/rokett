@@ -25,6 +25,7 @@
   order: 0;
   justify-content: center;
   flex: 1;
+  overflow: auto;
 }
 
 .treeActions {
