@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import s from './TopHeader.css';
+import s from './TopBar.css';
 import settings from '../../settings.json';
 
 const { remote } = require('electron');
@@ -12,7 +12,7 @@ const topHeaderStyle = {
   backgroundColor: settings.frame.secondaryColor,
 };
 
-export default class TopHeader extends Component {
+export default class TopBar extends Component {
 
   chooseDirectory: Function;
 

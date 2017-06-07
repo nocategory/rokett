@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import Style from 'react-style-tag';
+import Measure from 'react-measure';
 // $FlowIssue => index is a modified version of react-monaco-editor
 import MonacoEditor from './index';
 import settings from '../../settings.json';
@@ -23,6 +24,7 @@ export default class Editor extends Component {
     const { setEditorMount } = this.props;
     setEditorMount();
     editor.focus();
+    this.editor = editor;
   }
 
   onChange(newValue: string, e: Event) {
@@ -34,14 +36,28 @@ export default class Editor extends Component {
     const { currentContent } = this.props;
     return (
       <div className={s.editorWrapper}>
-        <MonacoEditor
-          width={'100%'}
-          height={'100%'}
-          language="javascript"
-          theme="vs-dark"
-          value={currentContent}
-          editorDidMount={this.editorDidMount}
-        />
+        <Measure
+          bounds
+          onResize={() => {
+            console.log('im in');
+            this.editor.layout();
+          }}
+        >
+          { ({ measureRef }) => (
+            <div className="h100" ref={measureRef}>
+              <MonacoEditor
+                width={'100%'}
+                height={'100%'}
+                language="javascript"
+                theme="vs-dark"
+                value={currentContent}
+                onChange={this.onChange}
+                editorDidMount={this.editorDidMount}
+              />
+            </div>
+            )
+          }
+        </Measure>
         <Style>{`
           .monaco-editor, .monaco-editor-background {
             background: ${settings.frame.mainColor} !important;

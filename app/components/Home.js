@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Transition from 'react-motion-ui-pack';
 import PanelGroup from 'react-panelgroup';
 import Tree from '../components/Tree/Tree';
-import TopHeader from '../components/TopHeader/TopHeader';
+import TopBar from '../components/TopBar/TopBar';
 import Titlebar from '../components/Titlebar/Titlebar';
 import AppLayer from '../components/AppLayer/AppLayer';
 import Settings from '../components/Settings/Settings';
@@ -22,7 +22,7 @@ export default class App extends Component {
         >
           <div>
             <Titlebar {...this.props} />
-            <TopHeader {...this.props} />
+            <TopBar {...this.props} />
           </div>
 
           {/* pane 2 */}
@@ -30,30 +30,8 @@ export default class App extends Component {
             <div className="flex-horizontal flex1 w100">
               <PanelGroup panelWidths={[
                 { size: 240, minSize: 240, resize: "dynamic" }
-              ]} onUpdate={console.log("hi!!")}>
+              ]}>
                 <Tree {...this.props} />
-                {/*<Transition
-                  component={false}
-                  measure={false}
-                  enter={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  leave={{
-                    opacity: 0,
-                    scale: 0.8,
-                  }}
-                >
-                  {/* https://github.com/souporserious/react-motion-ui-pack/issues/72 */}
-                  {/*{fileTreeVisible &&
-                    <div key="tree" className="layer">
-                      <AppLayer {...this.props}>
-                        <Tree {...this.props} />
-                      </AppLayer>
-                    </div>
-                  }
-                </Transition>*/}
-                <div className="divider" onDrag={console.log("hi")}></div>
                 <Editor {...this.props} />
               </PanelGroup>
             </div>

@@ -208,6 +208,7 @@
     "react-hot-loader": "3.0.0-beta.6",
     "react-i18next": "^4.1.0",
     "react-keydown": "^1.7.0",
+    "react-measure": "^2.0.2",
     "react-monaco-editor": "^0.8.1",
     "react-motion": "^0.5.0",
     "react-motion-ui-pack": "^0.10.2",
