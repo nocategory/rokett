@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import s from './TopBar.css';
+import Icon from '../Icon/Icon';
 import settings from '../../settings.json';
 
 const { remote } = require('electron');
@@ -34,8 +35,10 @@ export default class TopBar extends Component {
 
   render() {
     return (
-      <div className={`${s['app--command--box--wrapper']}`} style={topHeaderStyle}>
-        <i className={`${s.menuButton} fa fa-bars`} aria-hidden="true" onClick={this.chooseDirectory} />
+      <div className={s.topBarWrapper} style={topHeaderStyle}>
+        <div className={s.leftTopBar}>
+          <Icon iconName="folder" iconFunction={this.chooseDirectory} />
+        </div>
       </div>
     );
   }
