@@ -11,6 +11,7 @@
 
 .leftTopBar {
 	padding: 0 25px;
+	z-index: 5;
 }
 
 .menuButton {

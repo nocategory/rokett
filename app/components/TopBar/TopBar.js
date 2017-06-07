@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import s from './TopBar.css';
 import Icon from '../Icon/Icon';
 import settings from '../../settings.json';
@@ -13,7 +14,7 @@ const topHeaderStyle = {
   backgroundColor: settings.frame.secondaryColor,
 };
 
-export default class TopBar extends Component {
+class TopBar extends Component {
 
   chooseDirectory: Function;
 
@@ -34,12 +35,15 @@ export default class TopBar extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div className={s.topBarWrapper} style={topHeaderStyle}>
         <div className={s.leftTopBar}>
-          <Icon iconName="folder" iconFunction={this.chooseDirectory} />
+          <Icon iconName="folder" iconFunction={this.chooseDirectory} tip={t('common:topbar:openFolder')} />
         </div>
       </div>
     );
   }
 }
+
+export default translate(['common'], { wait: true })(TopBar);
