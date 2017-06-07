@@ -10,6 +10,7 @@ import s from './Editor.css';
 export default class Editor extends Component {
 
   editorDidMount: Function;
+  editor: Object;
 
   props: {
     setEditorMount: () => void
@@ -39,7 +40,6 @@ export default class Editor extends Component {
         <Measure
           bounds
           onResize={() => {
-            console.log('im in');
             this.editor.layout();
           }}
         >

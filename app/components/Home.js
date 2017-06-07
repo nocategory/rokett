@@ -11,7 +11,7 @@ import Editor from '../components/Editor/Editor';
 
 export default class App extends Component {
   render() {
-    const { settingsVisible, fileTreeVisible } = this.props;
+    const { settingsVisible } = this.props;
     return (
       <div className="app">
         <div
@@ -28,9 +28,11 @@ export default class App extends Component {
           {/* pane 2 */}
           <div className="app--content flex1" id="app--content">
             <div className="flex-horizontal flex1 w100">
-              <PanelGroup panelWidths={[
-                { size: 240, minSize: 240, resize: "dynamic" }
-              ]}>
+              <PanelGroup
+                panelWidths={[
+                  { size: 240, minSize: 240, resize: 'dynamic' }
+                ]}
+              >
                 <Tree {...this.props} />
                 <Editor {...this.props} />
               </PanelGroup>
