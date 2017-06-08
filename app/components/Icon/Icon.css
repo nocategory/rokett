@@ -7,6 +7,7 @@
 	opacity: .85;
 	transition: .3s ease-out;
 	-webkit-app-region: no-drag;
+  padding: 0 20px;
 }
 
 .icon:hover {

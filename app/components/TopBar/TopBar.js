@@ -10,13 +10,19 @@ const { remote } = require('electron');
 const { dialog } = remote;
 
 
-const topHeaderStyle = {
+const topBarStyle = {
   backgroundColor: settings.frame.secondaryColor,
 };
 
 class TopBar extends Component {
 
   chooseDirectory: Function;
+
+  props: {
+    toggleSettings: () => void,
+    setActiveFolder: () => void,
+    t: Function
+  }
 
   constructor() {
     super();
@@ -35,11 +41,14 @@ class TopBar extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, toggleSettings } = this.props;
     return (
-      <div className={s.topBarWrapper} style={topHeaderStyle}>
+      <div className={s.topBarWrapper} style={topBarStyle}>
         <div className={s.leftTopBar}>
+          {/* @TODO new file */}
+          <Icon iconName="file" iconFunction={this.chooseDirectory} tip={t('common:topbar:newFile')} />
           <Icon iconName="folder" iconFunction={this.chooseDirectory} tip={t('common:topbar:openFolder')} />
+          <Icon iconName="cog" iconFunction={toggleSettings} tip={t('common:topbar:settings')} />
         </div>
       </div>
     );

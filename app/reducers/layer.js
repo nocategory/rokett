@@ -1,19 +1,15 @@
 // @flow
-import { TOGGLE_SETTINGS, TOGGLE_FILETREE, SELECT_SECTION } from '../actions/layer';
+import { TOGGLE_SETTINGS, SELECT_SECTION } from '../actions/layer';
 
 const initialState = {
   settingsVisible: false,
-  fileTreeVisible: false,
-  selectedSection: 1,
+  selectedSection: 1
 };
 
 export default function layer(state: Object = initialState, action: Object) {
   switch (action.type) {
     case TOGGLE_SETTINGS:
       return { ...state, settingsVisible: !state.settingsVisible };
-
-    case TOGGLE_FILETREE:
-      return { ...state, fileTreeVisible: !state.fileTreeVisible };
 
     case SELECT_SECTION:
       console.log(action.sectionName);

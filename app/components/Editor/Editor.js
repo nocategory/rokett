@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Style from 'react-style-tag';
 import Measure from 'react-measure';
 // $FlowIssue => index is a modified version of react-monaco-editor
-import MonacoEditor from './index';
+import MonacoEditor from './monaco';
 import settings from '../../settings.json';
 import s from './Editor.css';
 

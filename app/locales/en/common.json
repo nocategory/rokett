@@ -1,5 +1,7 @@
 {
   "topbar": {
-		"openFolder": "Open folder"
+		"openFolder": "Open folder",
+    "newFile": "New file",
+    "settings": "Settings"
 	}
 }

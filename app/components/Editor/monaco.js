@@ -97,8 +97,8 @@ class MonacoEditor extends React.Component {
       });
       console.log(document.getElementsByClassName('react-monaco-editor-container')[0]);
       document.getElementsByClassName('react-monaco-editor-container')[0].addEventListener('resize', () => {
-        console.log("hi");
-      })
+        console.log('hi');
+      });
 
       // After initializing monaco editor
       this.editorDidMount(this.editor, context.monaco);
