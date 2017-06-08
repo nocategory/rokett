@@ -46,7 +46,7 @@
      id="namedview4491"
      showgrid="false"
      inkscape:zoom="13.612951"
-     inkscape:cx="12"
+     inkscape:cx="-0.4513781"
      inkscape:cy="12"
      inkscape:window-x="45"
      inkscape:window-y="39"
@@ -55,9 +55,9 @@
   <path
      d="M13,2H6A2,2,0,0,0,4,4V20a2,2,0,0,0,2,2H18a2,2,0,0,0,2-2V9Z"
      id="path4485"
-     style="stroke:#ffffff;stroke-opacity:1" />
+     style="stroke:#ddddde;stroke-opacity:0.95305163" />
   <polyline
      points="13 2 13 9 20 9"
      id="polyline4487"
-     style="stroke:#ffffff;stroke-opacity:1" />
+     style="stroke:#ddddde;stroke-opacity:0.95305163" />
 </svg>

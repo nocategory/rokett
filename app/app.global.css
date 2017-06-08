@@ -17,6 +17,10 @@ body {
   white-space: pre;
 }
 
+.test {
+  background-color: #fff;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

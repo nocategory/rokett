@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import s from './TopBar.css';
-import Icon from '../Icon/Icon';
+import IconButton from '../IconButton/IconButton';
 import settings from '../../settings.json';
 
 const { remote } = require('electron');
@@ -11,7 +11,7 @@ const { dialog } = remote;
 
 
 const topBarStyle = {
-  backgroundColor: settings.frame.secondaryColor,
+  backgroundColor: settings.frame.thirdColor,
 };
 
 class TopBar extends Component {
@@ -46,9 +46,9 @@ class TopBar extends Component {
       <div className={s.topBarWrapper} style={topBarStyle}>
         <div className={s.leftTopBar}>
           {/* @TODO new file */}
-          <Icon iconName="file" iconFunction={this.chooseDirectory} tip={t('common:topbar:newFile')} />
-          <Icon iconName="folder" iconFunction={this.chooseDirectory} tip={t('common:topbar:openFolder')} />
-          <Icon iconName="cog" iconFunction={toggleSettings} tip={t('common:topbar:settings')} />
+          <IconButton iconName="file" iconFunction={this.chooseDirectory} tip={t('common:topbar:newFile')} theme="light" />
+          <IconButton iconName="folder" iconFunction={this.chooseDirectory} tip={t('common:topbar:openFolder')} theme="light" />
+          <IconButton iconName="cog" iconFunction={toggleSettings} tip={t('common:topbar:settings')} theme="light" />
         </div>
       </div>
     );

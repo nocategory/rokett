@@ -11,7 +11,7 @@ const tree = {
       listStyle: 'none',
       backgroundColor: 'inherit',
       margin: 0,
-      padding: '50px',
+      padding: '0',
       color: '#9DA5AB',
       fontFamily: 'rubikregular',
       fontSize: '1rem',
@@ -132,6 +132,7 @@ export default class Tree extends Component {
   }
 
   render() {
+    const { currentFolderJSON } = this.props;
     const treeStyle = {
       zIndex: 99,
       WebkitAppRegion: 'no-drag',
@@ -139,14 +140,26 @@ export default class Tree extends Component {
 
     return (
       <div className={s.treeWrapper} style={{ background: settings.frame.secondaryColor }}>
-        <div className={s.fileTreeSidebar} style={treeStyle}>
-          <Treebeard
-            data={this.props.currentFolderJSON ? this.props.currentFolderJSON : {}}
-            onToggle={this.onToggle}
-            animations={false}
-            style={tree}
-          />
-        </div>
+        {(() => {
+          if (currentFolderJSON) {
+            return (
+              <div className={s.fileTreeSidebar} style={treeStyle}>
+                <Treebeard
+                  data={currentFolderJSON || {}}
+                  onToggle={this.onToggle}
+                  animations={false}
+                  style={tree}
+                />
+              </div>
+            );
+          }
+          return (
+            <div className={s.fileTreeInfoWrapper}>
+              <div className={s.noFolderOpenIcon} />
+              <p className={s.fileTreeInfo}>No files to show... <br /> :(</p>
+            </div>
+          );
+        })()}
       </div>
     );
   }

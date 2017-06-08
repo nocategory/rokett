@@ -16,11 +16,11 @@
    stroke-linecap="round"
    stroke-linejoin="round"
    version="1.1"
-   id="svg5682"
-   sodipodi:docname="folder.svg"
+   id="svg4491"
+   sodipodi:docname="box.svg"
    inkscape:version="0.92.1 r15371">
   <metadata
-     id="metadata5688">
+     id="metadata4497">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -31,7 +31,7 @@
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs5686" />
+     id="defs4495" />
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -41,19 +41,30 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="711"
-     inkscape:window-height="480"
-     id="namedview5684"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview4493"
      showgrid="false"
-     inkscape:zoom="9.8333333"
-     inkscape:cx="-5.2372882"
+     inkscape:zoom="33.5"
+     inkscape:cx="12"
      inkscape:cy="12"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg5682" />
+     inkscape:window-x="-4"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4491" />
   <path
-     d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"
-     id="path5680"
+     d="M12.89,1.45l8,4A2,2,0,0,1,22,7.24v9.53a2,2,0,0,1-1.11,1.79l-8,4a2,2,0,0,1-1.79,0l-8-4A2,2,0,0,1,2,16.76V7.24A2,2,0,0,1,3.11,5.45l8-4A2,2,0,0,1,12.89,1.45Z"
+     id="path4485"
+     style="stroke:#ddddde;stroke-opacity:1" />
+  <polyline
+     points="2.32 6.16 12 11 21.68 6.16"
+     id="polyline4487"
+     style="stroke:#ddddde;stroke-opacity:1" />
+  <line
+     x1="12"
+     y1="22.76"
+     x2="12"
+     y2="11"
+     id="line4489"
      style="stroke:#ddddde;stroke-opacity:1" />
 </svg>

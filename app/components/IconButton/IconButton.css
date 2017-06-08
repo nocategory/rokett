@@ -4,14 +4,17 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
-	opacity: .85;
 	transition: .3s ease-out;
 	-webkit-app-region: no-drag;
   padding: 0 20px;
 }
 
 .icon:hover {
-	opacity: 1;
 	cursor: pointer;
 	transition: .3s ease-in;
+}
+
+.test {
+	background-color: #fff;
+	color: #222;
 }

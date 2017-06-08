@@ -1,6 +1,7 @@
 {
   "frame": {
     "mainColor": "rgb(40, 42, 54)",
-    "secondaryColor": "rgb(41, 41, 49)"
+    "secondaryColor": "rgb(41, 41, 49)",
+    "thirdColor": "#484eaf"
   }
 }
