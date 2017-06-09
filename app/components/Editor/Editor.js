@@ -40,7 +40,9 @@ export default class Editor extends Component {
         <Measure
           bounds
           onResize={() => {
-            this.editor.layout();
+            if (this.editor) {
+              this.editor.layout();
+            }
           }}
         >
           { ({ measureRef }) => (
