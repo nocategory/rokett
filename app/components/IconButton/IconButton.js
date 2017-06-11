@@ -13,7 +13,8 @@ export default class IconButton extends Component {
 
   render() {
     return (
-      <div className={s.icon} data-for={this.props.iconName} data-tip={this.props.tip} style={{ backgroundImage: `url('./assets/${this.props.iconName}.svg')` }} onClick={this.props.iconFunction}>
+      <div className={s.iconWrapper} data-for={this.props.iconName} data-tip={this.props.tip} onClick={this.props.iconFunction}>
+        <img className={s.icon} src={`./assets/${this.props.iconName}.svg`} alt="" />
         <ReactTooltip id={this.props.iconName} place="bottom" effect="solid" border={false} type={this.props.theme} />
       </div>
     );

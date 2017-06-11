@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import Style from 'react-style-tag';
 import Measure from 'react-measure';
-// $FlowIssue => index is a modified version of react-monaco-editor
 import MonacoEditor from './monaco';
 import settings from '../../settings.json';
 import s from './Editor.css';
@@ -28,7 +27,7 @@ export default class Editor extends Component {
     this.editor = editor;
   }
 
-  onChange(newValue: string, e: Event) {
+  onChange(newValue: string, e: Object) {
     console.log('onChange', newValue, e);
   }
 

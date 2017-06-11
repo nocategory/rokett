@@ -4,6 +4,7 @@ import Transition from 'react-motion-ui-pack';
 import PanelGroup from 'react-panelgroup';
 import Tree from '../components/Tree/Tree';
 import TopBar from '../components/TopBar/TopBar';
+import Sidebar from '../components/Sidebar/Sidebar';
 import Titlebar from '../components/Titlebar/Titlebar';
 import AppLayer from '../components/AppLayer/AppLayer';
 import Settings from '../components/Settings/Settings';
@@ -15,26 +16,28 @@ export default class App extends Component {
     return (
       <div className="app">
         <div
-          className="flex-vertical flex1"
+          className="flex-horizontal flex1"
           style={{
             height: '100%'
           }}
         >
-          <div>
-            <Titlebar {...this.props} />
-            <TopBar {...this.props} />
-          </div>
+          <Titlebar {...this.props} />
+
+          <Sidebar {...this.props} />
 
           {/* pane 2 */}
           <div className="app--content flex1" id="app--content">
-            <div className="flex-horizontal flex1 w100">
+            <div className="flex-horizontal flex1" style={{ alignSelf: 'stretch' }}>
               <PanelGroup
                 panelWidths={[
                   { size: 240, minSize: 240, resize: 'dynamic' }
                 ]}
               >
                 <Tree {...this.props} />
-                <Editor {...this.props} />
+                <div className="flex-vertical flex1">
+                  <TopBar {...this.props} />
+                  <Editor {...this.props} />
+                </div>
               </PanelGroup>
             </div>
           </div>

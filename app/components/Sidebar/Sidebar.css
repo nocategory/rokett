@@ -1,0 +1,21 @@
+.sidebarWrapper {
+	order: 0;
+	display: flex;
+	flex: 0 1 auto;
+	width: 62px;
+	background-color: #1c1d25;
+	flex-direction: column;
+}
+
+.sidebarTop {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	flex: 1;
+}
+
+.sidebarBottom {
+	display: flex;
+	align-items: center;
+  flex-direction: column;
+}

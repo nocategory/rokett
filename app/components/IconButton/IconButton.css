@@ -9,12 +9,16 @@
   padding: 0 20px;
 }
 
-.icon:hover {
-	cursor: pointer;
-	transition: .3s ease-in;
+.iconWrapper {
+	display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 72px;
+	transition: .3s ease-out;
 }
 
-.test {
-	background-color: #fff;
-	color: #222;
+.iconWrapper:hover {
+	background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+	transition: .3s ease-in;
 }
