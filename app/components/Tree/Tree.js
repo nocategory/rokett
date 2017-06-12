@@ -139,7 +139,7 @@ export default class Tree extends Component {
     };
 
     return (
-      <div className={s.treeWrapper} style={{ background: settings.frame.secondaryColor }}>
+      <div className={s.treeWrapper} style={{ background: 'rgba(28, 29, 37, 0.7)' }}>
         {(() => {
           if (currentFolderJSON) {
             return (

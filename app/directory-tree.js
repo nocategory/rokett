@@ -33,7 +33,7 @@ function directoryTree(path, extensions) {
           if (a.type === b.type) {
             if (a.name < b.name) {
               return -1;
-            } 
+            }
             else if (a.name > b.name) {
               return 1;
             }

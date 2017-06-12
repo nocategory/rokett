@@ -13,6 +13,7 @@ function mapStateToProps(state) {
 
     initialContent: state.editor.initialContent,
     currentFilePath: state.editor.currentFilePath,
+    currentFolderPath: state.editor.currentFolderPath,
     editorMode: state.editor.editorMode,
     currentContent: state.editor.currentContent,
     saved: state.editor.saved,

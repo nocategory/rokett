@@ -1,16 +1,16 @@
 // @flow
-
-import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED } from '../actions/editor';
+import chokidar from 'chokidar';
+import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED, setActiveFolder } from '../actions/editor';
 import dirTree from '../directory-tree';
 
 
 const initialState = {
   initialContent: '',
   currentFilePath: '',
+  currentFolderPath: '',
   editorMode: '',
   currentContent: '',
   saved: true,
-  currentFolderJSONfalse: false,
   editorIsMounted: false,
 };
 
