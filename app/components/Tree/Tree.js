@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Treebeard } from 'react-treebeard';
 import fs from 'fs';
 import s from './Tree.css';
-import settings from '../../settings.json';
+// import settings from '../../settings.json';
 
 const tree = {
   tree: {

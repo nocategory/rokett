@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import ReactTooltip from 'react-tooltip';
 import { translate } from 'react-i18next';
 import IconButton from '../IconButton/IconButton';
 import s from './Sidebar.css';

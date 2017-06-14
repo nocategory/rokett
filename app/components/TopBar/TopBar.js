@@ -12,8 +12,7 @@ const topBarStyle = {
 class TopBar extends Component {
   render() {
     return (
-      <div className={s.topBarWrapper} style={topBarStyle}>
-      </div>
+      <div className={s.topBarWrapper} style={topBarStyle} />
     );
   }
 }
