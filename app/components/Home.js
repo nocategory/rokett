@@ -34,7 +34,7 @@ export default class App extends Component {
                 ]}
               >
                 <Tree {...this.props} />
-                <div className="flex-vertical flex1">
+                <div className="flex-vertical flex1" style={{ maxWidth: '100%' }}>
                   <TopBar {...this.props} />
                   <Editor {...this.props} />
                 </div>

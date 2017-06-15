@@ -37,7 +37,6 @@ export default class Editor extends Component {
     return (
       <div className={s.editorWrapper}>
         <Measure
-          bounds
           onResize={() => {
             if (this.editor) {
               this.editor.layout();
