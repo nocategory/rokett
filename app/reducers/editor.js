@@ -23,7 +23,7 @@ export default function editor(state: Object = initialState, action: Object) {
         currentFilePath: action.filePath,
         editorMode: '',
         currentContent: action.initialContent,
-        saved: true,
+        saved: true
       };
     }
 
@@ -36,12 +36,15 @@ export default function editor(state: Object = initialState, action: Object) {
       }
       return { ...state,
         currentContent: action.currentContent,
-        saved: savedBool,
+        saved: savedBool
       };
     }
 
     case SET_FOLDERPATH: {
-      return { ...state, currentFolderJSON: dirTree(action.currentFolderPath) };
+      return { ...state,
+        currentFolderJSON: dirTree(action.currentFolderPath),
+        currentFolderPath: action.currentFolderPath
+      };
     }
 
     case SET_EDITORMOUNTED: {
