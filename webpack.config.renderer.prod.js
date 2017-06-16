@@ -143,11 +143,15 @@ export default merge.smart(baseConfig, {
     new CopyWebpackPlugin([
       {
         from: 'app/locales',
-        to: `${path.join(__dirname, 'app/dist')}/locales`
+        to: `${path.join(__dirname, 'app')}/locales`
       },
       {
         from: 'node_modules/monaco-editor',
         to: `${path.join(__dirname, 'app/dist')}/monaco-editor`
+      },
+      {
+        from: 'app/assets',
+        to: `${path.join(__dirname, 'app')}/assets`
       }
     ]),
     /**

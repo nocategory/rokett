@@ -48,7 +48,7 @@
 }
 
 .noFolderOpenIcon {
-  background-image: url('../../assets/box.svg');
+  /** background-image: url('../../assets/box.svg'); */
   width: 136px;
   height: 136px;
   background-repeat: no-repeat;
