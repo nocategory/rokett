@@ -26,7 +26,7 @@ export default class App extends Component {
           {/* pane 2 */}
           <div className="app--content flex1" id="app--content">
             <div className="flex-horizontal flex1" style={{ alignSelf: 'stretch' }}>
-			        <Sidebar {...this.props} />
+              <Sidebar {...this.props} />
               <PanelGroup
                 panelWidths={[
                   { size: 240, minSize: 240, resize: 'dynamic' }

@@ -1,8 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import { Treebeard } from 'react-treebeard';
+import chokidar from 'chokidar';
 import fs from 'fs';
 import s from './Tree.css';
+import * as filter from './filter';
 // import settings from '../../settings.json';
 
 const treeStyle = {
@@ -100,8 +102,36 @@ export default class Tree extends Component {
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentFolderPath !== nextProps.currentFolderPath) {
+      console.log('%c ' + JSON.stringify(nextProps.currentFolderPath), 'background: rgb(72, 78, 175); margin: 25px; color: #FFF');
+      // Ignore node_modules folder
+      this.setState({ data: nextProps.currentFolderJSON });
+      const watcher = chokidar.watch(nextProps.currentFolderPath, { ignoreInitial: true, ignored: (/node_modules[/]?/) });
+      const watchedPaths = watcher.getWatched();
+      if (watchedPaths) {
+        watcher.unwatch(this.props.currentFolderPath);
+      }
+      watcher
+        .on('all', (event, path) => {
+          console.log(event, path);
+          console.log('%c Oh my heavens! chokidar twerked ', 'background: rgb(72, 78, 175); margin: 25px; color: #FFF');
+          this.props.setActiveFolder(nextProps.currentFolderPath);
+          const filters = '*';
+          if(!filters){ return this.setState({ data: nextProps.currentFolderJSON }); }
+          var filtered = filter.filterTree(nextProps.currentFolderJSON, filters);
+          console.log('FILTERED: ' + JSON.stringify(filtered));
+          filtered = filter.expandFilteredNodes(filtered, filters);
+          this.setState({ data: filtered });
+          const cursor = this.state.cursor;
+          this.setState({ cursor });
+          console.log('END WATCHER');
+        });
+    }
+  }
+
   /**
-   * When any node present in the tree is clicked
+   * Triggers when any node present in the tree is clicked
    */
   onToggle(node: Object, toggled: boolean) {
     if (this.state.cursor) {
@@ -153,7 +183,7 @@ export default class Tree extends Component {
             return (
               <div className={s.fileTreeSidebar} style={treeSidebarStyle}>
                 <Treebeard
-                  data={currentFolderJSON || {}}
+                  data={this.state.data || {}}
                   onToggle={this.onToggle}
                   animations={false}
                   style={treeStyle}

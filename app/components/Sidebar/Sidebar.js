@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import chokidar from 'chokidar';
 import IconButton from '../IconButton/IconButton';
 import s from './Sidebar.css';
 
@@ -23,6 +22,10 @@ class Sidebar extends Component {
     this.chooseDirectory = this.chooseDirectory.bind(this);
   }
 
+  /**
+   * Open directory
+   */
+
   chooseDirectory() {
     dialog.showOpenDialog({
       title: 'Select a folder',
@@ -30,10 +33,6 @@ class Sidebar extends Component {
     }, (folderPath) => {
       if (folderPath) {
         this.props.setActiveFolder(folderPath[0]);
-        chokidar.watch(folderPath[0], { ignoreInitial: true }).on('all', (event, path) => {
-          console.log(event, path);
-          this.props.setActiveFolder(this.props.currentFolderPath);
-        });
       }
     });
   }
