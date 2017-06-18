@@ -5,7 +5,7 @@ import fs from 'fs';
 import s from './Tree.css';
 // import settings from '../../settings.json';
 
-const tree = {
+const treeStyle = {
   tree: {
     base: {
       listStyle: 'none',
@@ -100,12 +100,16 @@ export default class Tree extends Component {
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
 
-  // file tree
+  /**
+   * When any node present in the tree is clicked
+   */
   onToggle(node: Object, toggled: boolean) {
-    const currentNode = node;
     if (this.state.cursor) {
-      this.state.cursor.active = false;
+      const cursor = this.state.cursor;
+      cursor.active = false;
+      this.setState({ cursor });
     }
+    const currentNode = node;
     currentNode.active = true;
     if (node.children) {
       currentNode.toggled = toggled;
@@ -114,26 +118,30 @@ export default class Tree extends Component {
       this.getFileContent(node.path);
     }
     this.setState({ cursor: node });
-    console.log(this.state.cursor);
+    console.log("Cursor state on node click: " + JSON.stringify(this.state.cursor));
   }
 
+  /**
+   * Get the contents of the file just selected
+   */
   getFileContent(path: string) {
     fs.readFile(path, 'utf8', (err, data) => {
       this.editorContentCallback(data, path);
     });
   }
 
+  /**
+   * Set the content of the editor
+   */
+
   editorContentCallback(initContent: string, filePath: string) {
-    /** call redux action to set
-     * editor content
-     */
     const { setEditorContent } = this.props;
     setEditorContent(initContent, filePath);
   }
 
   render() {
     const { currentFolderJSON } = this.props;
-    const treeStyle = {
+    const treeSidebarStyle = {
       zIndex: 99,
       WebkitAppRegion: 'no-drag',
     };
@@ -143,12 +151,12 @@ export default class Tree extends Component {
         {(() => {
           if (currentFolderJSON) {
             return (
-              <div className={s.fileTreeSidebar} style={treeStyle}>
+              <div className={s.fileTreeSidebar} style={treeSidebarStyle}>
                 <Treebeard
                   data={currentFolderJSON || {}}
                   onToggle={this.onToggle}
                   animations={false}
-                  style={tree}
+                  style={treeStyle}
                 />
               </div>
             );
