@@ -14,8 +14,8 @@ const treeStyle = {
       listStyle: 'none',
       backgroundColor: 'inherit',
       margin: 0,
-      padding: '0',
-      color: '#9DA5AB',
+      padding: '12.5px',
+      color: '#FFF',
       fontFamily: 'rubikregular',
       fontSize: '1rem',
       width: '240px',
@@ -28,20 +28,19 @@ const treeStyle = {
       link: {
         cursor: 'pointer',
         position: 'relative',
-        padding: '0px 20px',
+        padding: '2px 15px',
         display: 'block',
         whiteSpace: 'nowrap'
       },
       activeLink: {
         background: '#484eaf',
-        borderRadius: '3px',
       },
       toggle: {
         base: {
           position: 'relative',
           display: 'inline-block',
           verticalAlign: 'top',
-          marginLeft: '-5px',
+          marginLeft: '0px',
           height: '24px',
           width: '24px'
         },
@@ -49,13 +48,13 @@ const treeStyle = {
           position: 'absolute',
           top: '50%',
           left: '50%',
-          margin: '-9px 0 0 -9px',
+          margin: '-10px 0 0 -7px',
           height: '11px'
         },
-        height: 11,
-        width: 11,
+        height: 9,
+        width: 9,
         arrow: {
-          fill: '#9DA5AB',
+          fill: '#FFF',
           strokeWidth: 0
         }
       },
@@ -63,7 +62,8 @@ const treeStyle = {
         base: {
           display: 'inline-block',
           verticalAlign: 'top',
-          color: '#9DA5AB'
+          color: '#FFF',
+          opacity: '0.8'
         },
         connector: {
           width: '2px',
@@ -81,7 +81,7 @@ const treeStyle = {
       },
       subtree: {
         listStyle: 'none',
-        paddingLeft: '27px'
+        paddingLeft: '30px'
       },
       loading: {
         color: '#E2C089'
@@ -103,20 +103,28 @@ export default class Tree extends Component {
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
 
-  chokidarFired(e, path) {
+  chokidarFired(event, path) {
     console.log(event, path);
     console.log('%c Oh my heavens! chokidar twerked ', 'background: rgb(72, 78, 175); margin: 25px; color: #FFF');
     // this.props.setActiveFolder(nextProps.currentFolderPath);
-    const x = dirTree(this.props.currentFolderPath);
+    const newData = dirTree(this.props.currentFolderPath);
     const curr = this.props.currentFolderJSON;
-    const diff = deep.diff(this.state.data, x);
-    console.log(diff);
-    diff.forEach((differ) => {
-      console.log(differ);
-      deep.applyChange(curr, true, differ);
+    const currentData = this.state.data;
+    const observableDiff = deep.observableDiff;
+    observableDiff(currentData, newData, (d) => {
+      console.log(newData);
+      console.log('D: ' + JSON.stringify(d.path));
+      // Apply all changes except those to the 'name' property...
+      if (d.path.join('.').indexOf('toggled') === -1 && d.path.join('.').indexOf('active') === -1) {
+        console.log('%c im here , waoW ', 'background: rgb(201, 78, 175); margin: 25px; color: #FFF');
+        console.log(d.path.join('.').indexOf('toggled'));
+        console.log(d.path.join('.').indexOf('active'));
+        console.log(currentData);
+        deep.applyChange(currentData, newData, d);
+      }
     });
-    console.log("FINAL DATA: " + JSON.stringify(curr));
-    this.setState({ data: curr });
+    console.log("FINAL DATA: " + JSON.stringify(currentData));
+    this.setState({ data: currentData });
   }
 
   componentWillReceiveProps(nextProps) {
