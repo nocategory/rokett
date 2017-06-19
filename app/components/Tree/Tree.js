@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { Treebeard } from 'react-treebeard';
 import chokidar from 'chokidar';
 import fs from 'fs';
+import deep from 'deep-diff';
 import s from './Tree.css';
-import * as filter from './filter';
+import dirTree from '../../directory-tree';
 // import settings from '../../settings.json';
 
 const treeStyle = {
@@ -102,30 +103,46 @@ export default class Tree extends Component {
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
 
+  chokidarFired(e, path) {
+    console.log(event, path);
+    console.log('%c Oh my heavens! chokidar twerked ', 'background: rgb(72, 78, 175); margin: 25px; color: #FFF');
+    // this.props.setActiveFolder(nextProps.currentFolderPath);
+    const x = dirTree(this.props.currentFolderPath);
+    const curr = this.props.currentFolderJSON;
+    const diff = deep.diff(this.state.data, x);
+    console.log(diff);
+    diff.forEach((differ) => {
+      console.log(differ);
+      deep.applyChange(curr, true, differ);
+    });
+    console.log("FINAL DATA: " + JSON.stringify(curr));
+    this.setState({ data: curr });
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.currentFolderPath !== nextProps.currentFolderPath) {
-      console.log('%c ' + JSON.stringify(nextProps.currentFolderPath), 'background: rgb(72, 78, 175); margin: 25px; color: #FFF');
-      // Ignore node_modules folder
       this.setState({ data: nextProps.currentFolderJSON });
+      // Start watching the files inside the chosen directory,
+      // ignore node_modules if it exists since... it's quite big
+
       const watcher = chokidar.watch(nextProps.currentFolderPath, { ignoreInitial: true, ignored: (/node_modules[/]?/) });
       const watchedPaths = watcher.getWatched();
       if (watchedPaths) {
         watcher.unwatch(this.props.currentFolderPath);
       }
+      // @TODO: Try to get multiple fs events on a single 'on' method
       watcher
-        .on('all', (event, path) => {
-          console.log(event, path);
-          console.log('%c Oh my heavens! chokidar twerked ', 'background: rgb(72, 78, 175); margin: 25px; color: #FFF');
-          this.props.setActiveFolder(nextProps.currentFolderPath);
-          const filters = '*';
-          if(!filters){ return this.setState({ data: nextProps.currentFolderJSON }); }
-          var filtered = filter.filterTree(nextProps.currentFolderJSON, filters);
-          console.log('FILTERED: ' + JSON.stringify(filtered));
-          filtered = filter.expandFilteredNodes(filtered, filters);
-          this.setState({ data: filtered });
-          const cursor = this.state.cursor;
-          this.setState({ cursor });
-          console.log('END WATCHER');
+        .on('add', (event, path) => {
+          this.chokidarFired(event, path);
+        })
+        .on('unlink', (event, path) => {
+          this.chokidarFired(event, path);
+        })
+        .on('unlinkDir', (event, path) => {
+          this.chokidarFired(event, path);
+        })
+        .on('addDir', (event, path) => {
+          this.chokidarFired(event, path);
         });
     }
   }
@@ -148,7 +165,6 @@ export default class Tree extends Component {
       this.getFileContent(node.path);
     }
     this.setState({ cursor: node });
-    console.log("Cursor state on node click: " + JSON.stringify(this.state.cursor));
   }
 
   /**

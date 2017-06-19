@@ -192,6 +192,7 @@
     "chokidar": "^1.7.0",
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.0.1",
+    "deep-diff": "^0.3.8",
     "directory-tree": "^2.0.0",
     "electron-builder-squirrel-windows": "^17.9.0",
     "electron-debug": "^1.1.0",
