@@ -103,33 +103,12 @@ export default class Tree extends Component {
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
 
-  chokidarFired(event, path) {
-    console.log(event, path);
-    console.log('%c Oh my heavens! chokidar twerked ', 'background: rgb(72, 78, 175); margin: 25px; color: #FFF');
-    // this.props.setActiveFolder(nextProps.currentFolderPath);
-    const newData = dirTree(this.props.currentFolderPath);
-    const curr = this.props.currentFolderJSON;
-    const currentData = this.state.data;
-    const observableDiff = deep.observableDiff;
-    observableDiff(currentData, newData, (d) => {
-      console.log(newData);
-      console.log('D: ' + JSON.stringify(d.path));
-      // Apply all changes except those to the 'name' property...
-      if (d.path.join('.').indexOf('toggled') === -1 && d.path.join('.').indexOf('active') === -1) {
-        console.log('%c im here , waoW ', 'background: rgb(201, 78, 175); margin: 25px; color: #FFF');
-        console.log(d.path.join('.').indexOf('toggled'));
-        console.log(d.path.join('.').indexOf('active'));
-        console.log(currentData);
-        deep.applyChange(currentData, newData, d);
-      }
-    });
-    console.log("FINAL DATA: " + JSON.stringify(currentData));
-    this.setState({ data: currentData });
-  }
-
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Object) {
     if (this.props.currentFolderPath !== nextProps.currentFolderPath) {
-      this.setState({ data: nextProps.currentFolderJSON });
+      const data = dirTree(nextProps.currentFolderPath);
+      if (data) {
+        this.setState({ data });
+      } else return this.setState({ data: null });
       // Start watching the files inside the chosen directory,
       // ignore node_modules if it exists since... it's quite big
 
@@ -139,20 +118,38 @@ export default class Tree extends Component {
         watcher.unwatch(this.props.currentFolderPath);
       }
       // @TODO: Try to get multiple fs events on a single 'on' method
+      // doesn't look to be supported by chokidar ^
       watcher
-        .on('add', (event, path) => {
-          this.chokidarFired(event, path);
+        .on('add', (event) => {
+          this.chokidarFired(event, nextProps);
         })
-        .on('unlink', (event, path) => {
-          this.chokidarFired(event, path);
+        .on('unlink', (event) => {
+          this.chokidarFired(event, nextProps);
         })
-        .on('unlinkDir', (event, path) => {
-          this.chokidarFired(event, path);
+        .on('unlinkDir', (event) => {
+          this.chokidarFired(event, nextProps);
         })
-        .on('addDir', (event, path) => {
-          this.chokidarFired(event, path);
+        .on('addDir', (event) => {
+          this.chokidarFired(event, nextProps);
         });
     }
+  }
+
+  chokidarFired(e: string, nP: Object) {
+    const newData = dirTree(this.props.currentFolderPath);
+    let currentData = this.state.data;
+    const observableDiff = deep.observableDiff;
+    observableDiff(currentData, newData, (d) => {
+      if (!d.path || !(d.path.length > 0)) {
+        currentData = {};
+        return currentData;
+      }
+      // Apply all changes except those to the 'name' property...
+      if (d.path.join('.').indexOf('toggled') === -1 && d.path.join('.').indexOf('active') === -1) {
+        deep.applyChange(currentData, newData, d);
+      }
+    });
+    return this.setState({ data: currentData });
   }
 
   /**
@@ -194,7 +191,6 @@ export default class Tree extends Component {
   }
 
   render() {
-    const { currentFolderJSON } = this.props;
     const treeSidebarStyle = {
       zIndex: 99,
       WebkitAppRegion: 'no-drag',
@@ -203,7 +199,12 @@ export default class Tree extends Component {
     return (
       <div className={s.treeWrapper} style={{ background: 'rgba(28, 29, 37, 0.7)' }}>
         {(() => {
-          if (currentFolderJSON) {
+          console.log(this.state.data);
+          if (this.state.data !== {} && this.state.data) {
+            console.log(JSON.stringify(this.state.data));
+            if (this.state.data === {}) {
+              console.log("LUL??????");
+            }
             return (
               <div className={s.fileTreeSidebar} style={treeSidebarStyle}>
                 <Treebeard

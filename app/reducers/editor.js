@@ -41,10 +41,7 @@ export default function editor(state: Object = initialState, action: Object) {
     }
 
     case SET_FOLDERPATH: {
-      return { ...state,
-        currentFolderJSON: dirTree(action.currentFolderPath),
-        currentFolderPath: action.currentFolderPath
-      };
+      return { ...state, currentFolderPath: action.currentFolderPath };
     }
 
     case SET_EDITORMOUNTED: {
