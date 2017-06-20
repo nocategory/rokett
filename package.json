@@ -201,6 +201,7 @@
     "i18next": "^8.2.1",
     "i18next-browser-languagedetector": "^1.0.1",
     "i18next-xhr-backend": "^1.4.1",
+    "is-empty": "^1.2.0",
     "json-query": "^2.2.2",
     "localforage": "^1.5.0",
     "monaco-editor": "^0.8.3",

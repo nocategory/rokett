@@ -4,6 +4,7 @@ import { Treebeard } from 'react-treebeard';
 import chokidar from 'chokidar';
 import fs from 'fs';
 import deep from 'deep-diff';
+import empty from 'is-empty';
 import s from './Tree.css';
 import dirTree from '../../directory-tree';
 // import settings from '../../settings.json';
@@ -121,21 +122,21 @@ export default class Tree extends Component {
       // doesn't look to be supported by chokidar ^
       watcher
         .on('add', (event) => {
-          this.chokidarFired(event, nextProps);
+          this.chokidarFired(event);
         })
         .on('unlink', (event) => {
-          this.chokidarFired(event, nextProps);
+          this.chokidarFired(event);
         })
         .on('unlinkDir', (event) => {
-          this.chokidarFired(event, nextProps);
+          this.chokidarFired(event);
         })
         .on('addDir', (event) => {
-          this.chokidarFired(event, nextProps);
+          this.chokidarFired(event);
         });
     }
   }
 
-  chokidarFired(e: string, nP: Object) {
+  chokidarFired(e: string) {
     const newData = dirTree(this.props.currentFolderPath);
     let currentData = this.state.data;
     const observableDiff = deep.observableDiff;
@@ -200,7 +201,7 @@ export default class Tree extends Component {
       <div className={s.treeWrapper} style={{ background: 'rgba(28, 29, 37, 0.7)' }}>
         {(() => {
           console.log(this.state.data);
-          if (this.state.data !== {} && this.state.data) {
+          if (!empty(this.state.data)) {
             console.log(JSON.stringify(this.state.data));
             if (this.state.data === {}) {
               console.log("LUL??????");
