@@ -12,7 +12,8 @@ export default class Editor extends Component {
   editor: Object;
 
   props: {
-    setEditorMount: () => void
+    setEditorMount: () => void,
+    editorLang: string
   };
 
   constructor() {
@@ -20,9 +21,10 @@ export default class Editor extends Component {
     this.editorDidMount = this.editorDidMount.bind(this);
   }
 
-  editorDidMount(editor: Object) {
+  editorDidMount(editor: Object, monaco: Object) {
     const { setEditorMount } = this.props;
-    setEditorMount();
+    const languagesArray = monaco.languages.getLanguages();
+    setEditorMount(languagesArray);
     editor.focus();
     this.editor = editor;
   }
@@ -48,8 +50,8 @@ export default class Editor extends Component {
               <MonacoEditor
                 width={'100%'}
                 height={'100%'}
-                language="javascript"
                 theme="vs-dark"
+                language={this.props.editorLang}
                 value={currentContent}
                 onChange={this.onChange}
                 editorDidMount={this.editorDidMount}

@@ -3618,6 +3618,10 @@ file-entry-cache@^2.0.0:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
 
+file-extension@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/file-extension/-/file-extension-3.1.2.tgz#eed169877eeba004aa890bf3f11b4a82935e5914"
+
 file-loader@^0.11.1:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-0.11.2.tgz#4ff1df28af38719a6098093b88c82c71d1794a34"
@@ -7041,6 +7045,13 @@ react-addons-test-utils@^15.5.1:
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.5.1.tgz#e0d258cda2a122ad0dff69f838260d0c3958f5f7"
   dependencies:
     fbjs "^0.8.4"
+    object-assign "^4.1.0"
+
+react-contextmenu@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/react-contextmenu/-/react-contextmenu-2.6.3.tgz#019e2f2ebd3a410b4755930293773e8d4f43da9c"
+  dependencies:
+    classnames "^2.2.5"
     object-assign "^4.1.0"
 
 react-deep-force-update@^1.0.0:

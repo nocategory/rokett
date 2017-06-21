@@ -1,4 +1,5 @@
 @import "fonts/stylesheet.css";
+@import "./devicon.min.css";
 
 .app {
   position: absolute;

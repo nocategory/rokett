@@ -145,7 +145,6 @@ MonacoEditor.defaultProps = {
   height: '100%',
   value: null,
   defaultValue: '',
-  language: 'javascript',
   theme: 'vs',
   options: {},
   editorDidMount: noop,

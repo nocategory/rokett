@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
-import { Treebeard } from 'react-treebeard';
+import { Treebeard, decorators } from 'react-treebeard';
+// import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import chokidar from 'chokidar';
 import fs from 'fs';
 import deep from 'deep-diff';
@@ -91,6 +92,28 @@ const treeStyle = {
   }
 };
 
+/* decorators.Container = (props) => (
+  <div onClick={props.onClick}>
+    <ContextMenuTrigger id="test">
+      <props.decorators.Toggle />
+      <props.decorators.Header />
+    </ContextMenuTrigger>
+
+    <ContextMenu id="test">
+      <MenuItem data={'some_data'}>
+          ContextMenu Item 1
+        </MenuItem>
+      <MenuItem data={'some_data'}>
+          ContextMenu Item 2
+        </MenuItem>
+      <MenuItem divider />
+      <MenuItem data={'some_data'}>
+        ContextMenu Item 3
+        </MenuItem>
+    </ContextMenu>
+  </div>
+); */
+
 export default class Tree extends Component {
 
   state: Object;
@@ -136,7 +159,7 @@ export default class Tree extends Component {
     }
   }
 
-  chokidarFired(e: string) {
+  chokidarFired() {
     const newData = dirTree(this.props.currentFolderPath);
     let currentData = this.state.data;
     const observableDiff = deep.observableDiff;
@@ -197,20 +220,31 @@ export default class Tree extends Component {
       WebkitAppRegion: 'no-drag',
     };
 
+    decorators.Header = (props) => {
+      const style = props.style;
+      const iconType = props.node.type ? 'folder' : 'file';
+      const iconClass = `devicon-javascript-plain colored ${iconType}`;
+      const iconStyle = { marginRight: '5px' };
+      return (
+        <div style={style.base}>
+          <div style={style.title}>
+            <i className={iconClass} style={iconStyle} />
+            {props.node.name}
+          </div>
+        </div>
+      );
+    };
+
     return (
       <div className={s.treeWrapper} style={{ background: 'rgba(28, 29, 37, 0.7)' }}>
         {(() => {
-          console.log(this.state.data);
           if (!empty(this.state.data)) {
-            console.log(JSON.stringify(this.state.data));
-            if (this.state.data === {}) {
-              console.log("LUL??????");
-            }
             return (
               <div className={s.fileTreeSidebar} style={treeSidebarStyle}>
                 <Treebeard
                   data={this.state.data || {}}
                   onToggle={this.onToggle}
+                  decorators={decorators}
                   animations={false}
                   style={treeStyle}
                 />
