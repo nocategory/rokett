@@ -15,7 +15,7 @@ import baseConfig from './webpack.config.base';
 const outputPath = path.join(__dirname, 'app/dist');
 
 export default merge.smart(baseConfig, {
-  devtool: 'source-map',
+  devtool: 'eval',
 
   target: 'electron-renderer',
 
