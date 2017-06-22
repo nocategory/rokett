@@ -10,7 +10,6 @@ os:
   - osx
 
 node_js:
-  - 8
   - 7
 
 cache:
