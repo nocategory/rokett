@@ -8,21 +8,19 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import BabiliPlugin from 'babili-webpack-plugin';
+// import BabiliPlugin from 'babili-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
-const outputPath = path.join(__dirname, 'app/dist');
-
 export default merge.smart(baseConfig, {
-  devtool: 'eval',
+  devtool: 'source-map',
 
   target: 'electron-renderer',
 
   entry: ['babel-polyfill', './app/index'],
 
   output: {
-    path: outputPath,
+    path: path.join(__dirname, 'app/dist'),
     publicPath: '../dist/'
   },
 
@@ -170,7 +168,8 @@ export default merge.smart(baseConfig, {
     /**
      * Babli is an ES6+ aware minifier based on the Babel toolchain (beta)
      */
-    new BabiliPlugin(),
+    // Waiting on https://github.com/babel/babili/issues/332
+    // new BabiliPlugin(),
 
     new ExtractTextPlugin('style.css'),
 
