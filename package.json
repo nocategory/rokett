@@ -189,7 +189,6 @@
   "dependencies": {
     "app-root-dir": "^1.0.2",
     "better-react-spinkit": "^2.0.0-6",
-    "chokidar": "^1.7.0",
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.0.1",
     "deep-diff": "^0.3.8",
