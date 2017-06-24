@@ -23,8 +23,12 @@ export default class Editor extends Component {
 
   editorDidMount(editor: Object, monaco: Object) {
     const { setEditorMount } = this.props;
-    const languagesArray = monaco.languages.getLanguages();
-    setEditorMount(languagesArray);
+    if (!this.props.languages) {
+      const languagesArray = monaco.languages.getLanguages();
+      setEditorMount(languagesArray);
+    } else {
+      setEditorMount(this.props.languages);
+    }
     editor.focus();
     this.editor = editor;
   }

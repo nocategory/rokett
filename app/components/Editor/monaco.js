@@ -28,9 +28,6 @@ class MonacoEditor extends React.Component {
         this.__prevent_trigger_change_event = false;
       }
     }
-    if (prevProps.language !== this.props.language) {
-      context.monaco.editor.setModelLanguage(this.editor.getModel(), this.props.language);
-    }
   }
   editorWillMount(monaco) {
     const { editorWillMount } = this.props;
@@ -44,7 +41,7 @@ class MonacoEditor extends React.Component {
 
       // Always refer to the latest value
       this.__current_value = value;
-
+      monaco.editor.setModelLanguage(editor.getModel(), this.props.language);
       // Only invoking when user input changed
       if (!this.__prevent_trigger_change_event) {
         onChange(value, event);
