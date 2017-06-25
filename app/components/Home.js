@@ -11,6 +11,24 @@ import Settings from '../components/Settings/Settings';
 import Editor from '../components/Editor/Editor';
 
 export default class App extends Component {
+
+  state: Object;
+  handlePanelUpdate: Function;
+
+  constructor() {
+    super();
+    this.state = {
+      panelWidths: [
+        { size: 240, minSize: 240, resize: 'dynamic' }
+      ]
+    };
+    this.handlePanelUpdate = this.handlePanelUpdate.bind(this);
+  }
+
+  handlePanelUpdate(widths: Object) {
+    this.setState({ panelWidths: widths });
+  }
+
   render() {
     const { settingsVisible } = this.props;
     return (
@@ -27,9 +45,8 @@ export default class App extends Component {
             <div className="flex-horizontal flex1" style={{ alignSelf: 'stretch' }}>
               <Sidebar {...this.props} />
               <PanelGroup
-                panelWidths={[
-                  { size: 240, minSize: 240, resize: 'dynamic' }
-                ]}
+                panelWidths={this.state.panelWidths}
+                onUpdate={this.handlePanelUpdate}
               >
                 <Tree {...this.props} />
                 <div className="flex-vertical flex1" style={{ maxWidth: '100%' }}>
