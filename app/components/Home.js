@@ -23,7 +23,6 @@ export default class App extends Component {
         >
           <Titlebar {...this.props} />
 
-          {/* pane 2 */}
           <div className="app--content flex1" id="app--content">
             <div className="flex-horizontal flex1" style={{ alignSelf: 'stretch' }}>
               <Sidebar {...this.props} />

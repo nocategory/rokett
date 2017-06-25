@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Treebeard, decorators } from 'react-treebeard';
 // import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
+import className from 'classnames';
 import chokidar from 'chokidar';
 import fs from 'fs';
 import deep from 'deep-diff';
@@ -19,9 +20,7 @@ const treeStyle = {
       padding: '12.5px',
       color: '#FFF',
       fontFamily: 'rubikregular',
-      fontSize: '1rem',
-      width: '240px',
-      maxWidth: '240px'
+      fontSize: '1.2em',
     },
     node: {
       base: {
@@ -30,12 +29,12 @@ const treeStyle = {
       link: {
         cursor: 'pointer',
         position: 'relative',
-        padding: '2px 15px',
+        padding: '1.5px 7px',
         display: 'block',
         whiteSpace: 'nowrap'
       },
       activeLink: {
-        background: '#484eaf',
+        background: 'rgba(144, 144, 144, 0.2)',
       },
       toggle: {
         base: {
@@ -83,7 +82,7 @@ const treeStyle = {
       },
       subtree: {
         listStyle: 'none',
-        paddingLeft: '30px'
+        paddingLeft: '25px'
       },
       loading: {
         color: '#E2C089'
@@ -222,8 +221,24 @@ export default class Tree extends Component {
 
     decorators.Header = (props) => {
       const style = props.style;
-      const iconType = props.node.type ? 'folder' : 'file';
-      const iconClass = `devicon-javascript-plain colored ${iconType}`;
+      const iconType = props.node.type;
+      let iconClass;
+      let iconExt;
+      if (iconType === 'file') {
+        if (empty(props.node.extension)) {
+          iconClass = `${iconType}-icon`;
+        } else if (props.node.name.indexOf('yarn') !== -1) {
+          iconClass = 'devicon-yarn-plain colored';
+        } else if (props.node.name.indexOf('webpack') !== -1) {
+          iconClass = 'devicon-webpack-plain colored';
+        } else {
+          iconExt = props.node.extension.slice(1);
+          iconClass = className(`devicon-${iconExt}-plain colored`);
+        }
+      // Directory
+      } else {
+        iconClass = `${iconType}-icon`;
+      }
       const iconStyle = { marginRight: '5px' };
       return (
         <div style={style.base}>
