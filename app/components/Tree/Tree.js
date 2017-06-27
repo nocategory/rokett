@@ -203,6 +203,7 @@ export default class Tree extends Component {
     };
 
     decorators.Header = (props) => {
+      console.log(props);
       const style = props.style;
       const iconType = props.node.type;
       let iconClass;
@@ -227,7 +228,7 @@ export default class Tree extends Component {
         <div style={style.base}>
           <div style={style.title}>
             {iconType === 'directory' &&
-              <props.decorators.Toggle style={props.style.toggle} />
+              <decorators.Toggle style={props.style.toggle} />
             }
             <i className={iconClass} style={iconStyle} />
             {props.node.name}
@@ -239,18 +240,18 @@ export default class Tree extends Component {
     decorators.Container = (props) => (
       <div onClick={props.onClick}>
         <ContextMenuTrigger id="test">
-          <props.decorators.Header {...props} />
+          <decorators.Header {...props} />
         </ContextMenuTrigger>
 
-        <ContextMenu id="test">
-          <MenuItem>
+        <ContextMenu id="test" className={s.contextMenu}>
+          <MenuItem attributes={{ className: s.menuItem }}>
             ContextMenu Item 1
           </MenuItem>
-          <MenuItem>
+          <MenuItem attributes={{ className: s.menuItem }}>
             ContextMenu Item 2
           </MenuItem>
           <MenuItem divider />
-          <MenuItem>
+          <MenuItem attributes={{ className: s.menuItem }}>
             ContextMenu Item 3
           </MenuItem>
         </ContextMenu>

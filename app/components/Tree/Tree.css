@@ -56,3 +56,13 @@
   background-size: contain;
   opacity: .83;
 }
+
+.contextMenu {
+  z-index: 99;
+  background: #131319;
+  border-radius: 3px;
+}
+
+.menuItem {
+  padding: 7.5px;
+}
