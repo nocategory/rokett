@@ -16,8 +16,6 @@ import autoUpdater from './autoUpdater';
 import MenuBuilder from './menu';
 import settings from './settings.json';
 
-require('electron-debug')({ enabled: true, showDevTools: true });
-
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {

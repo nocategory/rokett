@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Treebeard, decorators } from 'react-treebeard';
-// import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import className from 'classnames';
 import chokidar from 'chokidar';
 import fs from 'fs';
@@ -21,10 +21,13 @@ const treeStyle = {
       color: '#FFF',
       fontFamily: 'rubikregular',
       fontSize: '1.2em',
+      width: '100%'
     },
     node: {
       base: {
-        position: 'relative'
+        position: 'relative',
+        padding: '2.2px',
+        cursor: 'pointer'
       },
       link: {
         cursor: 'pointer',
@@ -42,8 +45,8 @@ const treeStyle = {
           display: 'inline-block',
           verticalAlign: 'top',
           marginLeft: '0px',
-          height: '24px',
-          width: '24px'
+          height: '16px',
+          width: '16px'
         },
         wrapper: {
           position: 'absolute',
@@ -91,27 +94,6 @@ const treeStyle = {
   }
 };
 
-/* decorators.Container = (props) => (
-  <div onClick={props.onClick}>
-    <ContextMenuTrigger id="test">
-      <props.decorators.Toggle />
-      <props.decorators.Header />
-    </ContextMenuTrigger>
-
-    <ContextMenu id="test">
-      <MenuItem data={'some_data'}>
-          ContextMenu Item 1
-        </MenuItem>
-      <MenuItem data={'some_data'}>
-          ContextMenu Item 2
-        </MenuItem>
-      <MenuItem divider />
-      <MenuItem data={'some_data'}>
-        ContextMenu Item 3
-        </MenuItem>
-    </ContextMenu>
-  </div>
-); */
 
 export default class Tree extends Component {
 
@@ -185,6 +167,7 @@ export default class Tree extends Component {
       this.setState({ cursor });
     }
     const currentNode = node;
+    console.log(currentNode);
     currentNode.active = true;
     if (node.children) {
       currentNode.toggled = toggled;
@@ -235,7 +218,7 @@ export default class Tree extends Component {
           iconExt = props.node.extension.slice(1);
           iconClass = className(`devicon-${iconExt}-plain colored`);
         }
-      // Directory
+        // Directory
       } else {
         iconClass = `${iconType}-icon`;
       }
@@ -243,12 +226,36 @@ export default class Tree extends Component {
       return (
         <div style={style.base}>
           <div style={style.title}>
+            {iconType === 'directory' &&
+              <props.decorators.Toggle style={props.style.toggle} />
+            }
             <i className={iconClass} style={iconStyle} />
             {props.node.name}
           </div>
         </div>
       );
     };
+
+    decorators.Container = (props) => (
+      <div onClick={props.onClick}>
+        <ContextMenuTrigger id="test">
+          <props.decorators.Header {...props} />
+        </ContextMenuTrigger>
+
+        <ContextMenu id="test">
+          <MenuItem>
+            ContextMenu Item 1
+          </MenuItem>
+          <MenuItem>
+            ContextMenu Item 2
+          </MenuItem>
+          <MenuItem divider />
+          <MenuItem>
+            ContextMenu Item 3
+          </MenuItem>
+        </ContextMenu>
+      </div>
+      );
 
     return (
       <div className={s.treeWrapper} style={{ background: 'rgba(28, 29, 37, 0.7)' }}>
