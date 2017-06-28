@@ -1,0 +1,8 @@
+{
+  "actions": {
+    "newFile": "New file",
+    "newFolder": "New folder",
+    "rename": "Rename",
+    "delete": "Delete"
+  }
+}

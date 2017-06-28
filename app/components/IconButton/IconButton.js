@@ -20,7 +20,7 @@ export default class IconButton extends Component {
         onClick={this.props.iconFunction}
       >
         <img className={s.icon} src={`assets/${this.props.iconName}.svg`} alt="" />
-        <ReactTooltip id={this.props.iconName} place="bottom" effect="solid" border={false} type={this.props.theme} />
+        <ReactTooltip id={this.props.iconName} effect="solid" border={false} className={s.tooltip} type={this.props.theme} />
       </div>
     );
   }

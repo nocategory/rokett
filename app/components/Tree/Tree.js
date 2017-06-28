@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Treebeard, decorators } from 'react-treebeard';
+import { translate } from 'react-i18next';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import className from 'classnames';
 import chokidar from 'chokidar';
@@ -20,14 +21,15 @@ const treeStyle = {
       padding: '12.5px',
       color: '#FFF',
       fontFamily: 'rubikregular',
-      fontSize: '1.2em',
+      fontSize: '1.25em',
       width: '100%'
     },
     node: {
       base: {
         position: 'relative',
         padding: '2.2px',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        margin: 0
       },
       link: {
         cursor: 'pointer',
@@ -95,15 +97,17 @@ const treeStyle = {
 };
 
 
-export default class Tree extends Component {
+class Tree extends Component {
 
   state: Object;
   onToggle: Function;
   editorContentCallback: Function;
+  contextMenuId: number;
 
   constructor() {
     super();
     this.state = {};
+    this.contextMenuId = -1;
     this.onToggle = this.onToggle.bind(this);
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
@@ -149,7 +153,7 @@ export default class Tree extends Component {
         currentData = {};
         return currentData;
       }
-      // Apply all changes except those to the 'name' property...
+      // Apply all changes except those to the 'toggled' and 'active' properties...
       if (d.path.join('.').indexOf('toggled') === -1 && d.path.join('.').indexOf('active') === -1) {
         deep.applyChange(currentData, newData, d);
       }
@@ -167,7 +171,6 @@ export default class Tree extends Component {
       this.setState({ cursor });
     }
     const currentNode = node;
-    console.log(currentNode);
     currentNode.active = true;
     if (node.children) {
       currentNode.toggled = toggled;
@@ -196,19 +199,24 @@ export default class Tree extends Component {
     setEditorContent(initContent, filePath);
   }
 
+  handleClick(e, data) {
+    console.log(data);
+  }
+
   render() {
+    const { t } = this.props;
+
     const treeSidebarStyle = {
       zIndex: 99,
       WebkitAppRegion: 'no-drag',
     };
 
     decorators.Header = (props) => {
-      console.log(props);
       const style = props.style;
       const iconType = props.node.type;
       let iconClass;
       let iconExt;
-      if (iconType === 'file') {
+      if (props.terminal) {
         if (empty(props.node.extension)) {
           iconClass = `${iconType}-icon`;
         } else if (props.node.name.indexOf('yarn') !== -1) {
@@ -219,15 +227,16 @@ export default class Tree extends Component {
           iconExt = props.node.extension.slice(1);
           iconClass = className(`devicon-${iconExt}-plain colored`);
         }
-        // Directory
+      // Directory
       } else {
         iconClass = `${iconType}-icon`;
       }
       const iconStyle = { marginRight: '5px' };
       return (
-        <div style={style.base}>
+        <div style={style.base} className={s.headerStyle}>
           <div style={style.title}>
-            {iconType === 'directory' &&
+            {/* !props.terminal == directory */}
+            {!props.terminal &&
               <decorators.Toggle style={props.style.toggle} />
             }
             <i className={iconClass} style={iconStyle} />
@@ -237,26 +246,31 @@ export default class Tree extends Component {
       );
     };
 
-    decorators.Container = (props) => (
-      <div onClick={props.onClick}>
-        <ContextMenuTrigger id="test">
-          <decorators.Header {...props} />
-        </ContextMenuTrigger>
+    decorators.Container = (props) => {
+      this.contextMenuId++;
+      return (
+        <div onClick={props.onClick}>
+          <ContextMenuTrigger id={`headerContextTrigger${this.contextMenuId}`}>
+            <decorators.Header {...props} />
+          </ContextMenuTrigger>
 
-        <ContextMenu id="test" className={s.contextMenu}>
-          <MenuItem attributes={{ className: s.menuItem }}>
-            ContextMenu Item 1
-          </MenuItem>
-          <MenuItem attributes={{ className: s.menuItem }}>
-            ContextMenu Item 2
-          </MenuItem>
-          <MenuItem divider />
-          <MenuItem attributes={{ className: s.menuItem }}>
-            ContextMenu Item 3
-          </MenuItem>
-        </ContextMenu>
-      </div>
+          <ContextMenu id={`headerContextTrigger${this.contextMenuId}`} className={s.contextMenu}>
+            <MenuItem attributes={{ className: s.menuItem }} onClick={this.handleClick}>
+              {t('tree:actions:newFile')}
+            </MenuItem>
+            <MenuItem attributes={{ className: s.menuItem }} onClick={this.handleClick}>
+              {t('tree:actions:newFolder')}
+            </MenuItem>
+            <MenuItem attributes={{ className: s.menuItem }} onClick={this.handleClick}>
+              {t('tree:actions:rename')}
+            </MenuItem>
+            <MenuItem attributes={{ className: s.menuItem }} onClick={this.handleClick}>
+              {t('tree:actions:delete')}
+            </MenuItem>
+          </ContextMenu>
+        </div>
       );
+    };
 
     return (
       <div className={s.treeWrapper} style={{ background: 'rgba(28, 29, 37, 0.7)' }}>
@@ -285,3 +299,5 @@ export default class Tree extends Component {
     );
   }
 }
+
+export default translate(['tree'], { wait: true })(Tree);

@@ -59,10 +59,24 @@
 
 .contextMenu {
   z-index: 99;
-  background: #131319;
+  background: #FFF;
+  color: #222;
   border-radius: 3px;
 }
 
 .menuItem {
-  padding: 7.5px;
+  border-radius: 3px;
+  font-size: 13px;
+  padding: 8px 21px;
+  transition: opacity 0.3s ease-out;
+  z-index: 999;
+}
+
+.menuItem:hover {
+  background-color: rgba(97, 97, 97, 0.1);
+}
+
+.headerStyle:hover,
+.headerStyle:active {
+  background-color: rgba(197, 197, 197, 0.1);
 }

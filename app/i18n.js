@@ -13,7 +13,7 @@ i18n
     // wait: true, // globally set to wait for loaded translations in translate hoc
 
     // have a common namespace used around the full app
-    ns: ['common', 'settings'],
+    ns: ['common', 'settings', 'tree'],
     defaultNS: 'common',
 
     backend: {

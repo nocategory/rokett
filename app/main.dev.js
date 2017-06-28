@@ -66,8 +66,8 @@ app.on('ready', async () => {
 
   // Load the previous state with fallback to defaults
   const mainWindowState = windowStateKeeper({
-    defaultWidth: 1366,
-    defaultHeight: 768,
+    defaultWidth: 1550,
+    defaultHeight: 875,
   });
 
   if (process.env.NODE_ENV === 'development') {
