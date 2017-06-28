@@ -14,6 +14,7 @@ class Sidebar extends Component {
   props: {
     toggleSettings: () => void,
     setActiveFolder: () => void,
+    toggleFileTree: () => void,
     t: Function
   }
 
