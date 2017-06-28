@@ -38,13 +38,14 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { t, toggleSettings } = this.props;
+    const { t, toggleSettings, toggleFileTree } = this.props;
     return (
       <div className={s.sidebarWrapper}>
         <div className={s.sidebarTop}>
           {/* @TODO new file */}
           <IconButton iconName="file" iconFunction={this.chooseDirectory} tip={t('common:topbar:newFile')} theme="light" />
           <IconButton iconName="folder" iconFunction={this.chooseDirectory} tip={t('common:topbar:openFolder')} theme="light" />
+          <IconButton iconName="map" iconFunction={toggleFileTree} tip={t('common:topbar:filetree')} theme="light" />
         </div>
         <div className={s.sidebarBottom}>
           <IconButton iconName="cog" iconFunction={toggleSettings} tip={t('common:topbar:settings')} theme="light" />

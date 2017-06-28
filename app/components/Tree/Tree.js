@@ -120,7 +120,7 @@ class Tree extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, fileTreeVisible } = this.props;
 
     const treeSidebarStyle = {
       zIndex: 99,
@@ -191,6 +191,9 @@ class Tree extends Component {
     return (
       <div className={s.treeWrapper} style={{ background: 'rgba(28, 29, 37, 0.7)' }}>
         {(() => {
+          if (!fileTreeVisible) {
+            return null;
+          }
           if (!empty(this.state.data)) {
             return (
               <div className={s.fileTreeSidebar} style={treeSidebarStyle}>

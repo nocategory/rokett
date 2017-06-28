@@ -13,9 +13,10 @@ export default {
     node: {
       base: {
         position: 'relative',
-        padding: '2.2px',
         cursor: 'pointer',
-        margin: 0
+        margin: 0,
+        padding: '2.8px 10.5px',
+        userSelect: 'none'
       },
       link: {
         cursor: 'pointer',

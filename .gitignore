@@ -48,5 +48,7 @@ dll
 main.js
 main.js.map
 
+storage
+
 .idea
 npm-debug.log.*

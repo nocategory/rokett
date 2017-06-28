@@ -29,8 +29,15 @@ export default class App extends Component {
     this.setState({ panelWidths: widths });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.fileTreeVisible !== nextProps.fileTreeVisible) {
+      if (!nextProps.fileTreeVisible) this.handlePanelUpdate([{ size: 0, minSize: 0, resize: 'dyanmic' }])
+      else this.handlePanelUpdate([{ size: 240, minSize: 240, resize: 'dynamic' }])
+    }
+  }
+
   render() {
-    const { settingsVisible } = this.props;
+    const { settingsVisible, fileTreeVisible } = this.props;
     return (
       <div className="app">
         <div

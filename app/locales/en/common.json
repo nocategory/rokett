@@ -2,6 +2,7 @@
   "topbar": {
 		"openFolder": "Open folder",
     "newFile": "New file",
+    "filetree": "Show/hide file tree",
     "settings": "Settings"
 	}
 }
