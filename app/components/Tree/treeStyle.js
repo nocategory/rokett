@@ -15,7 +15,7 @@ export default {
         position: 'relative',
         cursor: 'pointer',
         margin: 0,
-        padding: '2.8px 10.5px',
+        padding: '2.8px 0 2.8px 10.5px',
         userSelect: 'none'
       },
       link: {

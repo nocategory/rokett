@@ -156,7 +156,7 @@ class Tree extends Component {
               <decorators.Toggle style={props.style.toggle} />
             }
             <i className={iconClass} style={iconStyle} />
-            {props.node.name}
+            <span>{props.node.name}</span>
           </div>
         </div>
       );
