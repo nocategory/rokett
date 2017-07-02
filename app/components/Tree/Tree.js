@@ -8,6 +8,8 @@ import chokidar from 'chokidar';
 import fs from 'fs';
 import deep from 'deep-diff';
 import empty from 'is-empty';
+import AppLayer from '../AppLayer/AppLayer';
+import Modal from '../Modal/Modal';
 import s from './Tree.css';
 import dirTree from '../../directory-tree';
 import treeStyle from './treeStyle';
@@ -120,7 +122,7 @@ class Tree extends Component {
   }
 
   render() {
-    const { t, fileTreeVisible } = this.props;
+    const { t, fileTreeVisible, toggleTreeModal, treeModalVisible } = this.props;
 
     const treeSidebarStyle = {
       zIndex: 99,
@@ -165,22 +167,22 @@ class Tree extends Component {
     decorators.Container = (props) => {
       this.contextMenuId++;
       return (
-        <div onClick={props.onClick}>
+        <div>
           <ContextMenuTrigger id={`headerContextTrigger${this.contextMenuId}`}>
-            <decorators.Header {...props} />
+            <decorators.Header {...props} onClick={props.onClick} />
           </ContextMenuTrigger>
 
           <ContextMenu id={`headerContextTrigger${this.contextMenuId}`} className={s.contextMenu}>
-            <MenuItem attributes={{ className: s.menuItem }} onClick={this.handleClick}>
+            <MenuItem attributes={{ className: s.menuItem }} data={{ node: props.node }} onClick={(event, data) => toggleTreeModal('NEW_FILE', event, data.node)}>
               {t('tree:actions:newFile')}
             </MenuItem>
-            <MenuItem attributes={{ className: s.menuItem }} onClick={this.handleClick}>
+            <MenuItem attributes={{ className: s.menuItem }} data={{ node: props.node }} onClick={(event, data) => toggleTreeModal('NEW_FOLDER', event, data.node)}>
               {t('tree:actions:newFolder')}
             </MenuItem>
-            <MenuItem attributes={{ className: s.menuItem }} onClick={this.handleClick}>
+            <MenuItem attributes={{ className: s.menuItem }} data={{ node: props.node }} onClick={(event, data) => toggleTreeModal('RENAME', event, data.node)}>
               {t('tree:actions:rename')}
             </MenuItem>
-            <MenuItem attributes={{ className: s.menuItem }} onClick={this.handleClick}>
+            <MenuItem attributes={{ className: s.menuItem }} data={{ node: props.node }} onClick={(event, data) => toggleTreeModal('DELETE', event, data.node)}>
               {t('tree:actions:delete')}
             </MenuItem>
           </ContextMenu>
@@ -194,7 +196,23 @@ class Tree extends Component {
           if (!fileTreeVisible) {
             return null;
           }
-          if (!empty(this.state.data)) {
+          if (!empty(this.state.data) && treeModalVisible) {
+            return (
+              <div className={s.fileTreeSidebar} style={treeSidebarStyle}>
+                <Treebeard
+                  data={this.state.data || {}}
+                  onToggle={this.onToggle}
+                  decorators={decorators}
+                  animations={false}
+                  style={treeStyle}
+                />
+                <div key="treeModal" className="modal">
+                  <Modal {...this.props} />
+                </div>
+              </div>
+            );
+          }
+          if (!empty(this.state.data) && !treeModalVisible) {
             return (
               <div className={s.fileTreeSidebar} style={treeSidebarStyle}>
                 <Treebeard

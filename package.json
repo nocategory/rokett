@@ -203,6 +203,7 @@
     "i18next-xhr-backend": "^1.4.1",
     "is-empty": "^1.2.0",
     "json-query": "^2.2.2",
+    "mkdirp": "^0.5.1",
     "monaco-editor": "^0.8.3",
     "monaco-loader": "^0.8.2",
     "react": "^15.5.4",
