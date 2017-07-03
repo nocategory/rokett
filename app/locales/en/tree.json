@@ -1,0 +1,16 @@
+{
+  "actions": {
+    "newFile": "New file",
+    "newFolder": "New folder",
+    "rename": "Rename",
+    "delete": "Delete"
+  },
+  "modal": {
+    "desc": {
+      "newFile": "Enter the new file name",
+      "newFolder": "Enter the new folder name",
+      "delete": "Delete",
+      "button": "CANCEL"
+    }
+  }
+}

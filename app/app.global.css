@@ -1,5 +1,5 @@
-@import "~font-awesome/css/font-awesome.css";
 @import "fonts/stylesheet.css";
+@import "./devicon.min.css";
 
 .app {
   position: absolute;
@@ -11,11 +11,42 @@
 
 body {
   font-family: rubikregular;
-  font-size: 16px;
+  font-size: 12px;
   padding: 0;
   margin: 0;
   -webkit-font-smoothing: subpixel-antialiased;
   white-space: pre;
+}
+
+.test {
+  background-color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+} /* the new scrollbar will have a flat appearance with the set background color */
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgb(17, 17, 22);
+  z-index: 58;
+}
+
+::-webkit-scrollbar-button {
+  visibility: hidden;
+  height: 5px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-corner {
+  border-radius: 8px;
 }
 
 i {
@@ -147,12 +178,26 @@ hr {
 	left: 0;
 	right: 0;
 	bottom: 0;
-  position: absolute;
+  position: fixed;
   flex-direction: column;
 }
 
-
-
+.modal {
+  background-color: rgba(28, 29, 37, 0.66);
+  color: #FFFFFF;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  flex-direction: column;
+}
 
 .children {
   margin-left: 20px;
@@ -167,85 +212,23 @@ hr {
   display: block;
 }
 
-/* RESIZER */
-
-.Resizer {
-  background: #000;
-  opacity: .2;
-  z-index: 1;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding;
-  background-clip: padding-box;
+.file-icon {
+  content: "\0000a0";
+  background-image: url('./assets/file.svg');
+  width: 16px;
+  font-size: 16px;
+  height: 16px;
 }
 
-.Resizer:hover {
-  -webkit-transition: all 2s ease;
-  transition: all 2s ease;
+.directory-icon {
+  background-image: url('./assets/folder-fill.svg');
+  vertical-align: text-top;
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  display: inline-block;
 }
 
-.Resizer.horizontal {
-  height: 11px;
-  margin: -5px 0;
-  border-top: 5px solid rgba(255, 255, 255, 0);
-  border-bottom: 5px solid rgba(255, 255, 255, 0);
-  cursor: row-resize;
-  width: 100%;
-}
-
-.Resizer.horizontal:hover {
-  border-top: 5px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 5px solid rgba(0, 0, 0, 0.5);
-}
-
-.Resizer.vertical {
-  width: 11px;
-  margin: 0 -5px;
-  border-left: 5px solid rgba(255, 255, 255, 0);
-  border-right: 5px solid rgba(255, 255, 255, 0);
-  cursor: col-resize;
-}
-
-.Resizer.vertical:hover {
-  border-left: 5px solid rgba(0, 0, 0, 0.5);
-  border-right: 5px solid rgba(0, 0, 0, 0.5);
-}
-
-.Resizer.disabled {
-  cursor: not-allowed;
-}
-
-.Resizer.disabled:hover {
-  border-color: transparent;
-}
-
-/* ANIMATIONS */
-
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
-
-.example-appear {
-  opacity: 0.01;
-}
-
-.example-appear.example-appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
+.colored {
+  vertical-align: sub;
 }

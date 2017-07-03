@@ -1,29 +1,40 @@
 // @flow
-
+import fileExtension from 'file-extension';
 import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED } from '../actions/editor';
-import dirTree from '../directory-tree';
-
 
 const initialState = {
   initialContent: '',
   currentFilePath: '',
-  editorMode: '',
+  currentFolderPath: '',
+  editorLang: '',
   currentContent: '',
   saved: true,
-  currentFolderJSONfalse: false,
   editorIsMounted: false,
+};
+
+const getEditorLanguage = (state, fPath) => {
+  const fExt = `.${fileExtension(fPath)}`;
+  const langs = state.languages;
+  for (let x = 0; x < langs.length; x++) {
+    for (let y = 0; y < langs[x].extensions.length; y++) {
+      if (langs[x].extensions[y] === fExt) {
+        return langs[x].id;
+      }
+    }
+  }
 };
 
 
 export default function editor(state: Object = initialState, action: Object) {
   switch (action.type) {
     case SET_CONTENT: {
+      const editorLang = getEditorLanguage(state, action.filePath);
       return { ...state,
         initialContent: action.initialContent,
         currentFilePath: action.filePath,
-        editorMode: '',
+        editorLang,
         currentContent: action.initialContent,
-        saved: true,
+        saved: true
       };
     }
 
@@ -36,16 +47,19 @@ export default function editor(state: Object = initialState, action: Object) {
       }
       return { ...state,
         currentContent: action.currentContent,
-        saved: savedBool,
+        saved: savedBool
       };
     }
 
     case SET_FOLDERPATH: {
-      return { ...state, currentFolderJSON: dirTree(action.currentFolderPath) };
+      return { ...state, currentFolderPath: action.currentFolderPath };
     }
 
     case SET_EDITORMOUNTED: {
-      return { ...state, editorIsMounted: true };
+      return { ...state,
+        editorIsMounted: true,
+        languages: action.languages
+      };
     }
 
     default: {

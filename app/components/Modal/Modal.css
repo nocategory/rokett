@@ -1,0 +1,80 @@
+.modal {
+	background-color: #161619;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 50px;
+	z-index: 20;
+  position: relative;
+}
+
+.modalBack {
+  background-color: rgba(28, 29, 37, 0.66);
+  color: #FFFFFF;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 19;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  flex-direction: column;
+}
+
+.inputBox {
+	background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+  padding-left: 5px;
+	padding-right: 5px;
+	color: #FFF;
+}
+
+.actionDesc {
+	cursor: default;
+	font-size: 1.1em;
+	color: #FFF;
+	font-weight: 400;
+}
+
+.inputBox:focus {
+	outline: none;
+}
+
+.button {
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 40px;
+  text-transform: uppercase;
+  padding: 0 48px;
+	margin: 8px;
+	cursor: pointer;
+}
+
+.greenButton:hover {
+	opacity: 0.72;
+}
+
+.greenButton {
+	background: #159957;
+}
+
+.redButton:hover {
+  background: rgb(153, 21, 21);
+}
+
+.redButton {
+	border: 1.8px solid rgb(153, 21, 21);
+  background: transparent;
+}
+
+.modalForm {
+	text-align: center;
+}

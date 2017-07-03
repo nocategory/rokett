@@ -32,8 +32,9 @@ export function setActiveFolder(currentFolderPath: string) {
   };
 }
 
-export function setEditorMount() {
+export function setEditorMount(languages: Object) {
   return {
     type: SET_EDITORMOUNTED,
+    languages,
   };
 }

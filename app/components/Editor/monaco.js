@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import loader from 'monaco-loader';
 const appRoot = require('app-root-dir').get();
 
@@ -27,9 +28,6 @@ class MonacoEditor extends React.Component {
         this.__prevent_trigger_change_event = false;
       }
     }
-    if (prevProps.language !== this.props.language) {
-      context.monaco.editor.setModelLanguage(this.editor.getModel(), this.props.language);
-    }
   }
   editorWillMount(monaco) {
     const { editorWillMount } = this.props;
@@ -43,7 +41,7 @@ class MonacoEditor extends React.Component {
 
       // Always refer to the latest value
       this.__current_value = value;
-
+      monaco.editor.setModelLanguage(editor.getModel(), this.props.language);
       // Only invoking when user input changed
       if (!this.__prevent_trigger_change_event) {
         onChange(value, event);
@@ -94,12 +92,14 @@ class MonacoEditor extends React.Component {
       window.addEventListener('resize', () => {
         this.editor.layout();
       });
+
       // After initializing monaco editor
       this.editorDidMount(this.editor, context.monaco);
     }
   }
   destroyMonaco() {
     if (typeof this.editor !== 'undefined') {
+	  window.removeEventListener("resize", this.editor.layout());
       this.editor.dispose();
     }
   }
@@ -142,7 +142,6 @@ MonacoEditor.defaultProps = {
   height: '100%',
   value: null,
   defaultValue: '',
-  language: 'javascript',
   theme: 'vs',
   options: {},
   editorDidMount: noop,

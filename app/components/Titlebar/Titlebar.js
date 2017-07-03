@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import s from './FrameButtons.css';
+import s from './Titlebar.css';
 
 // electron doesn't like import with remote, so require is used
 const { remote } = require('electron');
@@ -8,7 +8,7 @@ const { remote } = require('electron');
 // get window
 const appWindow = remote.getCurrentWindow();
 
-export default class FrameButtons extends Component {
+export default class Titlebar extends Component {
   /**
    * window frame click actions
    */

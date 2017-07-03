@@ -1,18 +1,17 @@
-.app--command--box--wrapper {
+.topBarWrapper {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	height: 52px;
 	-webkit-box-orient: horizontal;
 	flex-shrink: 0;
 	flex-direction: row;
-	width: 100%;
 }
 
-.app--sidebar {
-	height: 100%;
-	width: 200px;
-	background: blue;
+.leftTopBar {
+	padding: 0 25px;
+	z-index: 5;
+  display: inline-flex;
 }
 
 .menuButton {

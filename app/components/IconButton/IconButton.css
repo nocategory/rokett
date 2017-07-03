@@ -1,0 +1,29 @@
+.icon {
+	height: 22px;
+	width: 22px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	transition: .3s ease-out;
+	-webkit-app-region: no-drag;
+  padding: 0 20px;
+	user-select: none;
+}
+
+.iconWrapper {
+	display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 72px;
+	transition: .3s ease-out;
+}
+
+.iconWrapper:hover {
+	background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+	transition: .3s ease-in;
+}
+
+.tooltip {
+	opacity: 1 !important;
+}

@@ -1,57 +1,68 @@
 // @flow
 import React, { Component } from 'react';
 import Transition from 'react-motion-ui-pack';
-import Sidebar from '../components/Sidebar/Sidebar';
+import PanelGroup from 'react-panelgroup';
 import Tree from '../components/Tree/Tree';
-import TopHeader from '../components/TopHeader/TopHeader';
-import FrameButtons from '../components/FrameButtons/FrameButtons';
+import TopBar from '../components/TopBar/TopBar';
+import Sidebar from '../components/Sidebar/Sidebar';
+import Titlebar from '../components/Titlebar/Titlebar';
 import AppLayer from '../components/AppLayer/AppLayer';
 import Settings from '../components/Settings/Settings';
 import Editor from '../components/Editor/Editor';
 
 export default class App extends Component {
+
+  state: Object;
+  handlePanelUpdate: Function;
+
+  constructor() {
+    super();
+    this.state = {
+      panelWidths: [
+        { size: 240, minSize: 240, resize: 'dynamic' }
+      ]
+    };
+    this.handlePanelUpdate = this.handlePanelUpdate.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps: Object) {
+    if (this.props.fileTreeVisible !== nextProps.fileTreeVisible) {
+      if (!nextProps.fileTreeVisible) {
+        return this.handlePanelUpdate([{ size: 0, minSize: 0, resize: 'dynamic' }]);
+      }
+      return this.handlePanelUpdate([{ size: 240, minSize: 240, resize: 'dynamic' }]);
+    }
+  }
+
+  handlePanelUpdate(widths: Object) {
+    this.setState({ panelWidths: widths });
+  }
+
   render() {
-    const { settingsVisible, fileTreeVisible } = this.props;
+    const { settingsVisible } = this.props;
     return (
       <div className="app">
         <div
-          className="flex-vertical flex1"
+          className="flex-horizontal flex1"
           style={{
             height: '100%'
           }}
         >
-          <div>
-            <FrameButtons {...this.props} />
-            <TopHeader {...this.props} />
-          </div>
+          <Titlebar {...this.props} />
 
-          {/* pane 2 */}
           <div className="app--content flex1" id="app--content">
-            <div className="flex-horizontal flex1 w100">
-              {/* sidebar */}
+            <div className="flex-horizontal flex1" style={{ alignSelf: 'stretch' }}>
               <Sidebar {...this.props} />
-              <Transition
-                component={false}
-                measure={false}
-                enter={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                leave={{
-                  opacity: 0,
-                  scale: 0.8,
-                }}
+              <PanelGroup
+                panelWidths={this.state.panelWidths}
+                onUpdate={this.handlePanelUpdate}
               >
-                {/* https://github.com/souporserious/react-motion-ui-pack/issues/72 */}
-                {fileTreeVisible &&
-                  <div key="tree" className="layer">
-                    <AppLayer {...this.props}>
-                      <Tree {...this.props} />
-                    </AppLayer>
-                  </div>
-                }
-              </Transition>
-              <Editor {...this.props} />
+                <Tree {...this.props} />
+                <div className="flex-vertical flex1" style={{ maxWidth: '100%' }}>
+                  <TopBar {...this.props} />
+                  <Editor {...this.props} />
+                </div>
+              </PanelGroup>
             </div>
           </div>
           <Transition

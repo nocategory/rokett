@@ -11,13 +11,17 @@ function mapStateToProps(state) {
     settingsVisible: state.layer.settingsVisible,
     fileTreeVisible: state.layer.fileTreeVisible,
     selectedSection: state.layer.selectedSection,
+    treeModalVisible: state.layer.treeModalVisible,
+    treeModalType: state.layer.treeModalType,
+    treeModalData: state.layer.treeModalData,
 
     initialContent: state.editor.initialContent,
     currentFilePath: state.editor.currentFilePath,
-    editorMode: state.editor.editorMode,
+    currentFolderPath: state.editor.currentFolderPath,
+    editorLang: state.editor.editorLang,
+    languages: state.editor.languages,
     currentContent: state.editor.currentContent,
     saved: state.editor.saved,
-    currentFolderJSON: state.editor.currentFolderJSON,
     editorIsMounted: state.editor.editorIsMounted,
   };
 }

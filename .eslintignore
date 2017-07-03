@@ -55,4 +55,4 @@ __snapshots__
 app/directory-tree.js
 # to remove l8r
 app/components/Loading/*
-app/components/Editor/index.js
+app/components/Editor/monaco.js

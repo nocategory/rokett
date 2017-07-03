@@ -1,17 +1,19 @@
 // @flow
 import React, { Component } from 'react';
 import Style from 'react-style-tag';
-// $FlowIssue => index is a modified version of react-monaco-editor
-import MonacoEditor from './index';
+import Measure from 'react-measure';
+import MonacoEditor from './monaco';
 import settings from '../../settings.json';
 import s from './Editor.css';
 
 export default class Editor extends Component {
 
   editorDidMount: Function;
+  editor: Object;
 
   props: {
-    setEditorMount: () => void
+    setEditorMount: () => void,
+    editorLang: string
   };
 
   constructor() {
@@ -19,13 +21,19 @@ export default class Editor extends Component {
     this.editorDidMount = this.editorDidMount.bind(this);
   }
 
-  editorDidMount(editor: Object) {
+  editorDidMount(editor: Object, monaco: Object) {
     const { setEditorMount } = this.props;
-    setEditorMount();
+    if (!this.props.languages) {
+      const languagesArray = monaco.languages.getLanguages();
+      setEditorMount(languagesArray);
+    } else {
+      setEditorMount(this.props.languages);
+    }
     editor.focus();
+    this.editor = editor;
   }
 
-  onChange(newValue: string, e: Event) {
+  onChange(newValue: string, e: Object) {
     console.log('onChange', newValue, e);
   }
 
@@ -34,14 +42,28 @@ export default class Editor extends Component {
     const { currentContent } = this.props;
     return (
       <div className={s.editorWrapper}>
-        <MonacoEditor
-          width={'100%'}
-          height={'100%'}
-          language="javascript"
-          theme="vs-dark"
-          value={currentContent}
-          editorDidMount={this.editorDidMount}
-        />
+        <Measure
+          onResize={() => {
+            if (this.editor) {
+              this.editor.layout();
+            }
+          }}
+        >
+          { ({ measureRef }) => (
+            <div className="h100" ref={measureRef}>
+              <MonacoEditor
+                width={'100%'}
+                height={'100%'}
+                theme="vs-dark"
+                language={this.props.editorLang}
+                value={currentContent}
+                onChange={this.onChange}
+                editorDidMount={this.editorDidMount}
+              />
+            </div>
+            )
+          }
+        </Measure>
         <Style>{`
           .monaco-editor, .monaco-editor-background {
             background: ${settings.frame.mainColor} !important;

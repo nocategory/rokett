@@ -23,6 +23,7 @@ const composeEnhancers =
 enhancers.push(applyMiddleware(thunk, router));
 enhancers.push(autoRehydrate());
 
+// $FlowIssue
 const enhancer = composeEnhancers(...enhancers);
 
 function configureStore(initialState: Object) {

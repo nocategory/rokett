@@ -2,13 +2,13 @@ import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { persistStore } from 'redux-persist';
-import { localStorage } from 'redux-persist/storages';
+import { AsyncNodeStorage } from 'redux-persist-node-storage';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import './app.global.css';
 
 const store = configureStore();
-persistStore(store, { storage: localStorage });
+persistStore(store, { storage: new AsyncNodeStorage('./storage') });
 
 render(
   <AppContainer>
