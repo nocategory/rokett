@@ -46,3 +46,35 @@
 .inputBox:focus {
 	outline: none;
 }
+
+.button {
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 40px;
+  text-transform: uppercase;
+  padding: 0 48px;
+	margin: 8px;
+	cursor: pointer;
+}
+
+.greenButton:hover {
+	opacity: 0.72;
+}
+
+.greenButton {
+	background: #159957;
+}
+
+.redButton:hover {
+  background: rgb(153, 21, 21);
+}
+
+.redButton {
+	border: 1.8px solid rgb(153, 21, 21);
+  background: transparent;
+}
+
+.modalForm {
+	text-align: center;
+}

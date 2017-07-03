@@ -8,16 +8,6 @@
   text-overflow: ellipsis;
 }
 
-.treeWrapper:hover {
-  left: 90px;
-  transition: left 0.3s ease-in;
-}
-
-.treeWrapper:hover .tree-chevron-wrapper i {
-  transform: rotate(180deg);
-  transition: transform 0.3s ease-in;
-}
-
 .fileTreeSidebar {
   z-index: 99;
   -webkit-app-region: no-drag;

@@ -1,6 +1,7 @@
 // @flow
 import fs from 'fs';
 import mkdirp from 'mkdirp';
+import rimraf from 'rimraf';
 
 const getPath = (node) => {
   let path;
@@ -18,7 +19,6 @@ const newFile = (data: Object, fileName: string) => {
     if (err) throw err;
     console.log('created');
   });
-  return;
 };
 
 const newFolder = (data: Object, folderName: string) => {
@@ -40,8 +40,8 @@ const rename = (data: Object, name: string) => {
 };
 
 const del = (data: Object) => {
-  const path = data.node.path;
-  fs.unlink(path, (err) => {
+  const path = data.path;
+  rimraf(path, (err) => {
     if (err) throw err;
     console.log('deleted');
   });

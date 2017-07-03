@@ -8,7 +8,6 @@ import chokidar from 'chokidar';
 import fs from 'fs';
 import deep from 'deep-diff';
 import empty from 'is-empty';
-import AppLayer from '../AppLayer/AppLayer';
 import Modal from '../Modal/Modal';
 import s from './Tree.css';
 import dirTree from '../../directory-tree';
@@ -149,16 +148,16 @@ class Tree extends Component {
       } else {
         iconClass = `${iconType}-icon`;
       }
-      const iconStyle = { marginRight: '5px' };
+      const iconStyle = { marginRight: '5px', verticalAlign: 'middle' };
       return (
-        <div style={style.base} className={s.headerStyle}>
+        <div style={style.base} className={s.headerStyle} onClick={props.onClick}>
           <div style={style.title}>
             {/* !props.terminal == directory */}
             {!props.terminal &&
               <decorators.Toggle style={props.style.toggle} />
             }
             <i className={iconClass} style={iconStyle} />
-            <span>{props.node.name}</span>
+            <span style={{ verticalAlign: 'middle' }}>{props.node.name}</span>
           </div>
         </div>
       );
@@ -167,9 +166,9 @@ class Tree extends Component {
     decorators.Container = (props) => {
       this.contextMenuId++;
       return (
-        <div>
+        <div className={s.test}>
           <ContextMenuTrigger id={`headerContextTrigger${this.contextMenuId}`}>
-            <decorators.Header {...props} onClick={props.onClick} />
+            <decorators.Header {...props} />
           </ContextMenuTrigger>
 
           <ContextMenu id={`headerContextTrigger${this.contextMenuId}`} className={s.contextMenu}>

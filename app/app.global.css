@@ -25,25 +25,28 @@ body {
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-  -webkit-appearance: none;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 10px;
+  border-radius: 8px;
 } /* the new scrollbar will have a flat appearance with the set background color */
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: rgb(17, 17, 22);
   z-index: 58;
 }
 
 ::-webkit-scrollbar-button {
   visibility: hidden;
+  height: 5px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-corner {
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 i {

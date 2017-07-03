@@ -32,7 +32,7 @@ export default {
         base: {
           position: 'relative',
           display: 'inline-block',
-          verticalAlign: 'top',
+          verticalAlign: 'middle',
           marginLeft: '0px',
           height: '16px',
           width: '16px'
