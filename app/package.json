@@ -1,6 +1,6 @@
 {
-  "name": "quarkz",
-  "productName": "quarkz",
+  "name": "rokett",
+  "productName": "rokett",
   "version": "0.0.2",
   "description": "An open-source code editor built with web technologies and ❤",
   "main": "./main.prod.js",
