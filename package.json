@@ -1,8 +1,8 @@
 {
-  "name": "quarkz",
-  "productName": "quarkz",
+  "name": "rokett",
+  "productName": "rokett",
   "version": "0.0.2",
-  "description": "quarkz is an open-source code editor built with web technologies and ❤",
+  "description": "rokett is an open-source code editor built with web technologies and ❤",
   "main": "main.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings ./test/runTests.js",
@@ -32,8 +32,8 @@
   },
   "browserslist": "electron 1.6",
   "build": {
-    "productName": "quarkz",
-    "appId": "org.editor.quarkz",
+    "productName": "rokett",
+    "appId": "org.editor.rokett",
     "files": [
       "dist/",
       "node_modules/",
@@ -74,7 +74,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uppe-r/quarkz.git"
+    "url": "git+https://github.com/uppe-r/rokett.git"
   },
   "author": {
     "name": "uppe-r",
@@ -83,7 +83,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/uppe-r/quarkz/issues"
+    "url": "https://github.com/uppe-r/rokett/issues"
   },
   "keywords": [
     "electron",
@@ -96,7 +96,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/uppe-r/quarkz#readme",
+  "homepage": "https://github.com/uppe-r/rokett#readme",
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMock.js",
