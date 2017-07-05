@@ -77,7 +77,7 @@ class MonacoEditor extends React.Component {
   }
   initMonaco() {
     const value = this.props.value !== null ? this.props.value : this.props.defaultValue;
-    const { language, theme, options } = this.props;
+    const { language, theme, options, model } = this.props;
     const containerElement = this.refs.container;
     const context = this.props.context || window;
     if (typeof context.monaco !== 'undefined') {
@@ -87,6 +87,7 @@ class MonacoEditor extends React.Component {
         value,
         language,
         theme,
+        // model,
         ...options,
       });
       window.addEventListener('resize', () => {
@@ -131,6 +132,7 @@ MonacoEditor.propTypes = {
   language: PropTypes.string,
   theme: PropTypes.string,
   options: PropTypes.object,
+  // model: PropTypes.object,
   editorDidMount: PropTypes.func,
   editorWillMount: PropTypes.func,
   onChange: PropTypes.func,
@@ -141,6 +143,7 @@ MonacoEditor.defaultProps = {
   width: '100%',
   height: '100%',
   value: null,
+  // model: null,
   defaultValue: '',
   theme: 'vs',
   options: {},

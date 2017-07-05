@@ -14,6 +14,7 @@ function mapStateToProps(state) {
     treeModalVisible: state.layer.treeModalVisible,
     treeModalType: state.layer.treeModalType,
     treeModalData: state.layer.treeModalData,
+    model: state.editor.model,
 
     initialContent: state.editor.initialContent,
     currentFilePath: state.editor.currentFilePath,

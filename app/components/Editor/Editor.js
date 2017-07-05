@@ -21,6 +21,12 @@ export default class Editor extends Component {
     this.editorDidMount = this.editorDidMount.bind(this);
   }
 
+  componentWillReceiveProps(nextProps: Object) {
+    if (this.props.currentFilePath !== nextProps.currentFilePath && this.monaco) {
+      this.props.setNewModel(this.monaco);
+    }
+  }
+
   editorDidMount(editor: Object, monaco: Object) {
     const { setEditorMount } = this.props;
     if (!this.props.languages) {
@@ -30,7 +36,10 @@ export default class Editor extends Component {
       setEditorMount(this.props.languages);
     }
     editor.focus();
+    this.monaco = monaco;
+    console.log(this.monaco);
     this.editor = editor;
+    console.log(this.editor);
   }
 
   onChange(newValue: string, e: Object) {

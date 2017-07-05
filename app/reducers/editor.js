@@ -1,6 +1,6 @@
 // @flow
 import fileExtension from 'file-extension';
-import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED } from '../actions/editor';
+import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED, SET_NEWMODEL } from '../actions/editor';
 
 const initialState = {
   initialContent: '',
@@ -59,6 +59,21 @@ export default function editor(state: Object = initialState, action: Object) {
       return { ...state,
         editorIsMounted: true,
         languages: action.languages
+      };
+    }
+
+    case SET_NEWMODEL: {
+      const monaco = action.monaco;
+      console.log(state.currentContent);
+      const model = monaco.editor.createModel([
+        state.currentContent
+      ].join('\n'),
+  			'javascript'
+  		);
+      const x = [];
+      console.log(model);
+      return { ...state,
+        model: x.push(model)
       };
     }
 

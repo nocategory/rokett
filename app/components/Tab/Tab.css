@@ -1,0 +1,10 @@
+.tab {
+	height: 40px;
+	background: #5e5f66;
+	width: 86px;
+}
+
+.tabName {
+	color: #FFF;
+	font-size: 1.1em;
+}
