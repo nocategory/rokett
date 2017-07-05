@@ -29,53 +29,60 @@ class Tree extends Component {
     this.editorContentCallback = this.editorContentCallback.bind(this);
   }
 
+  componentDidMount() {
+// Watch redux persisted file path on start
+    if (this.props.currentFolderJSON) {
+      this.initChokidar(this.props.currentFolderPath);
+    }
+  }
+
   componentWillReceiveProps(nextProps: Object) {
     if (this.props.currentFolderPath !== nextProps.currentFolderPath) {
-      const data = dirTree(nextProps.currentFolderPath);
-      if (data) {
-        this.setState({ data });
-      } else return this.setState({ data: null });
-      // Start watching the files inside the chosen directory,
-      // ignore node_modules if it exists since... it's quite big
-
-      const watcher = chokidar.watch(nextProps.currentFolderPath, { ignoreInitial: true, ignored: (/node_modules[/]?/) });
-      const watchedPaths = watcher.getWatched();
-      if (watchedPaths) {
-        watcher.unwatch(this.props.currentFolderPath);
-      }
-      // @TODO: Try to get multiple fs events on a single 'on' method
-      // doesn't look to be supported by chokidar ^
-      watcher
-        .on('add', (event) => {
-          this.chokidarFired(event);
-        })
-        .on('unlink', (event) => {
-          this.chokidarFired(event);
-        })
-        .on('unlinkDir', (event) => {
-          this.chokidarFired(event);
-        })
-        .on('addDir', (event) => {
-          this.chokidarFired(event);
-        });
+// Start watching the files inside the chosen directory,
+// ignore node_modules if it exists since... it's quite big
+      this.initChokidar(nextProps.currentFolderPath);
     }
+  }
+
+  initChokidar(fp) {
+    const watcher = chokidar.watch(fp, { ignoreInitial: true, ignored: (/node_modules[/]?/) });
+    const watchedPaths = watcher.getWatched();
+    if (watchedPaths) {
+      watcher.unwatch(this.props.currentFolderPath);
+    }
+// @TODO: Try to get multiple fs events on a single 'on' method
+// doesn't look to be supported by chokidar ^
+    watcher
+    .on('add', (event) => {
+      this.chokidarFired(event);
+    })
+    .on('unlink', (event) => {
+      this.chokidarFired(event);
+    })
+    .on('unlinkDir', (event) => {
+      this.chokidarFired(event);
+    })
+    .on('addDir', (event) => {
+      this.chokidarFired(event);
+    });
   }
 
   chokidarFired() {
     const newData = dirTree(this.props.currentFolderPath);
-    let currentData = this.state.data;
+    let currentData = this.props.currentFolderJSON;
     const observableDiff = deep.observableDiff;
     observableDiff(currentData, newData, (d) => {
       if (!d.path || !(d.path.length > 0)) {
         currentData = {};
         return currentData;
       }
-      // Apply all changes except those to the 'toggled' and 'active' properties...
+// Apply all changes except those to the 'toggled' and 'active' properties...
       if (d.path.join('.').indexOf('toggled') === -1 && d.path.join('.').indexOf('active') === -1) {
         deep.applyChange(currentData, newData, d);
       }
     });
-    return this.setState({ data: currentData });
+    currentData = Object.assign({}, currentData);
+    this.props.setActiveFolder(this.props.currentFolderPath, currentData);
   }
 
   /**
@@ -195,11 +202,11 @@ class Tree extends Component {
           if (!fileTreeVisible) {
             return null;
           }
-          if (!empty(this.state.data) && treeModalVisible) {
+          if (!empty(this.props.currentFolderJSON) && treeModalVisible) {
             return (
               <div className={s.fileTreeSidebar} style={treeSidebarStyle}>
                 <Treebeard
-                  data={this.state.data || {}}
+                  data={this.props.currentFolderJSON || {}}
                   onToggle={this.onToggle}
                   decorators={decorators}
                   animations={false}
@@ -211,11 +218,11 @@ class Tree extends Component {
               </div>
             );
           }
-          if (!empty(this.state.data) && !treeModalVisible) {
+          if (!empty(this.props.currentFolderJSON) && !treeModalVisible) {
             return (
               <div className={s.fileTreeSidebar} style={treeSidebarStyle}>
                 <Treebeard
-                  data={this.state.data || {}}
+                  data={this.props.currentFolderJSON || {}}
                   onToggle={this.onToggle}
                   decorators={decorators}
                   animations={false}

@@ -18,6 +18,7 @@ function mapStateToProps(state) {
 
     initialContent: state.editor.initialContent,
     currentFilePath: state.editor.currentFilePath,
+    currentFolderJSON: state.editor.currentFolderJSON,
     currentFolderPath: state.editor.currentFolderPath,
     editorLang: state.editor.editorLang,
     languages: state.editor.languages,

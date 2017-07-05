@@ -8,8 +8,10 @@ const initialState = {
   currentFolderPath: '',
   editorLang: '',
   currentContent: '',
+  model: null,
   saved: true,
   editorIsMounted: false,
+  currentFolderJSON: null
 };
 
 const getEditorLanguage = (state, fPath) => {
@@ -52,7 +54,7 @@ export default function editor(state: Object = initialState, action: Object) {
     }
 
     case SET_FOLDERPATH: {
-      return { ...state, currentFolderPath: action.currentFolderPath };
+      return { ...state, currentFolderPath: action.currentFolderPath, currentFolderJSON: action.currentFolderJSON };
     }
 
     case SET_EDITORMOUNTED: {
@@ -68,12 +70,14 @@ export default function editor(state: Object = initialState, action: Object) {
       const model = monaco.editor.createModel([
         state.currentContent
       ].join('\n'),
-  			'javascript'
+  			undefined,
+        new monaco.Uri(state.currentFilePath)
   		);
       const x = [];
-      console.log(model);
+      x.push(model)
+      console.log(x);
       return { ...state,
-        model: x.push(model)
+        model: x
       };
     }
 

@@ -26,10 +26,11 @@ export function editorOnChange(currentContent: string) {
   };
 }
 
-export function setActiveFolder(currentFolderPath: string) {
+export function setActiveFolder(currentFolderPath: string, currentFolderJSON: Object) {
   return {
     type: SET_FOLDERPATH,
     currentFolderPath,
+    currentFolderJSON,
   };
 }
 

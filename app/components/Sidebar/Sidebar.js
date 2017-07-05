@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+import dirTree from '../../directory-tree';
 import IconButton from '../IconButton/IconButton';
 import s from './Sidebar.css';
 
@@ -33,7 +34,7 @@ class Sidebar extends Component {
       properties: ['openDirectory'],
     }, (folderPath) => {
       if (folderPath) {
-        this.props.setActiveFolder(folderPath[0]);
+        this.props.setActiveFolder(folderPath[0], dirTree(folderPath[0]));
       }
     });
   }
@@ -43,7 +44,6 @@ class Sidebar extends Component {
     return (
       <div className={s.sidebarWrapper}>
         <div className={s.sidebarTop}>
-          {/* @TODO new file */}
           <IconButton iconName="file" iconFunction={this.chooseDirectory} tip={t('common:topbar:newFile')} theme="light" />
           <IconButton iconName="folder" iconFunction={this.chooseDirectory} tip={t('common:topbar:openFolder')} theme="light" />
           <IconButton iconName="map" iconFunction={toggleFileTree} tip={t('common:topbar:filetree')} theme="light" />
