@@ -32,7 +32,7 @@ class Tree extends Component {
   componentDidMount() {
 // Watch redux persisted file path on start
     if (this.props.currentFolderJSON) {
-      this.initChokidar(this.props.currentFolderPath);
+      this.initChokidar(this.props.currentFolderPath, false);
     }
   }
 
@@ -40,15 +40,20 @@ class Tree extends Component {
     if (this.props.currentFolderPath !== nextProps.currentFolderPath) {
 // Start watching the files inside the chosen directory,
 // ignore node_modules if it exists since... it's quite big
-      this.initChokidar(nextProps.currentFolderPath);
+      this.initChokidar(nextProps.currentFolderPath, true);
     }
   }
 
-  initChokidar(fp) {
+  initChokidar(fp, prevState) {
+    console.log('chokidar');
+    console.log(fp);
     const watcher = chokidar.watch(fp, { ignoreInitial: true, ignored: (/node_modules[/]?/) });
-    const watchedPaths = watcher.getWatched();
-    if (watchedPaths) {
-      watcher.unwatch(this.props.currentFolderPath);
+    if (prevState) {
+      const watchedPaths = watcher.getWatched();
+      if (watchedPaths) {
+        console.log('UNWATCH');
+        watcher.unwatch(this.props.currentFolderPath);
+      }
     }
 // @TODO: Try to get multiple fs events on a single 'on' method
 // doesn't look to be supported by chokidar ^
