@@ -30,12 +30,9 @@ const newFolder = (data: Object, folderName: string) => {
 };
 
 const rename = (data: Object, name: string) => {
-  console.log(data);
   const oldPath = data.path;
   const path = getPath(data, true);
   const newPath = `${path}${name}`;
-  console.log(oldPath);
-  console.log(newPath);
   fs.rename(oldPath, newPath, (err) => {
     if (err) throw err;
     console.log('renamed');

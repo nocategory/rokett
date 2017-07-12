@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
-import { autoRehydrate } from 'redux-persist';
 import rootReducer from '../reducers';
 import * as editorActions from '../actions/editor';
 import * as layerActions from '../actions/layer';
@@ -47,7 +46,6 @@ const configureStore = (initialState) => {
 
   // Apply Middleware & Compose Enhancers
   enhancers.push(applyMiddleware(...middleware));
-  enhancers.push(autoRehydrate());
 
   const enhancer = composeEnhancers(...enhancers);
   // Create Store

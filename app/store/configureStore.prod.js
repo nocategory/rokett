@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux';
 // $FlowIssue
-import { autoRehydrate } from 'redux-persist';
 import rootReducer from '../reducers';
 
 const history = createBrowserHistory();
@@ -21,7 +20,6 @@ const composeEnhancers =
   /* eslint-enable */
 
 enhancers.push(applyMiddleware(thunk, router));
-enhancers.push(autoRehydrate());
 
 // $FlowIssue
 const enhancer = composeEnhancers(...enhancers);

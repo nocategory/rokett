@@ -2,9 +2,17 @@
 	height: 40px;
 	background: #5e5f66;
 	width: 86px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  margin: 0 4px 0 4px;
+  background: #1f202a;
+	width: 100%;
+	position: relative;
 }
 
 .tabName {
 	color: #FFF;
 	font-size: 1.1em;
+	cursor: pointer;
 }

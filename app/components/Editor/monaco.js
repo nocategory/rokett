@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import loader from 'monaco-loader';
 const appRoot = require('app-root-dir').get();
 
 function noop() {}
@@ -77,17 +76,15 @@ class MonacoEditor extends React.Component {
   }
   initMonaco() {
     const value = this.props.value !== null ? this.props.value : this.props.defaultValue;
-    const { language, theme, options, model } = this.props;
+    const { theme, options, model } = this.props;
     const containerElement = this.refs.container;
     const context = this.props.context || window;
     if (typeof context.monaco !== 'undefined') {
       // Before initializing monaco editor
-      this.editorWillMount(context.monaco);
       this.editor = context.monaco.editor.create(containerElement, {
-        value,
-        language,
+        // value,
         theme,
-        // model,
+        model,
         ...options,
       });
       window.addEventListener('resize', () => {
@@ -143,7 +140,7 @@ MonacoEditor.defaultProps = {
   width: '100%',
   height: '100%',
   value: null,
-  // model: null,
+  model: null,
   defaultValue: '',
   theme: 'vs',
   options: {},

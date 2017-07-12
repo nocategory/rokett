@@ -8,6 +8,7 @@ import chokidar from 'chokidar';
 import fs from 'fs';
 import deep from 'deep-diff';
 import empty from 'is-empty';
+import Transition from 'react-motion-ui-pack';
 import Modal from '../Modal/Modal';
 import s from './Tree.css';
 import dirTree from '../../directory-tree';
@@ -115,6 +116,7 @@ class Tree extends Component {
    */
   getFileContent(path: string) {
     fs.readFile(path, 'utf8', (err, data) => {
+      if (err) throw err;
       this.editorContentCallback(data, path);
     });
   }
@@ -217,9 +219,22 @@ class Tree extends Component {
                   animations={false}
                   style={treeStyle}
                 />
+                <Transition
+                  component={false}
+                  measure={false}
+                  enter={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  leave={{
+                    opacity: 0,
+                    scale: 0.8,
+                  }}
+                >
                 <div key="treeModal" className="modal">
                   <Modal {...this.props} />
                 </div>
+              </Transition>
               </div>
             );
           }

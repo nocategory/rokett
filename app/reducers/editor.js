@@ -1,6 +1,6 @@
 // @flow
 import fileExtension from 'file-extension';
-import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED, SET_NEWMODEL } from '../actions/editor';
+import { SET_CONTENT, SET_NEWCONTENT, SET_FOLDERPATH, SET_EDITORMOUNTED, NEW_TAB, TAB_CLICK, TAB_CLOSE, SAVE } from '../actions/editor';
 
 const initialState = {
   initialContent: '',
@@ -11,30 +11,54 @@ const initialState = {
   model: null,
   saved: true,
   editorIsMounted: false,
-  currentFolderJSON: null
-};
-
-const getEditorLanguage = (state, fPath) => {
-  const fExt = `.${fileExtension(fPath)}`;
-  const langs = state.languages;
-  for (let x = 0; x < langs.length; x++) {
-    for (let y = 0; y < langs[x].extensions.length; y++) {
-      if (langs[x].extensions[y] === fExt) {
-        return langs[x].id;
-      }
-    }
-  }
+  currentFolderJSON: null,
+  tabs: [],
+  activeTabFilePath: ''
 };
 
 
 export default function editor(state: Object = initialState, action: Object) {
   switch (action.type) {
+    case NEW_TAB: {
+      for (let i = 0; i < state.tabs.length; i++) {
+        if (state.tabs[i].path === action.filePath) {
+          return { ...state };
+        }
+      }
+      return { ...state,
+        tabs: [...state.tabs, {
+          active: true,
+          path: action.filePath
+        }]
+      };
+    }
+
+    case TAB_CLICK: {
+      return { ...state,
+        activeTabFilePath: action.filePath
+      };
+    }
+
+    case TAB_CLOSE: {
+      const t = state.tabs;
+      for (let y = 0; y < t.length; y++) {
+        if (state.tabs[y].path === action.filePath) {
+          t.splice(y, 1);
+        }
+      }
+      return { ...state,
+        tabs: t
+      };
+    }
+
+    case SAVE: {
+      return { ...state, saveFile: !state.saveFile };
+    }
+
     case SET_CONTENT: {
-      const editorLang = getEditorLanguage(state, action.filePath);
       return { ...state,
         initialContent: action.initialContent,
         currentFilePath: action.filePath,
-        editorLang,
         currentContent: action.initialContent,
         saved: true
       };
@@ -61,23 +85,6 @@ export default function editor(state: Object = initialState, action: Object) {
       return { ...state,
         editorIsMounted: true,
         languages: action.languages
-      };
-    }
-
-    case SET_NEWMODEL: {
-      const monaco = action.monaco;
-      console.log(state.currentContent);
-      const model = monaco.editor.createModel([
-        state.currentContent
-      ].join('\n'),
-  			undefined,
-        new monaco.Uri(state.currentFilePath)
-  		);
-      const x = [];
-      x.push(model)
-      console.log(x);
-      return { ...state,
-        model: x
       };
     }
 

@@ -4,7 +4,10 @@ export const SET_CONTENT = 'SET_CONTENT';
 export const SET_NEWCONTENT = 'SET_NEWCONTENT';
 export const SET_FOLDERPATH = 'SET_FOLDERPATH';
 export const SET_EDITORMOUNTED = 'SET_EDITORMOUNTED';
-export const SET_NEWMODEL = 'SET_NEWMODEL';
+export const NEW_TAB = 'NEW_TAB';
+export const TAB_CLICK = 'TAB_CLICK';
+export const TAB_CLOSE = 'TAB_CLOSE';
+export const SAVE = 'SAVE';
 
 /**
  * [setEditorContent]
@@ -41,9 +44,29 @@ export function setEditorMount(languages: Object) {
   };
 }
 
-export function setNewModel(monaco: Object) {
+export function newTab(filePath: ?string) {
   return {
-    type: SET_NEWMODEL,
-    monaco,
+    type: NEW_TAB,
+    filePath,
+  };
+}
+
+export function tabClick(filePath: ?string) {
+  return {
+    type: TAB_CLICK,
+    filePath,
+  };
+}
+
+export function tabClose(filePath: ?string) {
+  return {
+    type: TAB_CLOSE,
+    filePath,
+  };
+}
+
+export function saveFileFunc() {
+  return {
+    type: SAVE,
   };
 }
